@@ -1,13 +1,16 @@
 
 #include "parser.h"
-
 #include <google/protobuf/compiler/importer.h>
+
+#include <google/protobuf/util/json_util.h>
+
+#include "../modules/grpc/test/cpp/util/proto_reflection_descriptor_database.h"
 
 #include <iostream>
 #include <libgen.h>
 
 using namespace google::protobuf::compiler;
-
+using namespace ::grpc;
 
 namespace auxl {
 namespace grpc {
@@ -52,7 +55,6 @@ std::string proto_files_to_fd_json(std::vector<std::string> proto_files) {
     // Get the base paths and add them to the source tree
     for (std::string file : proto_files) {
         char* path = dirname((char*) file.c_str());
-        // grpc::protobuf::File
         source_tree.MapPath("", path);
     }
     
@@ -61,20 +63,29 @@ std::string proto_files_to_fd_json(std::vector<std::string> proto_files) {
     for (std::string file : proto_files) {
         char *name = basename((char *) file.c_str());
         printf("Basename: %s\n", name);
+
         const google::protobuf::FileDescriptor *descr = importer.Import(name);
 
         auto proto = new google::protobuf::FileDescriptorProto();
         descr->CopyTo(proto);
 
+        for (int i = 0; i < descr->dependency_count(); i++) {
+            auto dep = descr->dependency(i);
+            std::cout << "------>\n" << dep->DebugString();
 
-        // for (int i = 0; i < descr->dependency_count(); i++) {
-        //     descr->dependency(i)
-
-        // }
+        }
 
         std::cout << proto->DebugString();
 
         delete proto;
+    }
+
+    std::vector<std::string> file_names;
+
+    importer.pool()->internal_generated_database()->FindAllFileNames(&file_names);
+
+    for (std::string fn : file_names) {
+        std::cout << "FN: " <<  fn << std::endl; 
     }
 
 
@@ -97,6 +108,33 @@ std::string proto_files_to_fd_json(std::vector<std::string> proto_files) {
     return NULL;
 }
 
+
+std::string grpc_reflect(std::shared_ptr<Connection>& connection) {
+
+    ProtoReflectionDescriptorDatabase desc_db(connection->channel);
+    google::protobuf::DescriptorPool desc_pool(&desc_db);
+    
+    desc_pool.AllowUnknownDependencies();
+    
+    std::string jsonOutput;
+
+    google::protobuf::util::JsonPrintOptions jsonPrintOptions;
+
+    jsonPrintOptions.add_whitespace = true;
+    jsonPrintOptions.always_print_primitive_fields = true;
+    jsonPrintOptions.always_print_enums_as_ints = true;
+    
+    std::vector<std::string> service_names;
+    std::vector<std::string> file_names;
+    
+    desc_db.GetServices(&service_names);
+    
+    for (std::string serv : service_names) {
+        std::cout << serv << std::endl;
+    }
+
+    return "";
+}
 
 
 }

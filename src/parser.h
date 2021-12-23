@@ -7,6 +7,7 @@
 
 #include <google/protobuf/compiler/importer.h>
 
+#include "connection.h"
 #include "types.h"
 
 namespace auxl {
@@ -47,6 +48,11 @@ struct AuxlGRPCParserException : std::exception {
  * Converts proto files to a FileDescriptor JSON format.
  */
 std::string proto_files_to_fd_json(std::vector<std::string> proto_files);
+
+/**
+ * Temp
+ */
+std::string grpc_reflect(std::shared_ptr<Connection>& connection);
 
 } // auxl
 } // grpc

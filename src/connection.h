@@ -8,10 +8,10 @@ namespace auxl {
 namespace grpc {
 
 struct Connection {
-    ::grpc::Channel* channel;
+    std::shared_ptr<::grpc::Channel> channel;
 };
 
-std::unique_ptr<Connection> create_connection(GRPCConfig config);
+std::shared_ptr<Connection> create_connection(GRPCConfig config);
 
 }
 }

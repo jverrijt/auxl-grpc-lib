@@ -47,9 +47,10 @@ typedef struct GRPCOptions {
     bool use_remote_db;
     bool print_type_as_json;
     
-    char *grpc_service_config;
-    char *ssl_client_cert;
-    char *ssl_client_key;
+    char* grpc_service_config;
+    char* ssl_client_cert;
+    char* ssl_client_key;
+    char* ssl_root_certs_path;
     
     kGRPCFormatType input_type;
     kGRPCFormatType output_type;
