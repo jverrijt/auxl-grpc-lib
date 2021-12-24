@@ -27,7 +27,7 @@ bin/auxl_cli: $(OBJS_LIB) $(OBJS_CLI)
 	@echo ":: Executing auxl cli target ::"
 	$(CXX) $(CXXFLAGS) $(LDFLAGS_CLI) $(LDFLAGS_GRPC) /usr/local/lib/libssl.a /usr/local/lib/libcrypto.a $(LIB_ABSL_LIBS) -o $@ $^
 
-libauxl.a : $(OBJS_LIB)
+libauxl_grpc.a : $(OBJS_LIB)
 	@echo ":: AUXL static lib target ::"
 	mkdir -p lib
 	ar rcs lib/$@ $^
