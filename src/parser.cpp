@@ -10,12 +10,16 @@
 #include <libgen.h>
 
 using namespace google::protobuf::compiler;
+
+using google::protobuf::DescriptorPoolDatabase;
+
+
 using namespace ::grpc;
 
 namespace auxl {
 namespace grpc {
 
-    /**
+/**
 */
 void ProtoFileParserError::AddError(const std::string &filename, int line, int column, const std::string &message) {
 
@@ -44,12 +48,14 @@ void ProtoFileParserError::AddWarning(const std::string &filename, int line, int
 }
 
 
-/**
-*/
-std::string proto_files_to_fd_json(std::vector<std::string> proto_files) {
-    
-    auxl::grpc::ProtoFileParserError error_collector;
+std::shared_ptr<Importer> cur_importer;
 
+/**
+ */
+std::shared_ptr<DescriptorPoolDatabase> descriptor_db_from_proto_files(
+    std::vector<std::string> proto_files, std::set<std::string>* proto_file_names) {
+
+    auxl::grpc::ProtoFileParserError error_collector;
     DiskSourceTree source_tree;
 
     // Get the base paths and add them to the source tree
@@ -58,54 +64,62 @@ std::string proto_files_to_fd_json(std::vector<std::string> proto_files) {
         source_tree.MapPath("", path);
     }
     
-    Importer importer(&source_tree, &error_collector);
+    // Hold on to the importer as when it goes out-of-scope, so will its pool.
+    cur_importer = std::shared_ptr<Importer>(new Importer(&source_tree, &error_collector));
 
+    // Collect the proto file names in these proto files
     for (std::string file : proto_files) {
         char *name = basename((char *) file.c_str());
-        printf("Basename: %s\n", name);
+        const google::protobuf::FileDescriptor *descr = cur_importer->Import(name);
 
-        const google::protobuf::FileDescriptor *descr = importer.Import(name);
+        if (descr != nullptr) {
+            const auto proto = new google::protobuf::FileDescriptorProto();
+            descr->CopyTo(proto);
+            proto_file_names->insert(proto->name());
 
-        auto proto = new google::protobuf::FileDescriptorProto();
-        descr->CopyTo(proto);
+            // Also insert its dependencies
+            for (int i = 0; i < proto->dependency_size(); i++) {
+                auto dep = proto->dependency(i);
+                proto_file_names->insert(dep);
+            }
 
-        for (int i = 0; i < descr->dependency_count(); i++) {
-            auto dep = descr->dependency(i);
-            std::cout << "------>\n" << dep->DebugString();
+            delete proto;
+        }
+    }
 
+    auto n = std::shared_ptr<DescriptorPoolDatabase>(
+        new DescriptorPoolDatabase(*cur_importer->pool()));
+
+    return n;
+}
+
+/**
+*/
+std::string proto_files_to_fd_json(std::vector<std::string> proto_files) {
+
+    std::set<std::string> available_file_names;
+    auto descr_db = descriptor_db_from_proto_files(proto_files, &available_file_names);
+
+    std::set<std::string>::iterator it = available_file_names.begin();
+
+    std::cout << "av c: " << available_file_names.size() << std::endl;
+
+    // Iterate till the end of set
+    while (it != available_file_names.end()) {
+        const auto proto = new google::protobuf::FileDescriptorProto();
+        std::cout << "it: " + *it << std::endl;
+        if (descr_db->FindFileByName(*it, proto)) {
+            std::cout << proto->DebugString() << std::endl;
         }
 
-        std::cout << proto->DebugString();
+        it++;
 
         delete proto;
     }
 
-    std::vector<std::string> file_names;
+    cur_importer.reset();
 
-    importer.pool()->internal_generated_database()->FindAllFileNames(&file_names);
-
-    for (std::string fn : file_names) {
-        std::cout << "FN: " <<  fn << std::endl; 
-    }
-
-
-
-    // Importer importer(&source_tree, &error_collector);
-    
-
-
-    // auto pool = importer.pool();
-
-    // std::cout << pool->FindMethodByName("echo")->DebugString();
-    
-
-    
-
-    // parser.Parse()
-
-    throw AuxlGRPCParserException((char*) "Bad file", AuxlGRPCParserError::CouldNotFindFile);
-
-    return NULL;
+    return "";
 }
 
 
@@ -127,10 +141,16 @@ std::string grpc_reflect(std::shared_ptr<Connection>& connection) {
     std::vector<std::string> service_names;
     std::vector<std::string> file_names;
     
+
+
     desc_db.GetServices(&service_names);
     
     for (std::string serv : service_names) {
         std::cout << serv << std::endl;
+
+        auto service = desc_pool.FindServiceByName(serv);
+
+        std::cout << "Service Filename: " << service->file()->name() << std::endl;
     }
 
     return "";
