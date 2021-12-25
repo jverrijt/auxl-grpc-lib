@@ -1,5 +1,5 @@
 CXX = clang++
-CXXFLAGS = -g -O0 -Wpedantic -Wno-unused-command-line-argument -std=c++11 -I./modules/grpc/cmake/build/gens/ -I./modules/grpc/
+CXXFLAGS = -g -O0 -Wpedantic -Wno-unused-command-line-argument -std=c++11 -I./modules/grpc/cmake/build/gens/ -I./modules/grpc/ -I./include
 
 # absl dependencies
 LIB_ABSL_LIB_PATH = /usr/local/lib

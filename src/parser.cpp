@@ -3,7 +3,6 @@
 #include <google/protobuf/compiler/importer.h>
 
 #include <google/protobuf/util/json_util.h>
-
 #include "../modules/grpc/test/cpp/util/proto_reflection_descriptor_database.h"
 
 #include <iostream>
@@ -30,7 +29,6 @@ void ProtoFileParserError::AddError(const std::string &filename, int line, int c
     };
 
     entries.push_back(entry);
-
     std::cout << "Error in filename " << filename << " Message:" << message << "\n";
 }
 
@@ -47,9 +45,6 @@ void ProtoFileParserError::AddWarning(const std::string &filename, int line, int
     std::cout << "Warning in filename " << filename;
 }
 
-
-std::shared_ptr<Importer> cur_importer;
-
 /**
  */
 void descriptor_db_from_proto_files(
@@ -65,12 +60,12 @@ void descriptor_db_from_proto_files(
     }
     
     // Hold on to the importer as when it goes out-of-scope, so will its pool.
-    cur_importer = std::shared_ptr<Importer>(new Importer(&source_tree, &error_collector));
+    Importer importer(&source_tree, &error_collector);
 
     // Collect the proto file names in these proto files
     for (std::string file : proto_files) {
         char *name = basename((char *) file.c_str());
-        const google::protobuf::FileDescriptor *descr = cur_importer->Import(name);
+        const google::protobuf::FileDescriptor *descr = importer.Import(name);
 
         if (descr != nullptr) {
             auto proto = new google::protobuf::FileDescriptorProto();
@@ -81,8 +76,7 @@ void descriptor_db_from_proto_files(
             // Collect dependencies
             for (int i = 0; i < proto->dependency_size(); i++) {
                 auto dep = proto->dependency(i);
-
-                auto dep_descr = cur_importer->pool()->FindFileByName(dep);
+                auto dep_descr = importer.pool()->FindFileByName(dep);
                 
                 auto dep_proto = new google::protobuf::FileDescriptorProto();
                 dep_descr->CopyTo(dep_proto);
@@ -149,32 +143,43 @@ std::string describe(std::vector<std::string> proto_files, std::shared_ptr<Conne
 
     if (proto_files.size() > 0) {
         descriptor_db_from_proto_files(proto_files, &descr_db);
-        cur_importer.reset();
     }
 
     if (connection != NULL) {
         grpc_reflect(*connection, &descr_db);
     }
 
-    std::vector<std::string> fff;
-    descr_db.FindAllFileNames(&fff);
+    std::vector<std::string> file_names;
+    descr_db.FindAllFileNames(&file_names);
 
-    for (std::string fn : fff) {
-
-        const auto proto = new google::protobuf::FileDescriptorProto();
-        auto fp = descr_db.FindFileByName(fn, proto);
-
-        std::cout << proto->DebugString() << std::endl;
-    }
-
-    std::string jsonOutput;
     google::protobuf::util::JsonPrintOptions jsonPrintOptions;
 
     jsonPrintOptions.add_whitespace = true;
     jsonPrintOptions.always_print_primitive_fields = true;
     jsonPrintOptions.always_print_enums_as_ints = true;
 
-    return "";
+    std::string jsonOutput;
+    jsonOutput += "[";
+
+
+
+    for (std::string fn : file_names) {
+        const auto proto = new google::protobuf::FileDescriptorProto();
+
+        if (descr_db.FindFileByName(fn, proto)) {
+            std::string output;
+            google::protobuf::util::MessageToJsonString(*proto, &output);
+            jsonOutput += output + ",";            
+        }
+    }
+
+    if (!jsonOutput.empty()) {
+        jsonOutput.pop_back();
+    }
+
+    jsonOutput += "]";
+
+    return jsonOutput;
 }
 
 }

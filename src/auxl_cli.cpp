@@ -7,6 +7,8 @@
 #include "types.h"
 #include "connection.h"
 
+#include <nlohmann/json.hpp>
+
 /**
  */
 int main(int argc, char **argv) {
@@ -26,12 +28,12 @@ int main(int argc, char **argv) {
 
     auto connection = auxl::grpc::create_connection(config);
     std::cout << "Connection state: " << connection->channel->GetState(true) << std::endl;
-
-    // auxl::grpc::proto_files_to_fd_json()
-
-    // std::vector<std::string> protos;
     
-    auxl::grpc::describe(proto_files, &connection);
+    std::string json = auxl::grpc::describe(proto_files, &connection);
+    int indent = 4;
+    nlohmann::json formatted = nlohmann::json::parse(json);
+
+    std::cout << formatted.dump(indent) << std::endl;
 
     return 0;
 }

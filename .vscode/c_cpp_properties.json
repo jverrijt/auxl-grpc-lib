@@ -1,6 +1,6 @@
 {
     "env": {
-      "myDefaultIncludePath": ["${workspaceFolder}/src"],
+      "myDefaultIncludePath": ["${workspaceFolder}/src", "${workspaceFolder}/include"],
       "myCompilerPath": "/usr/local/bin/clang++"
     },
     "configurations": [
@@ -9,7 +9,8 @@
         "intelliSenseMode": "clang-x64",
         "includePath": ["${myDefaultIncludePath}", 
             "/usr/local/include", 
-            "${workspaceFolder}/modules/grpc/cmake/build/gens/"],
+            "${workspaceFolder}/modules/grpc/cmake/build/gens/",
+            "${workspaceFolder}/include"],
         "macFrameworkPath": ["/System/Library/Frameworks"],
         "defines": ["FOO", "BAR=100"],
         "forcedInclude": [],
