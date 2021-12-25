@@ -11,14 +11,11 @@
  */
 int main(int argc, char **argv) {
 
-
     std::vector<std::string> proto_files;
     proto_files.push_back("/Users/joostverrijt/Projects/var/auxl-grpc-mock/demo.proto");
 
-    auxl::grpc::proto_files_to_fd_json(proto_files);
-
-    return 0;
-
+    // auxl::grpc::describe(proto_files, NULL);
+    // return 0;
 
     GRPCConfig config;
     config.options.use_ssl = false;
@@ -31,7 +28,10 @@ int main(int argc, char **argv) {
     std::cout << "Connection state: " << connection->channel->GetState(true) << std::endl;
 
     // auxl::grpc::proto_files_to_fd_json()
-    auxl::grpc::grpc_reflect(connection);
+
+    // std::vector<std::string> protos;
+    
+    auxl::grpc::describe(proto_files, &connection);
 
     return 0;
 }
