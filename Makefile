@@ -33,6 +33,13 @@ libauxl_grpc.a : $(OBJS_LIB)
 	mkdir -p lib
 	ar rcs lib/$@ $^
 
+# convenience to create Xcode linker flags
+list_ld_flags:
+	@echo "$(LDFLAGS_GRPC)"
+	@echo "$(subst lib,-l,$(basename $(notdir $(LIB_ABSL_LIBS))))"
+	@echo "$(LDFLAGS_CLI)"
+
+
 clean:
 	rm -f bin/*
 	rm -f src/*.o
