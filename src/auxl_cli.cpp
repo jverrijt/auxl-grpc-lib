@@ -4,6 +4,8 @@
 #include <vector>
 
 #include "parser.h"
+#include "convertor.h"
+
 #include "types.h"
 #include "connection.h"
 
@@ -33,7 +35,12 @@ int main(int argc, char **argv) {
     int indent = 4;
     nlohmann::json formatted = nlohmann::json::parse(json);
 
-    std::cout << formatted.dump(indent) << std::endl;
+    std::string descriptor_dump = formatted.dump(indent);
+
+    std::cout << descriptor_dump << std::endl;
+
+
+    auxl::grpc::create_template_message("demo.EchoMessage", descriptor_dump);
 
     return 0;
 }

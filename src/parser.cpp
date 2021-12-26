@@ -12,7 +12,6 @@ using namespace google::protobuf::compiler;
 
 using google::protobuf::DescriptorPoolDatabase;
 
-
 using namespace ::grpc;
 
 namespace auxl {
@@ -29,7 +28,7 @@ void ProtoFileParserError::AddError(const std::string &filename, int line, int c
     };
 
     entries.push_back(entry);
-    std::cout << "Error in filename " << filename << " Message:" << message << "\n";
+    std::cerr << "Error in filename " << filename << " Message:" << message << "\n";
 }
 
 /**
@@ -42,7 +41,7 @@ void ProtoFileParserError::AddWarning(const std::string &filename, int line, int
     };
 
     entries.push_back(entry);
-    std::cout << "Warning in filename " << filename;
+    std::cerr << "Warning in filename " << filename;
 }
 
 /**
@@ -59,7 +58,6 @@ void descriptor_db_from_proto_files(
         source_tree.MapPath("", path);
     }
     
-    // Hold on to the importer as when it goes out-of-scope, so will its pool.
     Importer importer(&source_tree, &error_collector);
 
     // Collect the proto file names in these proto files
@@ -95,8 +93,8 @@ void descriptor_db_from_proto_files(
  */
 void grpc_reflect(std::shared_ptr<Connection>& connection, google::protobuf::SimpleDescriptorDatabase* db) 
 {
-    auto desc_db = std::shared_ptr<ProtoReflectionDescriptorDatabase>(new ProtoReflectionDescriptorDatabase(connection->channel));
-    // ProtoReflectionDescriptorDatabase desc_db(connection->channel);
+    auto desc_db = std::shared_ptr<ProtoReflectionDescriptorDatabase>(
+        new ProtoReflectionDescriptorDatabase(connection->channel));
     google::protobuf::DescriptorPool desc_pool(desc_db.get());
 
     desc_pool.AllowUnknownDependencies();
@@ -161,8 +159,6 @@ std::string describe(std::vector<std::string> proto_files, std::shared_ptr<Conne
     std::string jsonOutput;
     jsonOutput += "[";
 
-
-
     for (std::string fn : file_names) {
         const auto proto = new google::protobuf::FileDescriptorProto();
 
@@ -173,6 +169,7 @@ std::string describe(std::vector<std::string> proto_files, std::shared_ptr<Conne
         }
     }
 
+    // Remove trailing comma
     if (!jsonOutput.empty()) {
         jsonOutput.pop_back();
     }

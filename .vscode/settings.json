@@ -88,5 +88,6 @@
         "scoped_allocator": "cpp",
         "typeindex": "cpp",
         "valarray": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": true
 }
