@@ -13,7 +13,7 @@ ODIR = obj
 
 OBJS_CLI = src/auxl_cli.o
 OBJS_LIB = src/parser.o \
-		src/convertor.o \
+		src/template.o \
 		src/util.o \
 		src/connection.o \
 		modules/grpc/test/cpp/util/proto_reflection_descriptor_database.o \

@@ -10,8 +10,6 @@
 
 using namespace google::protobuf::compiler;
 
-using google::protobuf::DescriptorPoolDatabase;
-
 using namespace ::grpc;
 
 namespace auxl {

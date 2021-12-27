@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D6F88F6E27788ADC00D9DDCE /* convertor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6427788ADC00D9DDCE /* convertor.cpp */; };
+		D6F88F6E27788ADC00D9DDCE /* template.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6427788ADC00D9DDCE /* template.cpp */; };
 		D6F88F6F27788ADC00D9DDCE /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6527788ADC00D9DDCE /* util.cpp */; };
 		D6F88F7027788ADC00D9DDCE /* tool.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.c */; };
 		D6F88F7127788ADC00D9DDCE /* auxl_cli.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6A27788ADC00D9DDCE /* auxl_cli.cpp */; };
@@ -32,10 +32,10 @@
 /* Begin PBXFileReference section */
 		D6F88F5827788A4300D9DDCE /* auxl_grpc_cli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = auxl_grpc_cli; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F88F6327788ADC00D9DDCE /* connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connection.h; sourceTree = "<group>"; };
-		D6F88F6427788ADC00D9DDCE /* convertor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = convertor.cpp; sourceTree = "<group>"; };
+		D6F88F6427788ADC00D9DDCE /* template.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = template.cpp; sourceTree = "<group>"; };
 		D6F88F6527788ADC00D9DDCE /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
 		D6F88F6627788ADC00D9DDCE /* tool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tool.c; sourceTree = "<group>"; };
-		D6F88F6727788ADC00D9DDCE /* convertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convertor.h; sourceTree = "<group>"; };
+		D6F88F6727788ADC00D9DDCE /* template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = template.h; sourceTree = "<group>"; };
 		D6F88F6827788ADC00D9DDCE /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		D6F88F6927788ADC00D9DDCE /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
 		D6F88F6A27788ADC00D9DDCE /* auxl_cli.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = auxl_cli.cpp; sourceTree = "<group>"; };
@@ -80,16 +80,16 @@
 		D6F88F6227788ADC00D9DDCE /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D6F88F6C27788ADC00D9DDCE /* connection.cpp */,
 				D6F88F6327788ADC00D9DDCE /* connection.h */,
-				D6F88F6427788ADC00D9DDCE /* convertor.cpp */,
+				D6F88F6427788ADC00D9DDCE /* template.cpp */,
+				D6F88F6727788ADC00D9DDCE /* template.h */,
 				D6F88F6527788ADC00D9DDCE /* util.cpp */,
 				D6F88F6627788ADC00D9DDCE /* tool.c */,
-				D6F88F6727788ADC00D9DDCE /* convertor.h */,
 				D6F88F6827788ADC00D9DDCE /* types.h */,
 				D6F88F6927788ADC00D9DDCE /* parser.h */,
 				D6F88F6A27788ADC00D9DDCE /* auxl_cli.cpp */,
 				D6F88F6B27788ADC00D9DDCE /* util.h */,
-				D6F88F6C27788ADC00D9DDCE /* connection.cpp */,
 				D6F88F6D27788ADC00D9DDCE /* parser.cpp */,
 			);
 			path = src;
@@ -155,7 +155,7 @@
 				D6F88F762778934D00D9DDCE /* reflection.grpc.pb.cc in Sources */,
 				D6F88F7027788ADC00D9DDCE /* tool.c in Sources */,
 				D6F88F7227788ADC00D9DDCE /* connection.cpp in Sources */,
-				D6F88F6E27788ADC00D9DDCE /* convertor.cpp in Sources */,
+				D6F88F6E27788ADC00D9DDCE /* template.cpp in Sources */,
 				D6F88F7127788ADC00D9DDCE /* auxl_cli.cpp in Sources */,
 				D6F88F7327788ADC00D9DDCE /* parser.cpp in Sources */,
 				D6F88F6F27788ADC00D9DDCE /* util.cpp in Sources */,
