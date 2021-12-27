@@ -9,7 +9,7 @@
 namespace auxl {
 namespace grpc {
 
-void create_template_message(std::string message_name, std::string descriptor);
+std::string create_template_message(std::string message_name, std::string descriptor);
 
 }
 

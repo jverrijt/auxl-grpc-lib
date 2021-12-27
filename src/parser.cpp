@@ -103,10 +103,10 @@ void grpc_reflect(std::shared_ptr<Connection>& connection, google::protobuf::Sim
     desc_db->GetServices(&service_names);
     
     for (std::string serv : service_names) {
-        std::cout << serv << std::endl;
+        // std::cout << serv << std::endl;
 
         auto service = desc_pool.FindServiceByName(serv);
-        std::cout << "Service Filename: " << service->file()->name() << std::endl;
+        // std::cout << "Service Filename: " << service->file()->name() << std::endl;
 
         // Get the service dependencies
         auto fd = new google::protobuf::FileDescriptorProto();

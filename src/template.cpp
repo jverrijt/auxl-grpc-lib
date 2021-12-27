@@ -19,27 +19,26 @@ using namespace google::protobuf;
 namespace auxl {
 namespace grpc {
 
-
 /**
  Create a message with some sensible defaults
  */
-Message* build_message(const Descriptor* descriptor, DynamicMessageFactory* factory, int depth = 0, int max_depth = 1)
+Message* build_message(const Descriptor& descriptor, DynamicMessageFactory& factory, int depth = 0, int max_depth = 1)
 {
-    auto message = factory->GetPrototype(descriptor)->New();
+    auto message = factory.GetPrototype(&descriptor)->New();
     auto refl = message->GetReflection();
        
     // Provide a default value for timestamps set to the current time
-    if (descriptor->well_known_type() == Descriptor::WELLKNOWNTYPE_TIMESTAMP) {
-        refl->SetInt64(message, descriptor->FindFieldByName("seconds"), time(NULL));
-        refl->SetInt32(message, descriptor->FindFieldByName("nanos"), 0);
+    if (descriptor.well_known_type() == Descriptor::WELLKNOWNTYPE_TIMESTAMP) {
+        refl->SetInt64(message, descriptor.FindFieldByName("seconds"), time(NULL));
+        refl->SetInt32(message, descriptor.FindFieldByName("nanos"), 0);
         return message;
     }
     
-    for (int i = 0; i < descriptor->field_count(); i++) {
-        auto field = descriptor->field(i);
+    for (int i = 0; i < descriptor.field_count(); i++) {
+        auto field = descriptor.field(i);
         
         if (field->type() == FieldDescriptor::TYPE_MESSAGE && depth < max_depth) {
-            auto sub_message = build_message(field->message_type(), factory, depth + 1);
+            auto sub_message = build_message(*field->message_type(), factory, depth + 1);
             
             if (sub_message) {
                 if (field->is_repeated()) {
@@ -53,9 +52,9 @@ Message* build_message(const Descriptor* descriptor, DynamicMessageFactory* fact
             switch (field->type()) {
                 case FieldDescriptor::TYPE_STRING:
                     // This makes map types a bit more legible
-                    if (descriptor->map_key() == field) {
+                    if (descriptor.map_key() == field) {
                         ADD_VAL(String, "Key")
-                    } else if (descriptor->map_value() == field) {
+                    } else if (descriptor.map_value() == field) {
                         ADD_VAL(String, "Val")
                     }
                     break;
@@ -73,7 +72,7 @@ Message* build_message(const Descriptor* descriptor, DynamicMessageFactory* fact
  2. If found, convert back into a FileDescriptorProto
  3. Construct a message
  */
-void create_template_message(std::string message_name, std::string descriptor) 
+std::string create_template_message(std::string message_name, std::string descriptor)
 {
     // Find the message in the given descriptor
     json o = json::parse(descriptor);
@@ -93,7 +92,7 @@ void create_template_message(std::string message_name, std::string descriptor)
     
     auto descr = pool.FindMessageTypeByName(message_name);
 
-    auto template_message = build_message(descr, &dynamic_factory);
+    auto template_message = build_message(*descr, dynamic_factory);
     
     util::JsonPrintOptions jsonPrintOptions;
 
@@ -107,6 +106,8 @@ void create_template_message(std::string message_name, std::string descriptor)
     delete template_message;
     
     std::cout << output;
+    
+    return output;
 }
 
 } // ns grpc
