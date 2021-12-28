@@ -25,7 +25,11 @@ namespace grpc {
  */
 std::shared_ptr<Message> build_message(const Descriptor& descriptor, DynamicMessageFactory& factory, int depth = 0, int max_depth = 1)
 {
-    auto message = std::shared_ptr<Message>(factory.GetPrototype(&descriptor)->New());
+    std::shared_ptr<Message> message(factory.GetPrototype(&descriptor)->New());
+    
+    // auto message =
+    
+    // std::shared_ptr<Message>(factory.GetPrototype(&descriptor)->New());
     auto refl = message->GetReflection();
        
     // Provide a default value for timestamps set to the current time
@@ -43,9 +47,9 @@ std::shared_ptr<Message> build_message(const Descriptor& descriptor, DynamicMess
             
             if (sub_message) {
                 if (field->is_repeated()) {
-                    refl->AddAllocatedMessage(message.get(), field, sub_message.get());
+                    refl->AddMessage(message.get(), field)->CopyFrom(*sub_message);
                 } else {
-                    refl->SetAllocatedMessage(message.get(), sub_message.get(), field);
+                    refl->MutableMessage(message.get(), field)->CopyFrom(*sub_message);
                 }
             }
         } else {

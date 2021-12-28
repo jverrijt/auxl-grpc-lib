@@ -10,6 +10,7 @@
 
 #include "connection.h"
 #include "parser.h"
+#include "template.h"
 
 namespace auxl {
 namespace grpc {
@@ -19,23 +20,39 @@ namespace {
 class AuxlGrpcTest : public ::testing::Test {
 };
 
-// Tests that the Foo::Bar() method does Abc.
-TEST_F(AuxlGrpcTest, ReflectServiceTest) {
-
+std::string get_descriptor(std::vector<std::string> proto, std::string endpoint) {
     GRPCConfig config;
     config.options.use_ssl = false;
     config.options.ssl_root_certs_path = (char*) "/Users/joostverrijt/Projects/var/temp/roots.pem";
     
-    config.endpoint = (char*) "localhost:4770";
+    config.endpoint = (char*) endpoint.c_str();
 
     auto connection = auxl::grpc::create_connection(config);
 
     std::vector<std::string> proto_files;
     std::string json = auxl::grpc::describe(proto_files, &connection);
 
-    std::cout << json;
+    return json;
+}
+
+/**
+ */
+TEST_F(AuxlGrpcTest, ReflectServiceTest) {
+    std::vector<std::string> proto;
+    auto descr = get_descriptor(proto, "localhost:4770");
     
-  // EXPECT_EQ(f.Bar(input_filepath, output_filepath), 0);
+    EXPECT_TRUE(!descr.empty());
+}
+
+/**
+ */
+TEST_F(AuxlGrpcTest, CreateTemplate) {
+    std::vector<std::string> proto;
+    auto descr = get_descriptor(proto, "localhost:4770");
+    
+    auto tpl = auxl::grpc::create_template_message("demo.EchoMessage", descr);
+    
+    EXPECT_TRUE(!tpl.empty());
 }
 
 
