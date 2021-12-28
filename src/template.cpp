@@ -1,5 +1,6 @@
 
 #include "template.h"
+#include "parser.h"
 #include <nlohmann/json.hpp>
 
 #include <google/protobuf/util/json_util.h>
@@ -8,9 +9,9 @@
 #include "../modules/grpc/test/cpp/util/proto_reflection_descriptor_database.h"
 
 #define ADD_VAL(_type, val) if (field->is_repeated()) {\
-        refl->Add##_type(message, field, val);\
+        refl->Add##_type(message.get(), field, val);\
     } else {\
-        refl->Set##_type(message, field, val);\
+        refl->Set##_type(message.get(), field, val);\
     }\
 
 using namespace nlohmann;
@@ -22,15 +23,15 @@ namespace grpc {
 /**
  Create a message with some sensible defaults
  */
-Message* build_message(const Descriptor& descriptor, DynamicMessageFactory& factory, int depth = 0, int max_depth = 1)
+std::shared_ptr<Message> build_message(const Descriptor& descriptor, DynamicMessageFactory& factory, int depth = 0, int max_depth = 1)
 {
-    auto message = factory.GetPrototype(&descriptor)->New();
+    auto message = std::shared_ptr<Message>(factory.GetPrototype(&descriptor)->New());
     auto refl = message->GetReflection();
        
     // Provide a default value for timestamps set to the current time
     if (descriptor.well_known_type() == Descriptor::WELLKNOWNTYPE_TIMESTAMP) {
-        refl->SetInt64(message, descriptor.FindFieldByName("seconds"), time(NULL));
-        refl->SetInt32(message, descriptor.FindFieldByName("nanos"), 0);
+        refl->SetInt64(message.get(), descriptor.FindFieldByName("seconds"), time(NULL));
+        refl->SetInt32(message.get(), descriptor.FindFieldByName("nanos"), 0);
         return message;
     }
     
@@ -42,12 +43,11 @@ Message* build_message(const Descriptor& descriptor, DynamicMessageFactory& fact
             
             if (sub_message) {
                 if (field->is_repeated()) {
-                    refl->AddAllocatedMessage(message, field, sub_message);
+                    refl->AddAllocatedMessage(message.get(), field, sub_message.get());
                 } else {
-                    refl->SetAllocatedMessage(message, sub_message, field);
+                    refl->SetAllocatedMessage(message.get(), sub_message.get(), field);
                 }
             }
-            
         } else {
             switch (field->type()) {
                 case FieldDescriptor::TYPE_STRING:
@@ -74,20 +74,9 @@ Message* build_message(const Descriptor& descriptor, DynamicMessageFactory& fact
  */
 std::string create_template_message(std::string message_name, std::string descriptor)
 {
-    // Find the message in the given descriptor
-    json o = json::parse(descriptor);
-    google::protobuf::SimpleDescriptorDatabase descr_db;
+    auto descr_db = auxl::grpc::parse_descriptors(descriptor);
     
-    for (int i = 0; i < o.size(); i++) {
-        auto proto = new google::protobuf::FileDescriptorProto();
-        google::protobuf::util::JsonStringToMessage(o[i].dump(-1), proto);
-        
-        descr_db.Add(*proto);
-        
-        delete proto;
-    }
-    
-    google::protobuf::DescriptorPool pool(&descr_db);
+    google::protobuf::DescriptorPool pool(descr_db.get());
     google::protobuf::DynamicMessageFactory dynamic_factory(&pool);
     
     auto descr = pool.FindMessageTypeByName(message_name);
@@ -103,7 +92,7 @@ std::string create_template_message(std::string message_name, std::string descri
     std::string output;
     util::MessageToJsonString(*template_message, &output, jsonPrintOptions);
     
-    delete template_message;
+    // delete template_message;
     
     std::cout << output;
     

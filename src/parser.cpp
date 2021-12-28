@@ -8,7 +8,10 @@
 #include <iostream>
 #include <libgen.h>
 
-using namespace google::protobuf::compiler;
+#include <nlohmann/json.hpp>
+
+using namespace google::protobuf;
+using namespace nlohmann;
 
 using namespace ::grpc;
 
@@ -48,7 +51,7 @@ void descriptor_db_from_proto_files(
     std::vector<std::string> proto_files, google::protobuf::SimpleDescriptorDatabase* db) {
 
     auxl::grpc::ProtoFileParserError error_collector;
-    DiskSourceTree source_tree;
+    compiler::DiskSourceTree source_tree;
 
     // Get the base paths and add them to the source tree
     for (std::string file : proto_files) {
@@ -56,7 +59,7 @@ void descriptor_db_from_proto_files(
         source_tree.MapPath("", path);
     }
     
-    Importer importer(&source_tree, &error_collector);
+    compiler::Importer importer(&source_tree, &error_collector);
 
     // Collect the proto file names in these proto files
     for (std::string file : proto_files) {
@@ -64,7 +67,7 @@ void descriptor_db_from_proto_files(
         const google::protobuf::FileDescriptor *descr = importer.Import(name);
 
         if (descr != nullptr) {
-            auto proto = new google::protobuf::FileDescriptorProto();
+            auto proto = new FileDescriptorProto();
             descr->CopyTo(proto);
 
             db->Add(*proto);
@@ -74,7 +77,7 @@ void descriptor_db_from_proto_files(
                 auto dep = proto->dependency(i);
                 auto dep_descr = importer.pool()->FindFileByName(dep);
                 
-                auto dep_proto = new google::protobuf::FileDescriptorProto();
+                auto dep_proto = new FileDescriptorProto();
                 dep_descr->CopyTo(dep_proto);
                 db->Add(*dep_proto);
 
@@ -93,7 +96,8 @@ void grpc_reflect(std::shared_ptr<Connection>& connection, google::protobuf::Sim
 {
     auto desc_db = std::shared_ptr<ProtoReflectionDescriptorDatabase>(
         new ProtoReflectionDescriptorDatabase(connection->channel));
-    google::protobuf::DescriptorPool desc_pool(desc_db.get());
+    
+    DescriptorPool desc_pool(desc_db.get());
 
     desc_pool.AllowUnknownDependencies();
     
@@ -148,7 +152,7 @@ std::string describe(std::vector<std::string> proto_files, std::shared_ptr<Conne
     std::vector<std::string> file_names;
     descr_db.FindAllFileNames(&file_names);
 
-    google::protobuf::util::JsonPrintOptions jsonPrintOptions;
+    util::JsonPrintOptions jsonPrintOptions;
 
     jsonPrintOptions.add_whitespace = true;
     jsonPrintOptions.always_print_primitive_fields = true;
@@ -158,11 +162,11 @@ std::string describe(std::vector<std::string> proto_files, std::shared_ptr<Conne
     jsonOutput += "[";
 
     for (std::string fn : file_names) {
-        const auto proto = new google::protobuf::FileDescriptorProto();
+        const auto proto = new FileDescriptorProto();
 
         if (descr_db.FindFileByName(fn, proto)) {
             std::string output;
-            google::protobuf::util::MessageToJsonString(*proto, &output);
+            util::MessageToJsonString(*proto, &output);
             jsonOutput += output + ",";            
         }
     }
@@ -175,6 +179,25 @@ std::string describe(std::vector<std::string> proto_files, std::shared_ptr<Conne
     jsonOutput += "]";
 
     return jsonOutput;
+}
+
+/**
+ */
+std::shared_ptr<google::protobuf::DescriptorDatabase> parse_descriptors(std::string descriptors)
+{
+    json o = json::parse(descriptors);
+    auto descr_db = std::make_shared<SimpleDescriptorDatabase>();
+    
+    for (int i = 0; i < o.size(); i++) {
+        auto proto = new google::protobuf::FileDescriptorProto();
+        util::JsonStringToMessage(o[i].dump(-1), proto);
+        
+        descr_db->Add(*proto);
+        
+        delete proto;
+    }
+    
+    return descr_db;
 }
 
 }

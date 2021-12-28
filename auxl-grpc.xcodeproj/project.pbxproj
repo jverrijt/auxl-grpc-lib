@@ -15,10 +15,29 @@
 		D6F88F7327788ADC00D9DDCE /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6D27788ADC00D9DDCE /* parser.cpp */; };
 		D6F88F762778934D00D9DDCE /* reflection.grpc.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F752778934D00D9DDCE /* reflection.grpc.pb.cc */; };
 		D6F88F7A2778939C00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F792778939C00D9DDCE /* proto_reflection_descriptor_database.cc */; };
+		D6F88F81277B0FA700D9DDCE /* proto_reflection_descriptor_database.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F792778939C00D9DDCE /* proto_reflection_descriptor_database.cc */; };
+		D6F88F82277B0FA700D9DDCE /* reflection.grpc.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F752778934D00D9DDCE /* reflection.grpc.pb.cc */; };
+		D6F88F83277B0FA700D9DDCE /* tool.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.c */; };
+		D6F88F84277B0FA700D9DDCE /* connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6C27788ADC00D9DDCE /* connection.cpp */; };
+		D6F88F85277B0FA700D9DDCE /* template.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6427788ADC00D9DDCE /* template.cpp */; };
+		D6F88F87277B0FA700D9DDCE /* auxl_main_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F7D277B0F7300D9DDCE /* auxl_main_test.cpp */; };
+		D6F88F88277B0FA700D9DDCE /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6D27788ADC00D9DDCE /* parser.cpp */; };
+		D6F88F89277B0FA700D9DDCE /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6527788ADC00D9DDCE /* util.cpp */; };
+		D6F88F91277B104700D9DDCE /* gtest_main.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F90277B104700D9DDCE /* gtest_main.cc */; };
+		D6F88FA5277B136700D9DDCE /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA4277B136700D9DDCE /* gtest-all.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		D6F88F5627788A4300D9DDCE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		D6F88F8B277B0FA700D9DDCE /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -45,10 +64,21 @@
 		D6F88F752778934D00D9DDCE /* reflection.grpc.pb.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = reflection.grpc.pb.cc; path = modules/grpc/cmake/build/gens/src/proto/grpc/reflection/v1alpha/reflection.grpc.pb.cc; sourceTree = "<group>"; };
 		D6F88F792778939C00D9DDCE /* proto_reflection_descriptor_database.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = proto_reflection_descriptor_database.cc; path = modules/grpc/test/cpp/util/proto_reflection_descriptor_database.cc; sourceTree = "<group>"; };
 		D6F88F7B277895DE00D9DDCE /* auxl_grpc_cli.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = auxl_grpc_cli.entitlements; sourceTree = "<group>"; };
+		D6F88F7D277B0F7300D9DDCE /* auxl_main_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = auxl_main_test.cpp; sourceTree = "<group>"; };
+		D6F88F8F277B0FA700D9DDCE /* auxl_grpc_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = auxl_grpc_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F88F90277B104700D9DDCE /* gtest_main.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = gtest_main.cc; path = modules/grpc/third_party/googletest/googletest/src/gtest_main.cc; sourceTree = "<group>"; };
+		D6F88FA4277B136700D9DDCE /* gtest-all.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "gtest-all.cc"; path = "modules/grpc/third_party/googletest/googletest/src/gtest-all.cc"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D6F88F5527788A4300D9DDCE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6F88F8A277B0FA700D9DDCE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -61,10 +91,13 @@
 		D6F88F4D277889BE00D9DDCE = {
 			isa = PBXGroup;
 			children = (
+				D6F88FA4277B136700D9DDCE /* gtest-all.cc */,
+				D6F88F90277B104700D9DDCE /* gtest_main.cc */,
 				D6F88F7B277895DE00D9DDCE /* auxl_grpc_cli.entitlements */,
 				D6F88F792778939C00D9DDCE /* proto_reflection_descriptor_database.cc */,
 				D6F88F752778934D00D9DDCE /* reflection.grpc.pb.cc */,
 				D6F88F6227788ADC00D9DDCE /* src */,
+				D6F88F7C277B02B200D9DDCE /* test */,
 				D6F88F5927788A4300D9DDCE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				D6F88F5827788A4300D9DDCE /* auxl_grpc_cli */,
+				D6F88F8F277B0FA700D9DDCE /* auxl_grpc_test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +129,14 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		D6F88F7C277B02B200D9DDCE /* test */ = {
+			isa = PBXGroup;
+			children = (
+				D6F88F7D277B0F7300D9DDCE /* auxl_main_test.cpp */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -113,6 +155,23 @@
 			name = auxl_grpc_cli;
 			productName = auxl_grpc_cli;
 			productReference = D6F88F5827788A4300D9DDCE /* auxl_grpc_cli */;
+			productType = "com.apple.product-type.tool";
+		};
+		D6F88F7F277B0FA700D9DDCE /* auxl_grpc_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6F88F8C277B0FA700D9DDCE /* Build configuration list for PBXNativeTarget "auxl_grpc_test" */;
+			buildPhases = (
+				D6F88F80277B0FA700D9DDCE /* Sources */,
+				D6F88F8A277B0FA700D9DDCE /* Frameworks */,
+				D6F88F8B277B0FA700D9DDCE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = auxl_grpc_test;
+			productName = auxl_grpc_cli;
+			productReference = D6F88F8F277B0FA700D9DDCE /* auxl_grpc_test */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -142,6 +201,7 @@
 			projectRoot = "";
 			targets = (
 				D6F88F5727788A4300D9DDCE /* auxl_grpc_cli */,
+				D6F88F7F277B0FA700D9DDCE /* auxl_grpc_test */,
 			);
 		};
 /* End PBXProject section */
@@ -159,6 +219,23 @@
 				D6F88F7127788ADC00D9DDCE /* auxl_cli.cpp in Sources */,
 				D6F88F7327788ADC00D9DDCE /* parser.cpp in Sources */,
 				D6F88F6F27788ADC00D9DDCE /* util.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6F88F80277B0FA700D9DDCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6F88FA5277B136700D9DDCE /* gtest-all.cc in Sources */,
+				D6F88F91277B104700D9DDCE /* gtest_main.cc in Sources */,
+				D6F88F81277B0FA700D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
+				D6F88F82277B0FA700D9DDCE /* reflection.grpc.pb.cc in Sources */,
+				D6F88F83277B0FA700D9DDCE /* tool.c in Sources */,
+				D6F88F84277B0FA700D9DDCE /* connection.cpp in Sources */,
+				D6F88F85277B0FA700D9DDCE /* template.cpp in Sources */,
+				D6F88F87277B0FA700D9DDCE /* auxl_main_test.cpp in Sources */,
+				D6F88F88277B0FA700D9DDCE /* parser.cpp in Sources */,
+				D6F88F89277B0FA700D9DDCE /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +561,317 @@
 			};
 			name = Release;
 		};
+		D6F88F8D277B0FA700D9DDCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = auxl_grpc_cli.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = HUHE7NCX8Y;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/modules/grpc/cmake/build/gens/",
+					"${PROJECT_DIR}/modules/grpc/include",
+					"${PROJECT_DIR}/include/",
+					/usr/local/include,
+					"${PROJECT_DIR}/modules/grpc/",
+					"${PROJECT_DIR}/modules/grpc/third_party/googletest/googletest/include",
+					"${PROJECT_DIR}/modules/grpc/third_party/googletest/googletest",
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lgrpc",
+					"-lgrpc++",
+					"-lgrpc++_reflection",
+					"-lgrpcpp_channelz",
+					"-lprotobuf",
+					"-lupb",
+					"-lgpr",
+					"-lz",
+					"-lre2",
+					"-lcares",
+					"-laddress_sorting",
+					"-lpthread",
+					/usr/local/lib/libssl.a,
+					/usr/local/lib/libcrypto.a,
+					"-labsl_bad_any_cast_impl",
+					"-labsl_bad_optional_access",
+					"-labsl_bad_variant_access",
+					"-labsl_base",
+					"-labsl_city",
+					"-labsl_civil_time",
+					"-labsl_cord",
+					"-labsl_cord_internal",
+					"-labsl_cordz_functions",
+					"-labsl_cordz_handle",
+					"-labsl_cordz_info",
+					"-labsl_cordz_sample_token",
+					"-labsl_debugging_internal",
+					"-labsl_demangle_internal",
+					"-labsl_examine_stack",
+					"-labsl_exponential_biased",
+					"-labsl_failure_signal_handler",
+					"-labsl_flags",
+					"-labsl_flags_commandlineflag",
+					"-labsl_flags_commandlineflag_internal",
+					"-labsl_flags_config",
+					"-labsl_flags_internal",
+					"-labsl_flags_marshalling",
+					"-labsl_flags_parse",
+					"-labsl_flags_private_handle_accessor",
+					"-labsl_flags_program_name",
+					"-labsl_flags_reflection",
+					"-labsl_flags_usage",
+					"-labsl_flags_usage_internal",
+					"-labsl_graphcycles_internal",
+					"-labsl_hash",
+					"-labsl_hashtablez_sampler",
+					"-labsl_int128",
+					"-labsl_leak_check",
+					"-labsl_leak_check_disable",
+					"-labsl_log_severity",
+					"-labsl_low_level_hash",
+					"-labsl_malloc_internal",
+					"-labsl_periodic_sampler",
+					"-labsl_random_distributions",
+					"-labsl_random_internal_distribution_test_util",
+					"-labsl_random_internal_platform",
+					"-labsl_random_internal_pool_urbg",
+					"-labsl_random_internal_randen",
+					"-labsl_random_internal_randen_hwaes",
+					"-labsl_random_internal_randen_hwaes_impl",
+					"-labsl_random_internal_randen_slow",
+					"-labsl_random_internal_seed_material",
+					"-labsl_random_seed_gen_exception",
+					"-labsl_random_seed_sequences",
+					"-labsl_raw_hash_set",
+					"-labsl_raw_logging_internal",
+					"-labsl_scoped_set_env",
+					"-labsl_spinlock_wait",
+					"-labsl_stacktrace",
+					"-labsl_status",
+					"-labsl_statusor",
+					"-labsl_str_format_internal",
+					"-labsl_strerror",
+					"-labsl_strings",
+					"-labsl_strings_internal",
+					"-labsl_symbolize",
+					"-labsl_synchronization",
+					"-labsl_throw_delegate",
+					"-labsl_time",
+					"-labsl_time_zone",
+					"-L/usr/local/lib",
+					"-framework",
+					CoreFoundation,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D6F88F8E277B0FA700D9DDCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = auxl_grpc_cli.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = HUHE7NCX8Y;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/modules/grpc/cmake/build/gens/",
+					"${PROJECT_DIR}/modules/grpc/include",
+					"${PROJECT_DIR}/include/",
+					/usr/local/include,
+					"${PROJECT_DIR}/modules/grpc/",
+					"${PROJECT_DIR}/modules/grpc/third_party/googletest/googletest/include",
+					"${PROJECT_DIR}/modules/grpc/third_party/googletest/googletest",
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"-lgrpc",
+					"-lgrpc++",
+					"-lgrpc++_reflection",
+					"-lgrpcpp_channelz",
+					"-lprotobuf",
+					"-lupb",
+					"-lgpr",
+					"-lz",
+					"-lre2",
+					"-lcares",
+					"-laddress_sorting",
+					"-lpthread",
+					/usr/local/lib/libssl.a,
+					/usr/local/lib/libcrypto.a,
+					"-labsl_bad_any_cast_impl",
+					"-labsl_bad_optional_access",
+					"-labsl_bad_variant_access",
+					"-labsl_base",
+					"-labsl_city",
+					"-labsl_civil_time",
+					"-labsl_cord",
+					"-labsl_cord_internal",
+					"-labsl_cordz_functions",
+					"-labsl_cordz_handle",
+					"-labsl_cordz_info",
+					"-labsl_cordz_sample_token",
+					"-labsl_debugging_internal",
+					"-labsl_demangle_internal",
+					"-labsl_examine_stack",
+					"-labsl_exponential_biased",
+					"-labsl_failure_signal_handler",
+					"-labsl_flags",
+					"-labsl_flags_commandlineflag",
+					"-labsl_flags_commandlineflag_internal",
+					"-labsl_flags_config",
+					"-labsl_flags_internal",
+					"-labsl_flags_marshalling",
+					"-labsl_flags_parse",
+					"-labsl_flags_private_handle_accessor",
+					"-labsl_flags_program_name",
+					"-labsl_flags_reflection",
+					"-labsl_flags_usage",
+					"-labsl_flags_usage_internal",
+					"-labsl_graphcycles_internal",
+					"-labsl_hash",
+					"-labsl_hashtablez_sampler",
+					"-labsl_int128",
+					"-labsl_leak_check",
+					"-labsl_leak_check_disable",
+					"-labsl_log_severity",
+					"-labsl_low_level_hash",
+					"-labsl_malloc_internal",
+					"-labsl_periodic_sampler",
+					"-labsl_random_distributions",
+					"-labsl_random_internal_distribution_test_util",
+					"-labsl_random_internal_platform",
+					"-labsl_random_internal_pool_urbg",
+					"-labsl_random_internal_randen",
+					"-labsl_random_internal_randen_hwaes",
+					"-labsl_random_internal_randen_hwaes_impl",
+					"-labsl_random_internal_randen_slow",
+					"-labsl_random_internal_seed_material",
+					"-labsl_random_seed_gen_exception",
+					"-labsl_random_seed_sequences",
+					"-labsl_raw_hash_set",
+					"-labsl_raw_logging_internal",
+					"-labsl_scoped_set_env",
+					"-labsl_spinlock_wait",
+					"-labsl_stacktrace",
+					"-labsl_status",
+					"-labsl_statusor",
+					"-labsl_str_format_internal",
+					"-labsl_strerror",
+					"-labsl_strings",
+					"-labsl_strings_internal",
+					"-labsl_symbolize",
+					"-labsl_synchronization",
+					"-labsl_throw_delegate",
+					"-labsl_time",
+					"-labsl_time_zone",
+					"-L/usr/local/lib",
+					"-framework",
+					CoreFoundation,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -501,6 +889,15 @@
 			buildConfigurations = (
 				D6F88F5D27788A4300D9DDCE /* Debug */,
 				D6F88F5E27788A4300D9DDCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6F88F8C277B0FA700D9DDCE /* Build configuration list for PBXNativeTarget "auxl_grpc_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6F88F8D277B0FA700D9DDCE /* Debug */,
+				D6F88F8E277B0FA700D9DDCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -44,10 +44,17 @@ struct AuxlGRPCParserException : std::exception {
         error_code(error_code) {}
 };
 
-
+/**
+ Returns the descriptors contained in the given proto files and/or retrieval fro, server reflection.
+ */
 std::string describe(std::vector<std::string> proto_files, std::shared_ptr<Connection>* connection);
 
-} // auxl
-} // grpc
+/**
+ Parse the given descriptors in Json format into a descriptor databse
+ */
+std::shared_ptr<google::protobuf::DescriptorDatabase> parse_descriptors(std::string descriptors);
+
+} // ns grpc
+} // ns auxl
 
 #endif

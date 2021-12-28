@@ -17,7 +17,7 @@
 
 /**
  */
-int describe(int argc, char **argv)
+int cmd_describe(int argc, char **argv)
 {
     cxxopts::Options options("auxl_grpc_cli describe", "Returns the descriptors of a given GRPC service and/or set of protofiles");
     options.add_options("describe")
@@ -61,7 +61,8 @@ int describe(int argc, char **argv)
     return 0;
 }
 
-
+/**
+ */
 int cmd_template(int argc, char **argv)
 {
     cxxopts::Options options("auxl_grpc_cli template", "Create template messages with default values");
@@ -97,7 +98,7 @@ int main(int argc, char **argv)
     char* command = argv[1];
     
     if (strcmp(command, "describe") == 0) {
-        describe(argc, argv);
+        cmd_describe(argc, argv);
     }
     else if (strcmp(command, "template") == 0) {
         cmd_template(argc, argv);
