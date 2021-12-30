@@ -135,7 +135,6 @@ void grpc_reflect(std::shared_ptr<Connection>& connection, google::protobuf::Sim
 }
 
 /**
- * 
  */
 std::string describe(std::vector<std::string> proto_files, std::shared_ptr<Connection>* connection) 
 {
@@ -192,6 +191,8 @@ std::shared_ptr<google::protobuf::DescriptorDatabase> parse_descriptors(std::str
         auto proto = new google::protobuf::FileDescriptorProto();
         util::JsonStringToMessage(o[i].dump(-1), proto);
         
+        proto->PrintDebugString();
+        
         descr_db->Add(*proto);
         
         delete proto;
@@ -199,6 +200,7 @@ std::shared_ptr<google::protobuf::DescriptorDatabase> parse_descriptors(std::str
     
     return descr_db;
 }
+
 
 }
 }

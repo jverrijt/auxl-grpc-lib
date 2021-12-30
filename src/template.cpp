@@ -27,9 +27,6 @@ std::shared_ptr<Message> build_message(const Descriptor& descriptor, DynamicMess
 {
     std::shared_ptr<Message> message(factory.GetPrototype(&descriptor)->New());
     
-    // auto message =
-    
-    // std::shared_ptr<Message>(factory.GetPrototype(&descriptor)->New());
     auto refl = message->GetReflection();
        
     // Provide a default value for timestamps set to the current time
@@ -96,11 +93,40 @@ std::string create_template_message(std::string message_name, std::string descri
     std::string output;
     util::MessageToJsonString(*template_message, &output, jsonPrintOptions);
     
-    // delete template_message;
-    
-    std::cout << output;
-    
     return output;
+}
+
+/**
+ */
+std::string serialized_message_from_template(std::string message_name, std::string tpl, std::string descriptors)
+{
+    std::string serialized_msg;
+    
+    auto db = parse_descriptors(descriptors);
+    DescriptorPool pool(db.get());
+    
+    DynamicMessageFactory dynamic_factory(&pool);
+    
+    auto descr = pool.FindMessageTypeByName(message_name);
+    
+    if (descr != nullptr) {
+        
+        auto msg = std::shared_ptr<Message>(dynamic_factory.GetPrototype(descr)->New());
+        util::JsonParseOptions opts;
+        
+        opts.ignore_unknown_fields = true;
+        
+        auto stat = util::JsonStringToMessage(tpl, msg.get(), opts);
+        
+        if (!stat.ok()) {
+        
+            std::cerr << "ERROR" << std::endl;
+        }
+        
+        msg->SerializeToString(&serialized_msg);
+    }
+    
+    return serialized_msg;
 }
 
 } // ns grpc
