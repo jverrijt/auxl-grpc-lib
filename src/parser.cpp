@@ -189,10 +189,7 @@ std::shared_ptr<google::protobuf::DescriptorDatabase> parse_descriptors(std::str
     
     for (int i = 0; i < o.size(); i++) {
         auto proto = new google::protobuf::FileDescriptorProto();
-        util::JsonStringToMessage(o[i].dump(-1), proto);
-        
-        proto->PrintDebugString();
-        
+        util::JsonStringToMessage(o[i].dump(-1), proto);        
         descr_db->Add(*proto);
         
         delete proto;

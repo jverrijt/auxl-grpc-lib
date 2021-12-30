@@ -77,6 +77,7 @@ TEST_F(AuxlGrpcTest, DISABLED_CreateTemplate) {
 }
 
 /**
+ Send a unary request
  */
 TEST_F(AuxlGrpcTest, SendUnary) {
     auto connection = get_connection("localhost:4770");
@@ -87,7 +88,6 @@ TEST_F(AuxlGrpcTest, SendUnary) {
     auto sess = Session::create(*connection, "simple.Gripmock", "SayHello", metadata, descriptors);
     sess->delegate = std::shared_ptr<SessionDelegate>(new TestSessionDelegate());
 
-    
     // Create a message with some default values
     auto tpl = auxl::grpc::create_template_message("simple.Request", descriptors);
     
@@ -98,8 +98,23 @@ TEST_F(AuxlGrpcTest, SendUnary) {
     // Convert into something we can send over the wire.
     auto msg = auxl::grpc::serialized_message_from_template("simple.Request", p.dump(), descriptors);
     
+    sess->start();
+    sess->send_message(msg);
+    sess->close();
+}
+
+/**
+ */
+TEST_F(AuxlGrpcTest, SendStreaming) {
+    auto connection = get_connection("localhost:4770");
+    std::multimap<std::string, std::string> metadata;
     
+    auto descriptors = get_descriptor({}, "localhost:4770");
     
+    auto sess = Session::create(*connection, "simple.Gripmock", "bidirectional", metadata, descriptors);
+    sess->delegate = std::shared_ptr<SessionDelegate>(new TestSessionDelegate());
+    
+    ASSERT_TRUE(sess->is_streaming());
     
     // Generate some test message to send.
     std::vector<std::string> tpls;
@@ -109,7 +124,6 @@ TEST_F(AuxlGrpcTest, SendUnary) {
     }
     
     sess->start();
-    // sess->send_message(msg);
     
     std::string available_messages_prompt = "Select the message to send: 1-10, or q to end.\n";
     std::cout << available_messages_prompt;
@@ -131,13 +145,14 @@ TEST_F(AuxlGrpcTest, SendUnary) {
             auto p = nlohmann::json::parse(tpl_to_send);
             p["name"] = "myRequest";
             p["handle"] = "xxx";
-            
-            
-            std::cout << p.dump() << std::endl;
+                        
+            // std::cout << p.dump() << std::endl;
             
             auto msg = auxl::grpc::serialized_message_from_template("simple.Request", p.dump(), descriptors);
          
             sess->send_message(msg);
+            
+            std::cout << available_messages_prompt;
         }
         
     }

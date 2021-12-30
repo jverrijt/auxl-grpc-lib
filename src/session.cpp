@@ -88,14 +88,22 @@ std::shared_ptr<Session> Session::create(Connection& connection,
  */
 void Session::read_response(bool* should_read)
 {
-    std::string response;
-    std::multimap<::grpc::string_ref, ::grpc::string_ref> incoming_meta_data;
-    
-    call->ReadAndMaybeNotifyWrite(&response, &incoming_meta_data);
-    
-    if (delegate != nullptr) {
-        delegate->did_receive(response, incoming_meta_data);
+    while(*should_read) {
+        std::string response;
+        std::multimap<::grpc::string_ref, ::grpc::string_ref> incoming_meta_data;
+        
+        // call->ReadAndMaybeNotifyWrite(&response, &incoming_meta_data);
+        
+        call->Read(&response, &incoming_meta_data);
+        
+        if (delegate != nullptr) {
+            delegate->did_receive(response, incoming_meta_data);
+        }
+        
+        sleep(1);
     }
+    
+    std::cout << "Ending thread..." << std::endl;
 }
 
 /**
@@ -104,7 +112,6 @@ void Session::start()
 {
     should_read = true;
     read_thread = std::thread(&Session::read_response, this, &should_read);
-//     read_thread.detach();
     
     std::cout << "Starting ..." << std::endl;
 }
@@ -112,8 +119,7 @@ void Session::start()
 /**
  */
 void Session::send_message(std::string& message) {
-    std::cout << "Sending message: " << message;
-    call->WriteAndWait(message);
+    call->Write(message);
 }
 
 /**
@@ -129,7 +135,6 @@ void Session::close()
     auto stat = call->Finish(&metadata);
     
     std::cout << "Received error: " << stat.error_message() << std::endl;
-    
 }
 
 

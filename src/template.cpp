@@ -120,7 +120,7 @@ std::string serialized_message_from_template(std::string message_name, std::stri
         
         if (!stat.ok()) {
         
-            std::cerr << "ERROR" << std::endl;
+            std::cerr << "ERRORx:" << std::endl;
         }
         
         msg->SerializeToString(&serialized_msg);
