@@ -35,12 +35,12 @@ public:
     
     std::weak_ptr<SessionDelegate> delegate;
     
-    void start();
+    void start(const google::protobuf::MethodDescriptor& method_descriptor,
+               std::multimap<std::string, std::string> metadata = {} , double timeout = -1);
     
     /**
      */
-    void send_message(google::protobuf::Message& message, const google::protobuf::MethodDescriptor& method_descriptor,
-                      std::multimap<std::string, std::string> metadata = {}, double timeout = -1);
+    void send_message(google::protobuf::Message& message);
     
     
     void close();

@@ -33,10 +33,8 @@ void Session::read_response()
     std::cout << "Ending thread..." << std::endl;
 }
 
-/**
- */
-void Session::send_message(google::protobuf::Message& message, const google::protobuf::MethodDescriptor& method_descriptor,
-                  std::multimap<std::string, std::string> metadata, double timeout)
+
+void Session::start(const google::protobuf::MethodDescriptor& method_descriptor, std::multimap<std::string, std::string> metadata, double timeout)
 {
     auto m = "/" + method_descriptor.service()->full_name() + "/" + method_descriptor.name();
     
@@ -44,7 +42,12 @@ void Session::send_message(google::protobuf::Message& message, const google::pro
     
     // Start the read thread.
     read_thread_ = std::thread(&Session::read_response, this);
-    
+}
+
+/**
+ */
+void Session::send_message(google::protobuf::Message& message)
+{
     std::string payload;
     message.SerializeToString(&payload);
     
