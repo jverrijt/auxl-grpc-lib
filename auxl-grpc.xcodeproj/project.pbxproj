@@ -29,6 +29,8 @@
 		D6F88FAA277B6C3400D9DDCE /* cli_call.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA9277B6C3300D9DDCE /* cli_call.cc */; };
 		D6F88FAB277B6C4F00D9DDCE /* cli_call.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA9277B6C3300D9DDCE /* cli_call.cc */; };
 		D6F88FAC277BA5EA00D9DDCE /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA6277B59F400D9DDCE /* session.cpp */; };
+		D6F88FAF277EEBE800D9DDCE /* descriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FAD277EEBE800D9DDCE /* descriptor.cpp */; };
+		D6F88FB0277F13C900D9DDCE /* descriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FAD277EEBE800D9DDCE /* descriptor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,6 +77,8 @@
 		D6F88FA6277B59F400D9DDCE /* session.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = session.cpp; sourceTree = "<group>"; };
 		D6F88FA7277B59F400D9DDCE /* session.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = session.h; sourceTree = "<group>"; };
 		D6F88FA9277B6C3300D9DDCE /* cli_call.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cli_call.cc; path = modules/grpc/test/cpp/util/cli_call.cc; sourceTree = "<group>"; };
+		D6F88FAD277EEBE800D9DDCE /* descriptor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = descriptor.cpp; sourceTree = "<group>"; };
+		D6F88FAE277EEBE800D9DDCE /* descriptor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = descriptor.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,8 @@
 				D6F88F6D27788ADC00D9DDCE /* parser.cpp */,
 				D6F88FA6277B59F400D9DDCE /* session.cpp */,
 				D6F88FA7277B59F400D9DDCE /* session.h */,
+				D6F88FAD277EEBE800D9DDCE /* descriptor.cpp */,
+				D6F88FAE277EEBE800D9DDCE /* descriptor.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -221,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6F88FAF277EEBE800D9DDCE /* descriptor.cpp in Sources */,
 				D6F88FAB277B6C4F00D9DDCE /* cli_call.cc in Sources */,
 				D6F88F7A2778939C00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
 				D6F88F762778934D00D9DDCE /* reflection.grpc.pb.cc in Sources */,
@@ -240,6 +247,7 @@
 			files = (
 				D6F88FAA277B6C3400D9DDCE /* cli_call.cc in Sources */,
 				D6F88FA5277B136700D9DDCE /* gtest-all.cc in Sources */,
+				D6F88FB0277F13C900D9DDCE /* descriptor.cpp in Sources */,
 				D6F88F91277B104700D9DDCE /* gtest_main.cc in Sources */,
 				D6F88F81277B0FA700D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
 				D6F88F82277B0FA700D9DDCE /* reflection.grpc.pb.cc in Sources */,

@@ -42,41 +42,14 @@ typedef enum kGRPCCallType {
 
 /**
  */
-typedef struct GRPCOptions {
+typedef struct GRPCConnectionOptions {
     bool use_ssl;
-    bool use_remote_db;
-    bool print_type_as_json;
     
-    char* grpc_service_config;
     char* ssl_client_cert;
     char* ssl_client_key;
     char* ssl_root_certs_path;
     
-    kGRPCFormatType input_type;
-    kGRPCFormatType output_type;
-    
-} GRPCOptions;
-
-
-typedef struct GRPCConfig {
-    
-    kGRPCCallType call_type;
-    
-    char* endpoint;
-    char* type;
-    char* service_method;
-    char* proto_path;
-    char* proto_files;
-    char* input_file;
-    char* output_file;
-    
-    GRPCOptions options;
-        
-    pthread_t thread_id;
-    
-} GRPCConfig;
-
-
+} GRPCConnectionOptions;
 
 
 }

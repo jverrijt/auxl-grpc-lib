@@ -14,13 +14,13 @@
 
 #include <google/protobuf/dynamic_message.h>
 #include "test/cpp/util/cli_call.h"
-#include "connection.h"
 #include "parser.h"
+#include "descriptor.hpp"
+#include "types.h"
+
 
 namespace auxl {
 namespace grpc {
-
-
 
 class SessionDelegate {
 public:
@@ -31,54 +31,28 @@ public:
 class Session {
     
 public:
+    Session(std::shared_ptr<auxl::grpc::Connection> connection): connection_(connection) {};
     
-    std::shared_ptr<SessionDelegate> delegate;
-    
-    /**
-     Create a session
-     */
-    static std::shared_ptr<Session> create(Connection& connection,
-                                            std::string service_name,
-                                            std::string method_name,
-                                            std::multimap<std::string, std::string> metadata,
-                                            std::string descriptors,
-                                            double timeout = -1);
+    std::weak_ptr<SessionDelegate> delegate;
     
     void start();
     
     /**
      */
-    void send_message(std::string& message);
+    void send_message(google::protobuf::Message& message, const google::protobuf::MethodDescriptor& method_descriptor,
+                      std::multimap<std::string, std::string> metadata = {}, double timeout = -1);
     
-    /**
-     */
-    void send_message(std::shared_ptr<google::protobuf::Message> message);
     
     void close();
     
-    bool is_streaming();
-    
-    /**
-     Returns the full method name in the form of service/method
-     */
-    std::string method_name();
-    
 private:
-    Session(Connection& connection,
-            std::string method_name,
-            bool is_streaming,
-            std::multimap<std::string, std::string> metadata,
-            ::grpc::CliArgs args);
+
+    void read_response();
     
-    void read_response(bool* should_read);
+    std::thread read_thread_;
     
-    bool _streaming;
-    std::string _method_name;
-    
-    std::thread read_thread;
-    bool should_read;
-    
-    std::unique_ptr<::grpc::testing::CliCall> call;
+    std::shared_ptr<auxl::grpc::Connection> connection_;
+    std::unique_ptr<::grpc::testing::CliCall> current_call_;
 };
 
 } // ns grpc

@@ -47,9 +47,8 @@ void ProtoFileParserError::AddWarning(const std::string &filename, int line, int
 
 /**
  */
-void descriptor_db_from_proto_files(
-    std::vector<std::string> proto_files, google::protobuf::SimpleDescriptorDatabase* db) {
-
+void descriptors_from_proto_files(std::vector<std::string> proto_files, google::protobuf::SimpleDescriptorDatabase* db)
+{
     auxl::grpc::ProtoFileParserError error_collector;
     compiler::DiskSourceTree source_tree;
 
@@ -90,12 +89,11 @@ void descriptor_db_from_proto_files(
 }
 
 /**
- * 
  */
-void grpc_reflect(std::shared_ptr<Connection>& connection, google::protobuf::SimpleDescriptorDatabase* db) 
+void descriptors_from_reflect(Connection& connection, google::protobuf::SimpleDescriptorDatabase* db)
 {
     auto desc_db = std::shared_ptr<ProtoReflectionDescriptorDatabase>(
-        new ProtoReflectionDescriptorDatabase(connection->channel));
+        new ProtoReflectionDescriptorDatabase(connection.channel));
     
     DescriptorPool desc_pool(desc_db.get());
 
@@ -136,52 +134,6 @@ void grpc_reflect(std::shared_ptr<Connection>& connection, google::protobuf::Sim
 
 /**
  */
-std::string describe(std::vector<std::string> proto_files, std::shared_ptr<Connection>* connection) 
-{
-    google::protobuf::SimpleDescriptorDatabase descr_db;
-
-    if (proto_files.size() > 0) {
-        descriptor_db_from_proto_files(proto_files, &descr_db);
-    }
-
-    if (connection != NULL) {
-        grpc_reflect(*connection, &descr_db);
-    }
-
-    std::vector<std::string> file_names;
-    descr_db.FindAllFileNames(&file_names);
-
-    util::JsonPrintOptions jsonPrintOptions;
-
-    jsonPrintOptions.add_whitespace = true;
-    jsonPrintOptions.always_print_primitive_fields = true;
-    jsonPrintOptions.always_print_enums_as_ints = true;
-
-    std::string jsonOutput;
-    jsonOutput += "[";
-
-    for (std::string fn : file_names) {
-        const auto proto = new FileDescriptorProto();
-
-        if (descr_db.FindFileByName(fn, proto)) {
-            std::string output;
-            util::MessageToJsonString(*proto, &output);
-            jsonOutput += output + ",";            
-        }
-    }
-
-    // Remove trailing comma
-    if (!jsonOutput.empty()) {
-        jsonOutput.pop_back();
-    }
-
-    jsonOutput += "]";
-
-    return jsonOutput;
-}
-
-/**
- */
 std::shared_ptr<google::protobuf::DescriptorDatabase> parse_descriptors(std::string descriptors)
 {
     json o = json::parse(descriptors);
@@ -189,7 +141,7 @@ std::shared_ptr<google::protobuf::DescriptorDatabase> parse_descriptors(std::str
     
     for (int i = 0; i < o.size(); i++) {
         auto proto = new google::protobuf::FileDescriptorProto();
-        util::JsonStringToMessage(o[i].dump(-1), proto);        
+        util::JsonStringToMessage(o[i].dump(-1), proto);
         descr_db->Add(*proto);
         
         delete proto;

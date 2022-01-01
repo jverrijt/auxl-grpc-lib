@@ -20,23 +20,23 @@ namespace grpc {
 
 /**
 */ 
-std::shared_ptr<ChannelCredentials> get_channel_credentials(GRPCConfig config)
+std::shared_ptr<ChannelCredentials> get_channel_credentials(GRPCConnectionOptions options)
 {
-    if (!config.options.use_ssl) {
+    if (!options.use_ssl) {
         return InsecureChannelCredentials();
     }
-    else if (config.options.use_ssl) {
+    else if (options.use_ssl) {
         SslCredentialsOptions ssl_creds_options;
         // TODO
-        ssl_creds_options.pem_root_certs = util::load_file(config.options.ssl_root_certs_path);
+        ssl_creds_options.pem_root_certs = util::load_file(options.ssl_root_certs_path);
 
-        if (config.options.ssl_client_cert != NULL) {
+        if (options.ssl_client_cert != NULL) {
             // FIXME, what if this fails?
-            ssl_creds_options.pem_cert_chain = util::load_file(config.options.ssl_client_cert);
+            ssl_creds_options.pem_cert_chain = util::load_file(options.ssl_client_cert);
         }
         
-        if (config.options.ssl_client_key != NULL) {
-            ssl_creds_options.pem_private_key = util::load_file(config.options.ssl_client_key);
+        if (options.ssl_client_key != NULL) {
+            ssl_creds_options.pem_private_key = util::load_file(options.ssl_client_key);
         }
 
         return SslCredentials(ssl_creds_options);
@@ -47,18 +47,20 @@ std::shared_ptr<ChannelCredentials> get_channel_credentials(GRPCConfig config)
 
 /**
  */
-std::shared_ptr<Connection> create_connection(GRPCConfig config)
+std::unique_ptr<Connection> create_connection(std::string endpoint, GRPCConnectionOptions options)
 {
     ChannelArguments args;
 
     args.SetInt(GRPC_ARG_MAX_METADATA_SIZE, 10 * 1024 * 1024);
-    auto channel = CreateCustomChannel(config.endpoint, get_channel_credentials(config), args);
+    auto channel = CreateCustomChannel(endpoint, get_channel_credentials(options), args);
 
-    std::shared_ptr<Connection> connection(new Connection);
+    std::unique_ptr<Connection> connection(new Connection);
+    
+    connection->endpoint = endpoint;
     connection->channel = channel;
 
     return connection;
 }
-}
 
-}
+} // ns grpc
+} // ns auxl

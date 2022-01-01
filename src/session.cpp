@@ -7,6 +7,8 @@
 
 #include "session.h"
 #include "parser.h"
+#include "connection.h"
+
 #include <thread>
 
 using namespace ::grpc::testing;
@@ -16,123 +18,48 @@ namespace grpc {
 
 /**
  */
-Session::Session(Connection& connection,
-                 std::string method_name,
-                 bool is_streaming,
-                 std::multimap<std::string, std::string>
-                 metadata, ::grpc::CliArgs args) {
-
-    delegate = nullptr;
+void Session::read_response()
+{
+    std::string response;
+    std::multimap<::grpc::string_ref, ::grpc::string_ref> incoming_meta_data;
     
-    _method_name = method_name;
-    _streaming = is_streaming;
-
-    call = std::unique_ptr<CliCall>(new ::grpc::testing::CliCall(connection.channel, _method_name, metadata));
-}
-
-/**
- */
-bool Session::is_streaming()
-{
-    return _streaming;
-}
-
-/**
- Returns the full method name in the form of service/method
- */
-std::string Session::method_name()
-{
-    return _method_name;
-}
-
-/**
- */
-std::shared_ptr<Session> Session::create(Connection& connection,
-                                        std::string service_name,
-                                        std::string method_name,
-                                        std::multimap<std::string, std::string> metadata,
-                                        std::string descriptors,
-                                        double timeout)
-{
-    // Make sure the descriptors work and contain the given service and method.
-    auto db = parse_descriptors(descriptors);
-    google::protobuf::DescriptorPool pool(db.get());
-        
-    auto service_descr = pool.FindServiceByName(service_name);
-    
-    if (service_descr == nullptr) {
-        throw -1;
+    for (bool receive_initial_metadata = true; current_call_->ReadAndMaybeNotifyWrite(&response,
+                                                                             receive_initial_metadata ? &incoming_meta_data : nullptr);
+         receive_initial_metadata = false) {
+        fprintf(stderr, "got response. %s\n", response.c_str());
+       
     }
-    
-    auto method_descr = service_descr->FindMethodByName(method_name);
-    
-    if (method_descr == nullptr) {
-        throw -1;
-    }
-    
-    ::grpc::CliArgs args;
-    args.timeout = timeout;
-    
-    // Creat a service/method name that works for CliCall
-    auto m = "/" + method_descr->service()->full_name() + "/" + method_descr->name();
-    
-    std::cout << "Method to call:" << m << std::endl;
-    bool is_streaming = method_descr->server_streaming() || method_descr->client_streaming();
-    
-    std::shared_ptr<Session> session(new Session(connection, m, is_streaming, metadata, args));
-    
-    return session;
-}
-
-/**
- */
-void Session::read_response(bool* should_read)
-{
-    while(*should_read) {
-        std::string response;
-        std::multimap<::grpc::string_ref, ::grpc::string_ref> incoming_meta_data;
         
-        // call->ReadAndMaybeNotifyWrite(&response, &incoming_meta_data);
-        
-        call->Read(&response, &incoming_meta_data);
-        
-        if (delegate != nullptr) {
-            delegate->did_receive(response, incoming_meta_data);
-        }
-        
-        sleep(1);
-    }
-    
     std::cout << "Ending thread..." << std::endl;
 }
 
 /**
  */
-void Session::start()
+void Session::send_message(google::protobuf::Message& message, const google::protobuf::MethodDescriptor& method_descriptor,
+                  std::multimap<std::string, std::string> metadata, double timeout)
 {
-    should_read = true;
-    read_thread = std::thread(&Session::read_response, this, &should_read);
+    auto m = "/" + method_descriptor.service()->full_name() + "/" + method_descriptor.name();
     
-    std::cout << "Starting ..." << std::endl;
-}
-
-/**
- */
-void Session::send_message(std::string& message) {
-    call->Write(message);
+    current_call_ = std::unique_ptr<CliCall>(new CliCall(connection_->channel, m, metadata));
+    
+    // Start the read thread.
+    read_thread_ = std::thread(&Session::read_response, this);
+    
+    std::string payload;
+    message.SerializeToString(&payload);
+    
+    current_call_->WriteAndWait(payload);
 }
 
 /**
  */
 void Session::close()
 {
-    should_read = false;
-    
-    call->WritesDone();
-    read_thread.join();
+    current_call_->WritesDoneAndWait();
+    read_thread_.join();
     
     std::multimap<::grpc::string_ref, ::grpc::string_ref> metadata;
-    auto stat = call->Finish(&metadata);
+    auto stat = current_call_->Finish(&metadata);
     
     std::cout << "Received error: " << stat.error_message() << std::endl;
 }
