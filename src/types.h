@@ -5,7 +5,6 @@
 #ifdef __cplusplus
 extern "C" {
 
-
 typedef enum GRPCConnectionError_t {
     CONNECTION_ERROR = 0,
     COULD_NOT_OPEN_SSL_CERT = 1

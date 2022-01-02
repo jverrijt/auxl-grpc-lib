@@ -22,29 +22,29 @@ namespace grpc {
 
 /**
  */
-Descriptor::Descriptor() { }
-
-/**
- This constructs the Descriptor and sets up the cluster of classes that generate the protobuf messages.
- */
-std::shared_ptr<Descriptor> Descriptor::create_descriptor(std::vector<std::string> proto_files, Connection* connection)
+Descriptor::Descriptor(std::vector<std::string> proto_files, Connection* connection)
 {
-    auto descr = std::shared_ptr<Descriptor>(new Descriptor());
+    error_collector_ = create_error_collector();
     
-    descr->db_ = std::unique_ptr<SimpleDescriptorDatabase>(new SimpleDescriptorDatabase());
+    db_ = std::unique_ptr<SimpleDescriptorDatabase>(new SimpleDescriptorDatabase());
 
     if (proto_files.size() > 0) {
-        descriptors_from_proto_files(proto_files, descr->db_.get());
+        descriptors_from_proto_files(proto_files, db_.get(), error_collector_);
     }
 
     if (connection != NULL) {
-        descriptors_from_reflect(*connection, descr->db_.get());
+        descriptors_from_reflect(*connection, db_.get(), error_collector_);
     }
     
-    descr->pool_ = std::unique_ptr<DescriptorPool>(new DescriptorPool(descr->db_.get()));
-    descr->factory_ = std::unique_ptr<DynamicMessageFactory>(new DynamicMessageFactory(descr->pool_.get()));
-    
-    return descr;
+    pool_ = std::unique_ptr<DescriptorPool>(new DescriptorPool(db_.get()));
+    factory_ = std::unique_ptr<DynamicMessageFactory>(new DynamicMessageFactory(pool_.get()));
+}
+
+/**
+ */
+Descriptor::~Descriptor()
+{
+    error_collector_free(error_collector_);
 }
 
 /**
@@ -193,6 +193,12 @@ std::shared_ptr<Message> Descriptor::build_message(const google::protobuf::Descr
     return message;
 }
 
+/**
+ */
+const AuxlGRPCErrorCollector* Descriptor::get_error_collector()
+{
+    return error_collector_;
+}
 
 
 } // ns grpc

@@ -19,37 +19,10 @@ namespace auxl {
 namespace grpc {
 
 /**
-*/
-void ProtoFileParserError::AddError(const std::string &filename, int line, int column, const std::string &message) {
-
-    ParserErrorEntry entry = { 
-        .error_type = warning, 
-        .filename = (char*) filename.c_str(), 
-        .message = (char*) message.c_str() 
-    };
-
-    entries.push_back(entry);
-    std::cerr << "Error in filename " << filename << " Message:" << message << "\n";
-}
-
-/**
  */
-void ProtoFileParserError::AddWarning(const std::string &filename, int line, int column, const std::string &message) {
-    ParserErrorEntry entry = { 
-        .error_type = warning, 
-        .filename = (char*) filename.c_str(), 
-        .message = (char*) message.c_str() 
-    };
-
-    entries.push_back(entry);
-    std::cerr << "Warning in filename " << filename;
-}
-
-/**
- */
-void descriptors_from_proto_files(std::vector<std::string> proto_files, google::protobuf::SimpleDescriptorDatabase* db)
+void descriptors_from_proto_files(std::vector<std::string> proto_files,
+                                  google::protobuf::SimpleDescriptorDatabase* db,  AuxlGRPCErrorCollector *error_collector)
 {
-    auxl::grpc::ProtoFileParserError error_collector;
     compiler::DiskSourceTree source_tree;
 
     // Get the base paths and add them to the source tree
@@ -58,7 +31,7 @@ void descriptors_from_proto_files(std::vector<std::string> proto_files, google::
         source_tree.MapPath("", path);
     }
     
-    compiler::Importer importer(&source_tree, &error_collector);
+    compiler::Importer importer(&source_tree, nullptr /*, &error_collector*/);
 
     // Collect the proto file names in these proto files
     for (std::string file : proto_files) {
@@ -90,7 +63,8 @@ void descriptors_from_proto_files(std::vector<std::string> proto_files, google::
 
 /**
  */
-void descriptors_from_reflect(Connection& connection, google::protobuf::SimpleDescriptorDatabase* db)
+void descriptors_from_reflect(Connection& connection,
+                              google::protobuf::SimpleDescriptorDatabase* db,  AuxlGRPCErrorCollector *error_collector)
 {
     auto desc_db = std::shared_ptr<ProtoReflectionDescriptorDatabase>(
         new ProtoReflectionDescriptorDatabase(connection.channel));
@@ -149,8 +123,6 @@ std::shared_ptr<google::protobuf::DescriptorDatabase> parse_descriptors(std::str
     
     return descr_db;
 }
-
-
 }
 }
 

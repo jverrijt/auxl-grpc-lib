@@ -11,6 +11,7 @@
 #include "../modules/grpc/test/cpp/util/proto_reflection_descriptor_database.h"
 #include <google/protobuf/compiler/importer.h>
 #include <google/protobuf/util/json_util.h>
+#include "error_collector.h"
 
 #include "connection.h"
 
@@ -33,11 +34,9 @@ inline google::protobuf::util::JsonPrintOptions default_json_options()
 class Descriptor
 {
 public:
-    
-    /**
-     */
-    static std::shared_ptr<Descriptor> create_descriptor(std::vector<std::string> proto_files, Connection* connection);
-    
+    Descriptor(std::vector<std::string> proto_files, Connection* connection);
+    ~Descriptor();
+
     /**
      Create default message for given type name.
      */
@@ -73,12 +72,18 @@ public:
     google::protobuf::SimpleDescriptorDatabase* get_db() { return db_.get(); };
     google::protobuf::DescriptorPool* get_pool() { return pool_.get(); };
     
+    
+    const AuxlGRPCErrorCollector* get_error_collector();
+    
 
 private:
     Descriptor();
     
     std::shared_ptr<google::protobuf::Message> build_message(const google::protobuf::Descriptor& descriptor,
                                                              google::protobuf::DynamicMessageFactory& factory, int depth = 0, int max_depth = 1);
+    
+    
+    AuxlGRPCErrorCollector* error_collector_;
     
     std::unique_ptr<google::protobuf::SimpleDescriptorDatabase> db_;
     std::unique_ptr<google::protobuf::DescriptorPool> pool_;
