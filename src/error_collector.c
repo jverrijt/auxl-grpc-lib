@@ -28,7 +28,7 @@ AuxlGRPCErrorCollector* create_error_collector(void)
 int error_collector_add_error_type_message(AuxlGRPCErrorCollector* collector, AuxlGRPCErrorType type, char *message, AuxlGRPCErrorLevel level)
 {
     AuxlGRPCError err = {
-        .message = message,
+        .message = strdup(message),
         .type = type,
         .level = level
     };
@@ -74,6 +74,7 @@ void error_collector_free(AuxlGRPCErrorCollector* collector)
     }
     
     for (int i = 0; i < collector->error_count; i++) {
+        free(collector->errors[i]->message);
         free(collector->errors[i]);
     }
     

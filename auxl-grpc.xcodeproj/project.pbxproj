@@ -26,11 +26,14 @@
 		D6F88F91277B104700D9DDCE /* gtest_main.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F90277B104700D9DDCE /* gtest_main.cc */; };
 		D6F88FA5277B136700D9DDCE /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA4277B136700D9DDCE /* gtest-all.cc */; };
 		D6F88FA8277B59F400D9DDCE /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA6277B59F400D9DDCE /* session.cpp */; };
-		D6F88FAA277B6C3400D9DDCE /* cli_call.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA9277B6C3300D9DDCE /* cli_call.cc */; };
-		D6F88FAB277B6C4F00D9DDCE /* cli_call.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA9277B6C3300D9DDCE /* cli_call.cc */; };
 		D6F88FAC277BA5EA00D9DDCE /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA6277B59F400D9DDCE /* session.cpp */; };
 		D6F88FAF277EEBE800D9DDCE /* descriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FAD277EEBE800D9DDCE /* descriptor.cpp */; };
 		D6F88FB0277F13C900D9DDCE /* descriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FAD277EEBE800D9DDCE /* descriptor.cpp */; };
+		D6F88FB82780FBA600D9DDCE /* greet.proto in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FB72780FB9D00D9DDCE /* greet.proto */; };
+		D6F88FBA2781AD6A00D9DDCE /* cli_call.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FB92781AD6A00D9DDCE /* cli_call.cc */; };
+		D6F88FBB2781AD6A00D9DDCE /* cli_call.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FB92781AD6A00D9DDCE /* cli_call.cc */; };
+		D6F88FC22781BB5D00D9DDCE /* error_collector.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FC12781BB5D00D9DDCE /* error_collector.c */; };
+		D6F88FC32781BB5D00D9DDCE /* error_collector.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FC12781BB5D00D9DDCE /* error_collector.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,12 +48,13 @@
 		};
 		D6F88F8B277B0FA700D9DDCE /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = test_resources;
+			dstSubfolderSpec = 16;
 			files = (
+				D6F88FB82780FBA600D9DDCE /* greet.proto in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -76,9 +80,12 @@
 		D6F88FA4277B136700D9DDCE /* gtest-all.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "gtest-all.cc"; path = "modules/grpc/third_party/googletest/googletest/src/gtest-all.cc"; sourceTree = "<group>"; };
 		D6F88FA6277B59F400D9DDCE /* session.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = session.cpp; sourceTree = "<group>"; };
 		D6F88FA7277B59F400D9DDCE /* session.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = session.h; sourceTree = "<group>"; };
-		D6F88FA9277B6C3300D9DDCE /* cli_call.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cli_call.cc; path = modules/grpc/test/cpp/util/cli_call.cc; sourceTree = "<group>"; };
 		D6F88FAD277EEBE800D9DDCE /* descriptor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = descriptor.cpp; sourceTree = "<group>"; };
 		D6F88FAE277EEBE800D9DDCE /* descriptor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = descriptor.hpp; sourceTree = "<group>"; };
+		D6F88FB72780FB9D00D9DDCE /* greet.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = greet.proto; sourceTree = "<group>"; };
+		D6F88FB92781AD6A00D9DDCE /* cli_call.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cli_call.cc; sourceTree = "<group>"; };
+		D6F88FC02781BB5D00D9DDCE /* error_collector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = error_collector.h; sourceTree = "<group>"; };
+		D6F88FC12781BB5D00D9DDCE /* error_collector.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = error_collector.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +109,6 @@
 		D6F88F4D277889BE00D9DDCE = {
 			isa = PBXGroup;
 			children = (
-				D6F88FA9277B6C3300D9DDCE /* cli_call.cc */,
 				D6F88FA4277B136700D9DDCE /* gtest-all.cc */,
 				D6F88F90277B104700D9DDCE /* gtest_main.cc */,
 				D6F88F7B277895DE00D9DDCE /* auxl_grpc_cli.entitlements */,
@@ -126,6 +132,7 @@
 		D6F88F6227788ADC00D9DDCE /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D6F88FB92781AD6A00D9DDCE /* cli_call.cc */,
 				D6F88F6C27788ADC00D9DDCE /* connection.cpp */,
 				D6F88F6327788ADC00D9DDCE /* connection.h */,
 				D6F88F6427788ADC00D9DDCE /* template.cpp */,
@@ -134,13 +141,15 @@
 				D6F88F6627788ADC00D9DDCE /* tool.c */,
 				D6F88F6827788ADC00D9DDCE /* types.h */,
 				D6F88F6927788ADC00D9DDCE /* parser.h */,
+				D6F88F6D27788ADC00D9DDCE /* parser.cpp */,
 				D6F88F6A27788ADC00D9DDCE /* auxl_cli.cpp */,
 				D6F88F6B27788ADC00D9DDCE /* util.h */,
-				D6F88F6D27788ADC00D9DDCE /* parser.cpp */,
 				D6F88FA6277B59F400D9DDCE /* session.cpp */,
 				D6F88FA7277B59F400D9DDCE /* session.h */,
 				D6F88FAD277EEBE800D9DDCE /* descriptor.cpp */,
 				D6F88FAE277EEBE800D9DDCE /* descriptor.hpp */,
+				D6F88FC02781BB5D00D9DDCE /* error_collector.h */,
+				D6F88FC12781BB5D00D9DDCE /* error_collector.c */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -148,9 +157,18 @@
 		D6F88F7C277B02B200D9DDCE /* test */ = {
 			isa = PBXGroup;
 			children = (
+				D6F88FB62780FB9D00D9DDCE /* test_resources */,
 				D6F88F7D277B0F7300D9DDCE /* auxl_main_test.cpp */,
 			);
 			path = test;
+			sourceTree = "<group>";
+		};
+		D6F88FB62780FB9D00D9DDCE /* test_resources */ = {
+			isa = PBXGroup;
+			children = (
+				D6F88FB72780FB9D00D9DDCE /* greet.proto */,
+			);
+			path = test_resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,15 +246,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F88FAF277EEBE800D9DDCE /* descriptor.cpp in Sources */,
-				D6F88FAB277B6C4F00D9DDCE /* cli_call.cc in Sources */,
 				D6F88F7A2778939C00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
 				D6F88F762778934D00D9DDCE /* reflection.grpc.pb.cc in Sources */,
 				D6F88FA8277B59F400D9DDCE /* session.cpp in Sources */,
 				D6F88F7027788ADC00D9DDCE /* tool.c in Sources */,
+				D6F88FBA2781AD6A00D9DDCE /* cli_call.cc in Sources */,
 				D6F88F7227788ADC00D9DDCE /* connection.cpp in Sources */,
 				D6F88F6E27788ADC00D9DDCE /* template.cpp in Sources */,
 				D6F88F7127788ADC00D9DDCE /* auxl_cli.cpp in Sources */,
 				D6F88F7327788ADC00D9DDCE /* parser.cpp in Sources */,
+				D6F88FC22781BB5D00D9DDCE /* error_collector.c in Sources */,
 				D6F88F6F27788ADC00D9DDCE /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,18 +264,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6F88FAA277B6C3400D9DDCE /* cli_call.cc in Sources */,
 				D6F88FA5277B136700D9DDCE /* gtest-all.cc in Sources */,
 				D6F88FB0277F13C900D9DDCE /* descriptor.cpp in Sources */,
 				D6F88F91277B104700D9DDCE /* gtest_main.cc in Sources */,
 				D6F88F81277B0FA700D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
 				D6F88F82277B0FA700D9DDCE /* reflection.grpc.pb.cc in Sources */,
+				D6F88FBB2781AD6A00D9DDCE /* cli_call.cc in Sources */,
 				D6F88F83277B0FA700D9DDCE /* tool.c in Sources */,
 				D6F88F84277B0FA700D9DDCE /* connection.cpp in Sources */,
 				D6F88F85277B0FA700D9DDCE /* template.cpp in Sources */,
 				D6F88FAC277BA5EA00D9DDCE /* session.cpp in Sources */,
 				D6F88F87277B0FA700D9DDCE /* auxl_main_test.cpp in Sources */,
 				D6F88F88277B0FA700D9DDCE /* parser.cpp in Sources */,
+				D6F88FC32781BB5D00D9DDCE /* error_collector.c in Sources */,
 				D6F88F89277B0FA700D9DDCE /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

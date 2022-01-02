@@ -77,8 +77,6 @@ public:
     
 
 private:
-    Descriptor();
-    
     std::shared_ptr<google::protobuf::Message> build_message(const google::protobuf::Descriptor& descriptor,
                                                              google::protobuf::DynamicMessageFactory& factory, int depth = 0, int max_depth = 1);
     

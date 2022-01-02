@@ -17,6 +17,9 @@
 #include "template.h"
 #include "session.h"
 
+
+#include "error_collector.h"
+
 namespace auxl {
 namespace grpc {
 namespace {
@@ -47,9 +50,58 @@ std::unique_ptr<Connection> get_connection(std::string endpoint)
 
 /**
  */
+TEST_F(AuxlGrpcTest, ErrorCollectorTest)
+{
+    auto col = create_error_collector();
+    
+    error_collector_add_error_type_message(col, PROTO_ERROR, (char*) "proto file could not be found", WARNING);
+    error_collector_add_error_type_message(col, ENDPOINT_NOT_REACHEABLE, (char*) "endpoint not reachable", WARNING);
+    ASSERT_TRUE(col->error_count == 2);
+    
+    for (int i = 0; i < col->error_count; i++) {
+         printf("Got error: %s - %d", col->errors[i]->message, col->errors[i]->type);
+    }
+    
+    auto new_col = error_collector_copy(col);
+    
+    error_collector_free(col);
+    
+    ASSERT_TRUE(new_col->error_count == 2);
+    
+}
+
+
+/**
+ */
+TEST_F(AuxlGrpcTest, DescriptorFromProtoTest)
+{
+    std::vector<std::string> proto = { "test_resources/greet.proto" };
+    auto descr = std::unique_ptr<Descriptor>(new Descriptor(proto, nullptr));
+    std::cout << descr->to_json() << std::endl;
+    
+    ASSERT_TRUE(descr->get_error_collector()->error_count == 0);
+    
+    // Load an inexistent proto
+    
+    std::vector<std::string> bogus_proto = { "test_resources/does_not_exist.proto" };
+    auto descr_b = std::unique_ptr<Descriptor>(new Descriptor(bogus_proto, nullptr));
+    
+    auto col = descr_b->get_error_collector();
+    
+    ASSERT_TRUE(col->error_count == 1);
+    ASSERT_TRUE(col->errors[0]->type == PROTO_ERROR);
+    
+    for (int i = 0; i < col->error_count; i++) {
+         printf("Got error: %s - %d", col->errors[i]->message, col->errors[i]->type);
+    }
+
+}
+
+/**
+ */
 TEST_F(AuxlGrpcTest, ReflectServiceTest) {
     std::vector<std::string> proto;
-    auto descr = Descriptor::create_descriptor(proto, get_connection("localhost:5000").get());
+    auto descr = std::unique_ptr<Descriptor>(new Descriptor(proto, get_connection("localhost:5000").get()));
     
     google::protobuf::util::JsonPrintOptions options;
     
@@ -64,7 +116,7 @@ TEST_F(AuxlGrpcTest, ReflectServiceTest) {
  */
 TEST_F(AuxlGrpcTest, CreateMessage) {
     std::vector<std::string> proto;
-    auto descr = Descriptor::create_descriptor(proto, get_connection("localhost:5000").get());
+    auto descr = std::unique_ptr<Descriptor>(new Descriptor(proto, get_connection("localhost:5000").get()));
     
     auto not_existing_msg = descr->create_message("bogus.does_not_exist");
     ASSERT_TRUE(not_existing_msg.get() == nullptr);
@@ -86,7 +138,7 @@ TEST_F(AuxlGrpcTest, SendUnary) {
     std::multimap<std::string, std::string> metadata;
 
     // Use server reflection
-    auto descriptor = Descriptor::create_descriptor({}, connection.get());
+    auto descriptor = std::unique_ptr<Descriptor>(new Descriptor({}, connection.get()));
     
     Session sess(std::move(connection));
     
@@ -111,16 +163,16 @@ TEST_F(AuxlGrpcTest, SendUnary) {
 
 /**
  */
-TEST_F(AuxlGrpcTest, TestServerStream)
+TEST_F(AuxlGrpcTest, TestClientStream)
 {
     auto connection = get_connection("localhost:5000");
     std::multimap<std::string, std::string> metadata;
 
-    auto descriptor = Descriptor::create_descriptor({}, connection.get());
+    auto descriptor = std::unique_ptr<Descriptor>(new Descriptor({}, connection.get()));
     
     Session session(std::move(connection));
     
-    auto method_descr = descriptor->get_method_descriptor("greet.Greeter", "SayHelloServerStream");
+    auto method_descr = descriptor->get_method_descriptor("greet.Greeter", "SayHelloBidiStream");
 
     // Generate some test message to send.
     std::vector<std::shared_ptr<google::protobuf::Message>> messages;
