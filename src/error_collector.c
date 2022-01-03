@@ -24,21 +24,9 @@ AuxlGRPCErrorCollector* create_error_collector(void)
 }
 
 /**
+ private
  */
-int error_collector_add_error_type_message(AuxlGRPCErrorCollector* collector, AuxlGRPCErrorType type, char *message, AuxlGRPCErrorLevel level)
-{
-    AuxlGRPCError err = {
-        .message = strdup(message),
-        .type = type,
-        .level = level
-    };
-    
-    return error_collector_add_error(collector, err);
-}
-
-/**
- */
-int error_collector_add_error(AuxlGRPCErrorCollector* collector, AuxlGRPCError error)
+int error_collector_add_error_(AuxlGRPCErrorCollector* collector, AuxlGRPCError error)
 {
     if (collector->error_count + 1 > MAX_ERROR_SIZE) {
         return -1;
@@ -51,6 +39,19 @@ int error_collector_add_error(AuxlGRPCErrorCollector* collector, AuxlGRPCError e
     collector->error_count++;
     
     return collector->error_count;
+}
+
+/**
+ */
+int error_collector_add_error(AuxlGRPCErrorCollector* collector, AuxlGRPCErrorType type, char *message, AuxlGRPCErrorLevel level)
+{
+    AuxlGRPCError err = {
+        .message = strdup(message),
+        .type = type,
+        .level = level
+    };
+    
+    return error_collector_add_error_(collector, err);
 }
 
 /**
@@ -95,7 +96,7 @@ AuxlGRPCErrorCollector* error_collector_copy(AuxlGRPCErrorCollector* collector)
     AuxlGRPCErrorCollector *new_collector = create_error_collector();
     
     for (int i = 0; i < collector->error_count; i++) {
-        error_collector_add_error(new_collector, *collector->errors[i]);
+        error_collector_add_error_(new_collector, *collector->errors[i]);
     }
     return new_collector;
 }

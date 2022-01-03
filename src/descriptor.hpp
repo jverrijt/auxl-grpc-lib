@@ -34,7 +34,7 @@ inline google::protobuf::util::JsonPrintOptions default_json_options()
 class Descriptor
 {
 public:
-    Descriptor(std::vector<std::string> proto_files, Connection* connection);
+    Descriptor(std::vector<std::string> proto_files, const Connection* connection);
     ~Descriptor();
 
     /**

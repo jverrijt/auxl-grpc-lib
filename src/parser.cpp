@@ -26,13 +26,13 @@ public:
     void AddError(const std::string& filename, int line, int column,
                   const std::string& message) override {
         std::string full_message = message + " -> " + filename;
-        error_collector_add_error_type_message(collector_, PROTO_ERROR, (char*) full_message.c_str(), WARNING);
+        error_collector_add_error(collector_, PROTO_ERROR, (char*) full_message.c_str(), WARNING);
     }
     
     void AddWarning(const std::string& filename, int line, int column,
                     const std::string& message) override {
         std::string full_message = message + " -> " + filename;
-        error_collector_add_error_type_message(collector_, PROTO_ERROR, (char*) full_message.c_str(), WARNING);
+        error_collector_add_error(collector_, PROTO_ERROR, (char*) full_message.c_str(), WARNING);
     }
     
 private:
@@ -86,11 +86,9 @@ void descriptors_from_proto_files(std::vector<std::string> proto_files,
 
 /**
  */
-void descriptors_from_reflect(Connection& connection,
-                              google::protobuf::SimpleDescriptorDatabase* db,  AuxlGRPCErrorCollector *error_collector)
+void descriptors_from_reflect(const Connection& connection, SimpleDescriptorDatabase* db,  AuxlGRPCErrorCollector *error_collector)
 {
-    auto desc_db = std::shared_ptr<ProtoReflectionDescriptorDatabase>(
-                                                                      new ProtoReflectionDescriptorDatabase(connection.channel));
+    auto desc_db = std::shared_ptr<ProtoReflectionDescriptorDatabase>(new ProtoReflectionDescriptorDatabase(connection.channel));
     
     DescriptorPool desc_pool(desc_db.get());
     
@@ -131,14 +129,14 @@ void descriptors_from_reflect(Connection& connection,
 
 /**
  */
-std::shared_ptr<google::protobuf::DescriptorDatabase> parse_descriptors(std::string descriptors)
+std::shared_ptr<DescriptorDatabase> parse_descriptors(std::string descriptors)
 {
     json o = json::parse(descriptors);
     auto descr_db = std::make_shared<SimpleDescriptorDatabase>();
     
     for (int i = 0; i < o.size(); i++) {
         auto proto = new google::protobuf::FileDescriptorProto();
-        util::JsonStringToMessage(o[i].dump(-1), proto);
+        ::util::JsonStringToMessage(o[i].dump(-1), proto);
         descr_db->Add(*proto);
         
         delete proto;

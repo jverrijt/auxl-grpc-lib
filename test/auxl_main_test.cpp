@@ -13,8 +13,6 @@
 
 #include "descriptor.hpp"
 #include "connection.h"
-#include "parser.h"
-#include "template.h"
 #include "session.h"
 
 
@@ -24,7 +22,6 @@ namespace auxl {
 namespace grpc {
 namespace {
 
-// The fixture for testing class Foo.
 class AuxlGrpcTest : public ::testing::Test {
 };
 
@@ -43,7 +40,7 @@ std::unique_ptr<Connection> get_connection(std::string endpoint)
     options.use_ssl = false;
     options.ssl_root_certs_path = (char*) "/Users/joostverrijt/Projects/var/temp/roots.pem";
     
-    auto connection = auxl::grpc::create_connection(endpoint, options);
+    auto connection = Connection::create_connection(endpoint, options);
 
     return connection;
 }
@@ -54,8 +51,8 @@ TEST_F(AuxlGrpcTest, ErrorCollectorTest)
 {
     auto col = create_error_collector();
     
-    error_collector_add_error_type_message(col, PROTO_ERROR, (char*) "proto file could not be found", WARNING);
-    error_collector_add_error_type_message(col, ENDPOINT_NOT_REACHEABLE, (char*) "endpoint not reachable", WARNING);
+    error_collector_add_error(col, PROTO_ERROR, (char*) "proto file could not be found", WARNING);
+    error_collector_add_error(col, ENDPOINT_NOT_REACHEABLE, (char*) "endpoint not reachable", WARNING);
     ASSERT_TRUE(col->error_count == 2);
     
     for (int i = 0; i < col->error_count; i++) {
@@ -69,7 +66,6 @@ TEST_F(AuxlGrpcTest, ErrorCollectorTest)
     ASSERT_TRUE(new_col->error_count == 2);
     
 }
-
 
 /**
  */
@@ -127,7 +123,6 @@ TEST_F(AuxlGrpcTest, CreateMessage) {
     std::string msg_json = descr->message_to_json(*msg);
     
     std::cout << msg_json << std::endl;
-    
 }
 
 /**
@@ -138,23 +133,25 @@ TEST_F(AuxlGrpcTest, SendUnary) {
     std::multimap<std::string, std::string> metadata;
 
     // Use server reflection
-    auto descriptor = std::unique_ptr<Descriptor>(new Descriptor({}, connection.get()));
+    Descriptor descriptor({}, connection.get());
     
-    Session sess(std::move(connection));
+    Session sess(connection.get());
     
-    auto method_descr = descriptor->get_method_descriptor("greet.Greeter", "SayHello");
+    TestSessionDelegate delegate;
+    sess.delegate = &delegate;
     
+    auto method_descr = descriptor.get_method_descriptor("greet.Greeter", "SayHello");
     std::string input_type_name = method_descr->input_type()->full_name();
     
     std::cout << "Creating input message: " << input_type_name << std::endl;
-    auto message = descriptor->create_message(input_type_name);
+    auto message = descriptor.create_message(input_type_name);
     
     // Alter some values
-    auto json = descriptor->message_to_json(*message);
+    auto json = descriptor.message_to_json(*message);
     auto p = nlohmann::json::parse(json);
     p["name"] = "Request by Joost";
     
-    message = descriptor->message_from_json(input_type_name, p.dump());
+    message = descriptor.message_from_json(input_type_name, p.dump());
     
     sess.start(*method_descr);
     sess.send_message(*message);
@@ -170,7 +167,7 @@ TEST_F(AuxlGrpcTest, TestClientStream)
 
     auto descriptor = std::unique_ptr<Descriptor>(new Descriptor({}, connection.get()));
     
-    Session session(std::move(connection));
+    Session session(connection.get());
     
     auto method_descr = descriptor->get_method_descriptor("greet.Greeter", "SayHelloBidiStream");
 

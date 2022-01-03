@@ -48,11 +48,7 @@ AuxlGRPCErrorCollector* create_error_collector(void);
 
 /**
  */
-int error_collector_add_error_type_message(AuxlGRPCErrorCollector* collector, AuxlGRPCErrorType type, char *message, AuxlGRPCErrorLevel level);
-
-/**
- */
-int error_collector_add_error(AuxlGRPCErrorCollector* collector, AuxlGRPCError error);
+int error_collector_add_error(AuxlGRPCErrorCollector* collector, AuxlGRPCErrorType type, char *message, AuxlGRPCErrorLevel level);
 
 /**
  */

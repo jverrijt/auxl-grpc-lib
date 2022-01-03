@@ -22,7 +22,7 @@ namespace grpc {
 
 /**
  */
-Descriptor::Descriptor(std::vector<std::string> proto_files, Connection* connection)
+Descriptor::Descriptor(std::vector<std::string> proto_files, const Connection* connection)
 {
     error_collector_ = create_error_collector();
     
@@ -67,7 +67,7 @@ std::shared_ptr<google::protobuf::Message> Descriptor::create_message(std::strin
 std::string Descriptor::message_to_json(Message& message, google::protobuf::util::JsonPrintOptions jsonPrintOptions)
 {
     std::string output;
-    auto stat = util::MessageToJsonString(message, &output, jsonPrintOptions);
+    auto stat = ::util::MessageToJsonString(message, &output, jsonPrintOptions);
     return output;
 }
 
@@ -80,11 +80,11 @@ std::shared_ptr<Message> Descriptor::message_from_json(std::string message_type_
     
     if (descr != nullptr) {
         msg = std::shared_ptr<Message>(factory_->GetPrototype(descr)->New());
-        util::JsonParseOptions opts;
+        ::util::JsonParseOptions opts;
         
         opts.ignore_unknown_fields = true;
         
-        auto stat = util::JsonStringToMessage(json, msg.get(), opts);
+        auto stat = ::util::JsonStringToMessage(json, msg.get(), opts);
         
         if (!stat.ok()) {
             // throw an error?
@@ -129,7 +129,7 @@ std::string Descriptor::to_json(google::protobuf::util::JsonPrintOptions options
 
         if (db_->FindFileByName(fn, proto)) {
             std::string output;
-            util::MessageToJsonString(*proto, &output, options);
+            ::util::MessageToJsonString(*proto, &output, options);
             jsonOutput += output + ",";
         }
     }

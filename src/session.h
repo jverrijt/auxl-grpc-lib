@@ -22,43 +22,45 @@
 namespace auxl {
 namespace grpc {
 
-class SessionDelegate {
-public:
-    virtual void did_receive(std::string response, std::multimap<::grpc::string_ref, ::grpc::string_ref> meta_data) {};
-};
+class Session;
 
+class SessionDelegate
+{
+public:
+    virtual void did_receive(std::string response,
+                             std::multimap<::grpc::string_ref, ::grpc::string_ref> meta_data) = 0;
+};
 
 class Session {
     
 public:
-    Session(std::shared_ptr<auxl::grpc::Connection> connection): connection_(connection) {};
+    Session(const Connection* connection): connection_(connection) {
+        delegate = nullptr;
+    };
     
-    std::weak_ptr<SessionDelegate> delegate;
-    
-    void start(const google::protobuf::MethodDescriptor& method_descriptor,
-               std::multimap<std::string, std::string> metadata = {} , double timeout = -1);
+    int start(const google::protobuf::MethodDescriptor& method_descriptor,
+              std::multimap<std::string, std::string> metadata = {} , double timeout = -1);
     
     /**
      */
-    void send_message(google::protobuf::Message& message);
-    
+    void send_message(const google::protobuf::Message& message);
     
     void close();
     
+    SessionDelegate* delegate;
+    
 private:
-
     void read_response();
     
     std::thread read_thread_;
     
-    std::shared_ptr<auxl::grpc::Connection> connection_;
+    const Connection* connection_;
+    
     std::unique_ptr<::grpc::testing::CliCall> current_call_;
 };
 
 } // ns grpc
 } // ns auxl
-
-
 
 
 #endif /* session_hpp */

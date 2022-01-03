@@ -47,18 +47,15 @@ std::shared_ptr<ChannelCredentials> get_channel_credentials(GRPCConnectionOption
 
 /**
  */
-std::unique_ptr<Connection> create_connection(std::string endpoint, GRPCConnectionOptions options)
+std::unique_ptr<Connection> Connection::create_connection(std::string endpoint, GRPCConnectionOptions options)
 {
     ChannelArguments args;
 
     args.SetInt(GRPC_ARG_MAX_METADATA_SIZE, 10 * 1024 * 1024);
     auto channel = CreateCustomChannel(endpoint, get_channel_credentials(options), args);
 
-    std::unique_ptr<Connection> connection(new Connection);
+    std::unique_ptr<Connection> connection(new Connection(endpoint, channel));
     
-    connection->endpoint = endpoint;
-    connection->channel = channel;
-
     return connection;
 }
 

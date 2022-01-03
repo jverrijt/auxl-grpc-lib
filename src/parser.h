@@ -23,7 +23,7 @@ void descriptors_from_proto_files(std::vector<std::string> proto_files,
 /**
  Retrieve the descriptors from a reflection source and place them in the given Descriptor database
  */
-void descriptors_from_reflect(Connection& connection,
+void descriptors_from_reflect(const Connection& connection,
                               google::protobuf::SimpleDescriptorDatabase* db, AuxlGRPCErrorCollector *error_collector);
 
 /**
