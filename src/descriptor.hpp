@@ -40,25 +40,25 @@ public:
     /**
      Create default message for given type name.
      */
-    std::shared_ptr<google::protobuf::Message> create_message(std::string message_type_name);
+    std::shared_ptr<google::protobuf::Message> create_message(const std::string& message_type_name);
     
     /**
      */
-    std::string message_to_json(google::protobuf::Message& message, google::protobuf::util::JsonPrintOptions jsonPrintOptions);
+    std::string message_to_json(const google::protobuf::Message& message, google::protobuf::util::JsonPrintOptions jsonPrintOptions);
     
     /**
      */
-    inline std::string message_to_json(google::protobuf::Message& message) {
+    inline std::string message_to_json(const google::protobuf::Message& message) {
         return message_to_json(message, default_json_options());
     }
     
     /**
      */
-    std::shared_ptr<google::protobuf::Message> message_from_json(std::string message_type_name, std::string json);
+    std::shared_ptr<google::protobuf::Message> message_from_json(const std::string& message_type_name, const std::string& json);
     
     /**
      */
-    const google::protobuf::MethodDescriptor* get_method_descriptor(std::string service, std::string method);
+    const google::protobuf::MethodDescriptor* get_method_descriptor(const std::string& service, const std::string& method);
     
     /**
      Return these descriptors as JSON

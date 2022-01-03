@@ -13,7 +13,7 @@ namespace grpc {
 
 /**
 */ 
-std::shared_ptr<ChannelCredentials> get_channel_credentials(GRPCConnectionOptions options)
+std::shared_ptr<ChannelCredentials> Connection::get_channel_credentials(GRPCConnectionOptions options)
 {
     if (!options.use_ssl) {
         return InsecureChannelCredentials();
@@ -50,7 +50,7 @@ std::shared_ptr<ChannelCredentials> get_channel_credentials(GRPCConnectionOption
 
 /**
  */
-std::unique_ptr<Connection> Connection::create_connection(std::string endpoint, GRPCConnectionOptions options)
+std::unique_ptr<Connection> Connection::create_connection(const std::string& endpoint, GRPCConnectionOptions options)
 {
     ChannelArguments args;
 

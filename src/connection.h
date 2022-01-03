@@ -17,9 +17,9 @@ namespace grpc {
 class Connection {
     
 public:
-    Connection(std::string endpoint, std::shared_ptr<::grpc::Channel> channel): endpoint(endpoint), channel(channel) {}
+    Connection(const std::string& endpoint, std::shared_ptr<::grpc::Channel> channel): endpoint(endpoint), channel(channel) {}
     
-    std::string endpoint;
+    const std::string endpoint;
     std::shared_ptr<::grpc::Channel> channel;
     
     /**
@@ -28,7 +28,7 @@ public:
     
     /**
      */
-    static std::unique_ptr<Connection> create_connection(std::string endpoint, GRPCConnectionOptions options);
+    static std::unique_ptr<Connection> create_connection(const std::string& endpoint, GRPCConnectionOptions options);
 };
 
 } // ns grpc

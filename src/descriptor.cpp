@@ -50,7 +50,7 @@ Descriptor::~Descriptor()
 /**
  Messages are dynamically allocated
  */
-std::shared_ptr<google::protobuf::Message> Descriptor::create_message(std::string message_type_name)
+std::shared_ptr<google::protobuf::Message> Descriptor::create_message(const std::string& message_type_name)
 {
     std::shared_ptr<google::protobuf::Message> msg;
     auto descr = pool_->FindMessageTypeByName(message_type_name);
@@ -64,7 +64,7 @@ std::shared_ptr<google::protobuf::Message> Descriptor::create_message(std::strin
 
 /**
  */
-std::string Descriptor::message_to_json(Message& message, google::protobuf::util::JsonPrintOptions jsonPrintOptions)
+std::string Descriptor::message_to_json(const Message& message, google::protobuf::util::JsonPrintOptions jsonPrintOptions)
 {
     std::string output;
     auto stat = ::util::MessageToJsonString(message, &output, jsonPrintOptions);
@@ -73,7 +73,7 @@ std::string Descriptor::message_to_json(Message& message, google::protobuf::util
 
 /**
  */
-std::shared_ptr<Message> Descriptor::message_from_json(std::string message_type_name, std::string json)
+std::shared_ptr<Message> Descriptor::message_from_json(const std::string& message_type_name, const std::string& json)
 {
     std::shared_ptr<Message> msg;
     auto descr = pool_->FindMessageTypeByName(message_type_name);
@@ -97,7 +97,7 @@ std::shared_ptr<Message> Descriptor::message_from_json(std::string message_type_
 
 /**
  */
-const MethodDescriptor* Descriptor::get_method_descriptor(std::string service, std::string method)
+const MethodDescriptor* Descriptor::get_method_descriptor(const std::string& service, const std::string& method)
 {
     auto service_descr = pool_->FindServiceByName(service);
     
