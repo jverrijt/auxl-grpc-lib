@@ -88,7 +88,7 @@ std::shared_ptr<Message> Descriptor::message_from_json(std::string message_type_
         
         if (!stat.ok()) {
             // throw an error?
-            std::cerr << "ERRORx:" << std::endl;
+            std::cerr << "Unable to convert JSON to message (type: " << message_type_name << ")." << std::endl;
         }
     }
     
@@ -102,13 +102,13 @@ const MethodDescriptor* Descriptor::get_method_descriptor(std::string service, s
     auto service_descr = pool_->FindServiceByName(service);
     
     if (service_descr == nullptr) {
-        throw -1;
+        return nullptr;
     }
     
     auto method_descr = service_descr->FindMethodByName(method);
     
     if (method_descr == nullptr) {
-        throw -1;
+        return nullptr;
     }
     
     return method_descr;

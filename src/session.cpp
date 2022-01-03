@@ -28,7 +28,7 @@ void Session::read_response()
         fprintf(stderr, "got response. %s\n", response.c_str());
 
         if (delegate != nullptr) {
-            delegate->did_receive(response, incoming_meta_data);
+            delegate->session_did_receive(response, incoming_meta_data);
         }
     }
         
@@ -37,14 +37,16 @@ void Session::read_response()
 
 /**
  */
-int Session::start(const google::protobuf::MethodDescriptor& method_descriptor, std::multimap<std::string, std::string> metadata, double timeout)
+void Session::start(const google::protobuf::MethodDescriptor& method_descriptor, std::multimap<std::string, std::string> metadata, double timeout)
 {
     auto m = "/" + method_descriptor.service()->full_name() + "/" + method_descriptor.name();
     current_call_ = std::unique_ptr<CliCall>(new CliCall(connection_->channel, m, metadata));
     
     read_thread_ = std::thread(&Session::read_response, this);
     
-    return  0;
+    if (delegate != nullptr) {
+        delegate->session_did_start();
+    }
 }
 
 /**

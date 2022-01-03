@@ -22,7 +22,6 @@ struct SessionResponse {
     
 }; 
 
-
 class DescriptorSessionDelegate : public SessionDelegate
 {
 public:
@@ -31,7 +30,14 @@ public:
     
     /**
      */
-    inline void did_receive(std::string response, std::multimap<::grpc::string_ref, ::grpc::string_ref> meta_data) override
+    inline void session_did_start() override
+    {
+        std::cout << "Session did start at:" << time(NULL) << std::endl;
+    }
+    
+    /**
+     */
+    inline void session_did_receive(std::string response, std::multimap<::grpc::string_ref, ::grpc::string_ref> meta_data) override
     {
         std::cout << "Delegate received : " << response << std::endl;
         auto msg = descriptor_->create_message(output_type_name_);

@@ -66,6 +66,23 @@ TEST_F(AuxlClientTest, TestDescriptorClient)
     session.close();
 }
 
+/**
+ */
+TEST_F(AuxlClientTest, TestMessageGeneration)
+{
+    Descriptor descriptor({"test_resources/greet.proto"}, NULL);
+    
+    // Does not exist
+    auto msg = descriptor.create_message("test");
+    ASSERT_TRUE(msg.get() == nullptr);
+    
+    msg = descriptor.create_message("greet.HelloRequest");
+    ASSERT_TRUE(msg.get() != nullptr);
+}
+
+
+
+
 }
 } // ns grpc
 } // ns auxl

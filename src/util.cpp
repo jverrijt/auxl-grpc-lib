@@ -12,17 +12,19 @@ namespace util {
 
 /**
  */
-std::string load_file(std::string path) {
+bool load_file(const std::string& path, std::string* in_string) {
     std::ifstream in(path);
 
     if (!in) {
-        std::cout <<  "Got error while opening file";
+        std::cerr <<  "Unable to open file:" << path << std::endl;
+        return false;
     }
 
     std::string contents((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
+    
+    in_string = &contents;
 
-
-    return contents;
+    return true;
 }
 
 }

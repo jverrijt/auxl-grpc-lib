@@ -28,7 +28,12 @@ class AuxlGrpcTest : public ::testing::Test {
 class TestSessionDelegate: public SessionDelegate {
     
 public:
-    void did_receive(std::string response, std::multimap<::grpc::string_ref, ::grpc::string_ref> meta_data) override {
+    
+    inline void session_did_start() override {
+        std::cout << "Session did start at:" << time(NULL) << std::endl;
+    }
+    
+    void session_did_receive(std::string response, std::multimap<::grpc::string_ref, ::grpc::string_ref> meta_data) override {
         std::cout << "Delegate received : " << response << std::endl;
     }
 
@@ -94,7 +99,6 @@ TEST_F(AuxlGrpcTest, DescriptorFromProtoTest)
     for (int i = 0; i < col->error_count; i++) {
          printf("Got error: %s - %d", col->errors[i]->message, col->errors[i]->type);
     }
-
 }
 
 /**

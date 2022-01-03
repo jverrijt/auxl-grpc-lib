@@ -6,9 +6,9 @@ namespace grpc {
 namespace util {
 
 /**
- * Load file into a string
+ * Load file contents into a string
  */
-std::string load_file(std::string path);
+bool load_file(const std::string& path, std::string* in_string);
 
 
 } // ns util

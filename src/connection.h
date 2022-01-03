@@ -24,6 +24,10 @@ public:
     
     /**
      */
+    static std::shared_ptr<::grpc::ChannelCredentials> get_channel_credentials(GRPCConnectionOptions options);
+    
+    /**
+     */
     static std::unique_ptr<Connection> create_connection(std::string endpoint, GRPCConnectionOptions options);
 };
 

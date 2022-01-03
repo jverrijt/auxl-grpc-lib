@@ -69,10 +69,6 @@ public:
         return to_json(default_json_options());
     }
     
-    google::protobuf::SimpleDescriptorDatabase* get_db() { return db_.get(); };
-    google::protobuf::DescriptorPool* get_pool() { return pool_.get(); };
-    
-    
     const AuxlGRPCErrorCollector* get_error_collector();
     
 

@@ -27,7 +27,9 @@ class Session;
 class SessionDelegate
 {
 public:
-    virtual void did_receive(std::string response,
+    virtual void session_did_start() = 0;
+    
+    virtual void session_did_receive(std::string response,
                              std::multimap<::grpc::string_ref, ::grpc::string_ref> meta_data) = 0;
     
     virtual void session_did_close(::grpc::Status stat,
@@ -42,7 +44,7 @@ public:
         delegate = nullptr;
     };
     
-    int start(const google::protobuf::MethodDescriptor& method_descriptor,
+    void start(const google::protobuf::MethodDescriptor& method_descriptor,
               std::multimap<std::string, std::string> metadata = {} , double timeout = -1);
     
     /**
