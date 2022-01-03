@@ -29,10 +29,14 @@ class SessionDelegate
 public:
     virtual void did_receive(std::string response,
                              std::multimap<::grpc::string_ref, ::grpc::string_ref> meta_data) = 0;
+    
+    virtual void session_did_close(::grpc::Status stat,
+                                   std::multimap<::grpc::string_ref, ::grpc::string_ref> metadata) = 0;
 };
 
-class Session {
-    
+
+class Session
+{
 public:
     Session(const Connection* connection): connection_(connection) {
         delegate = nullptr;

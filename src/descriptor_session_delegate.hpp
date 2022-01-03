@@ -17,6 +17,12 @@
 
 namespace auxl {
 namespace grpc {
+
+struct SessionResponse {
+    
+}; 
+
+
 class DescriptorSessionDelegate : public SessionDelegate
 {
 public:
@@ -25,8 +31,8 @@ public:
     
     /**
      */
-    inline void did_receive(std::string response, std::multimap<::grpc::string_ref, ::grpc::string_ref> meta_data) override {
-        
+    inline void did_receive(std::string response, std::multimap<::grpc::string_ref, ::grpc::string_ref> meta_data) override
+    {
         std::cout << "Delegate received : " << response << std::endl;
         auto msg = descriptor_->create_message(output_type_name_);
         
@@ -35,6 +41,13 @@ public:
             std::string json_output = descriptor_->message_to_json(*msg);
             std::cout << json_output << std::endl;
         }
+    }
+    
+    /**
+     */
+    inline void session_did_close(::grpc::Status stat, std::multimap<::grpc::string_ref, ::grpc::string_ref> metadata) override
+    {
+        std::cout << "Session did close with status: " <<  stat.ok() << std::endl;
     }
     
 private:

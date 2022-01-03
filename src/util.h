@@ -10,6 +10,7 @@ namespace util {
  */
 std::string load_file(std::string path);
 
-}
-}
-}
+
+} // ns util
+} // ns grpc
+} // ns auxl

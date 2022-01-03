@@ -25,12 +25,16 @@ namespace {
 class AuxlGrpcTest : public ::testing::Test {
 };
 
-
 class TestSessionDelegate: public SessionDelegate {
     
 public:
     void did_receive(std::string response, std::multimap<::grpc::string_ref, ::grpc::string_ref> meta_data) override {
         std::cout << "Delegate received : " << response << std::endl;
+    }
+
+    void session_did_close(::grpc::Status stat, std::multimap<::grpc::string_ref, ::grpc::string_ref> metadata) override
+    {
+        std::cout << "Session did close with status: " <<  stat.ok() << std::endl;
     }
 };
 

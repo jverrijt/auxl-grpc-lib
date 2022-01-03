@@ -67,7 +67,9 @@ void Session::close()
     std::multimap<::grpc::string_ref, ::grpc::string_ref> metadata;
     auto stat = current_call_->Finish(&metadata);
     
-    std::cout << "Received error: " << stat.error_message() << std::endl;
+    if (delegate != nullptr) {
+        delegate->session_did_close(stat, metadata);
+    }
 }
 
 } // ns grpc

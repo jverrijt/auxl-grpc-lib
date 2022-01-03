@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D6F88F6F27788ADC00D9DDCE /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6527788ADC00D9DDCE /* util.cpp */; };
 		D6F88F7027788ADC00D9DDCE /* tool.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.c */; };
 		D6F88F7127788ADC00D9DDCE /* auxl_cli.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6A27788ADC00D9DDCE /* auxl_cli.cpp */; };
 		D6F88F7227788ADC00D9DDCE /* connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6C27788ADC00D9DDCE /* connection.cpp */; };
@@ -20,7 +19,6 @@
 		D6F88F84277B0FA700D9DDCE /* connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6C27788ADC00D9DDCE /* connection.cpp */; };
 		D6F88F87277B0FA700D9DDCE /* auxl_main_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F7D277B0F7300D9DDCE /* auxl_main_test.cpp */; };
 		D6F88F88277B0FA700D9DDCE /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6D27788ADC00D9DDCE /* parser.cpp */; };
-		D6F88F89277B0FA700D9DDCE /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6527788ADC00D9DDCE /* util.cpp */; };
 		D6F88F91277B104700D9DDCE /* gtest_main.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F90277B104700D9DDCE /* gtest_main.cc */; };
 		D6F88FA5277B136700D9DDCE /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA4277B136700D9DDCE /* gtest-all.cc */; };
 		D6F88FA8277B59F400D9DDCE /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA6277B59F400D9DDCE /* session.cpp */; };
@@ -33,8 +31,8 @@
 		D6F88FC22781BB5D00D9DDCE /* error_collector.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FC12781BB5D00D9DDCE /* error_collector.c */; };
 		D6F88FC32781BB5D00D9DDCE /* error_collector.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FC12781BB5D00D9DDCE /* error_collector.c */; };
 		D6F88FCA2783062C00D9DDCE /* auxl_client_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FC82783062C00D9DDCE /* auxl_client_test.cpp */; };
-		D6F88FCD278306C800D9DDCE /* descriptor_session_delegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FCB278306C800D9DDCE /* descriptor_session_delegate.cpp */; };
-		D6F88FCE278306C800D9DDCE /* descriptor_session_delegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FCB278306C800D9DDCE /* descriptor_session_delegate.cpp */; };
+		D6F88FCF27832AB300D9DDCE /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6527788ADC00D9DDCE /* util.cpp */; };
+		D6F88FD027832AB400D9DDCE /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6527788ADC00D9DDCE /* util.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -86,7 +84,6 @@
 		D6F88FC02781BB5D00D9DDCE /* error_collector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = error_collector.h; sourceTree = "<group>"; };
 		D6F88FC12781BB5D00D9DDCE /* error_collector.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = error_collector.c; sourceTree = "<group>"; };
 		D6F88FC82783062C00D9DDCE /* auxl_client_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = auxl_client_test.cpp; sourceTree = "<group>"; };
-		D6F88FCB278306C800D9DDCE /* descriptor_session_delegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = descriptor_session_delegate.cpp; sourceTree = "<group>"; };
 		D6F88FCC278306C800D9DDCE /* descriptor_session_delegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = descriptor_session_delegate.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,20 +134,19 @@
 				D6F88FB92781AD6A00D9DDCE /* cli_call.cc */,
 				D6F88F6C27788ADC00D9DDCE /* connection.cpp */,
 				D6F88F6327788ADC00D9DDCE /* connection.h */,
+				D6F88F6B27788ADC00D9DDCE /* util.h */,
 				D6F88F6527788ADC00D9DDCE /* util.cpp */,
 				D6F88F6627788ADC00D9DDCE /* tool.c */,
 				D6F88F6827788ADC00D9DDCE /* types.h */,
 				D6F88F6927788ADC00D9DDCE /* parser.h */,
 				D6F88F6D27788ADC00D9DDCE /* parser.cpp */,
 				D6F88F6A27788ADC00D9DDCE /* auxl_cli.cpp */,
-				D6F88F6B27788ADC00D9DDCE /* util.h */,
 				D6F88FA6277B59F400D9DDCE /* session.cpp */,
 				D6F88FA7277B59F400D9DDCE /* session.h */,
 				D6F88FAD277EEBE800D9DDCE /* descriptor.cpp */,
 				D6F88FAE277EEBE800D9DDCE /* descriptor.hpp */,
 				D6F88FC02781BB5D00D9DDCE /* error_collector.h */,
 				D6F88FC12781BB5D00D9DDCE /* error_collector.c */,
-				D6F88FCB278306C800D9DDCE /* descriptor_session_delegate.cpp */,
 				D6F88FCC278306C800D9DDCE /* descriptor_session_delegate.hpp */,
 			);
 			path = src;
@@ -252,14 +248,13 @@
 				D6F88F7A2778939C00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
 				D6F88F762778934D00D9DDCE /* reflection.grpc.pb.cc in Sources */,
 				D6F88FA8277B59F400D9DDCE /* session.cpp in Sources */,
+				D6F88FCF27832AB300D9DDCE /* util.cpp in Sources */,
 				D6F88F7027788ADC00D9DDCE /* tool.c in Sources */,
 				D6F88FBA2781AD6A00D9DDCE /* cli_call.cc in Sources */,
 				D6F88F7227788ADC00D9DDCE /* connection.cpp in Sources */,
-				D6F88FCD278306C800D9DDCE /* descriptor_session_delegate.cpp in Sources */,
 				D6F88F7127788ADC00D9DDCE /* auxl_cli.cpp in Sources */,
 				D6F88F7327788ADC00D9DDCE /* parser.cpp in Sources */,
 				D6F88FC22781BB5D00D9DDCE /* error_collector.c in Sources */,
-				D6F88F6F27788ADC00D9DDCE /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,12 +271,11 @@
 				D6F88F83277B0FA700D9DDCE /* tool.c in Sources */,
 				D6F88F84277B0FA700D9DDCE /* connection.cpp in Sources */,
 				D6F88FAC277BA5EA00D9DDCE /* session.cpp in Sources */,
+				D6F88FD027832AB400D9DDCE /* util.cpp in Sources */,
 				D6F88FCA2783062C00D9DDCE /* auxl_client_test.cpp in Sources */,
 				D6F88F87277B0FA700D9DDCE /* auxl_main_test.cpp in Sources */,
-				D6F88FCE278306C800D9DDCE /* descriptor_session_delegate.cpp in Sources */,
 				D6F88F88277B0FA700D9DDCE /* parser.cpp in Sources */,
 				D6F88FC32781BB5D00D9DDCE /* error_collector.c in Sources */,
-				D6F88F89277B0FA700D9DDCE /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
