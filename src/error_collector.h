@@ -48,11 +48,14 @@ AuxlGRPCErrorCollector* create_error_collector(void);
 
 /**
  */
-int error_collector_add_error(AuxlGRPCErrorCollector* collector, AuxlGRPCErrorType type, char *message, AuxlGRPCErrorLevel level);
+int error_collector_add_error(AuxlGRPCErrorCollector* collector,
+                              AuxlGRPCErrorType type,
+                              char *message,
+                              AuxlGRPCErrorLevel level);
 
 /**
  */
-bool error_collector_has_fatal_error(AuxlGRPCErrorCollector* collector);
+bool error_collector_has_fatal_error(const AuxlGRPCErrorCollector* collector);
 
 /**
  Returns a deep-copy of the given error collector that you'll need to free.

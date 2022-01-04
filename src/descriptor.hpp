@@ -69,13 +69,17 @@ public:
         return to_json(default_json_options());
     }
     
-    const AuxlGRPCErrorCollector* get_error_collector();
+    /**
+     */
+    static std::unique_ptr<Descriptor> from_json(const std::string& json);
     
+    const AuxlGRPCErrorCollector* get_error_collector();
 
 private:
+    Descriptor();
+    
     std::shared_ptr<google::protobuf::Message> build_message(const google::protobuf::Descriptor& descriptor,
                                                              google::protobuf::DynamicMessageFactory& factory, int depth = 0, int max_depth = 1);
-    
     
     AuxlGRPCErrorCollector* error_collector_;
     

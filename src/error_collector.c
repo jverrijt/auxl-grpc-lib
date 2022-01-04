@@ -43,7 +43,10 @@ int error_collector_add_error_(AuxlGRPCErrorCollector* collector, AuxlGRPCError 
 
 /**
  */
-int error_collector_add_error(AuxlGRPCErrorCollector* collector, AuxlGRPCErrorType type, char *message, AuxlGRPCErrorLevel level)
+int error_collector_add_error(AuxlGRPCErrorCollector* collector,
+                              AuxlGRPCErrorType type,
+                              char *message,
+                              AuxlGRPCErrorLevel level)
 {
     AuxlGRPCError err = {
         .message = strdup(message),
@@ -56,7 +59,7 @@ int error_collector_add_error(AuxlGRPCErrorCollector* collector, AuxlGRPCErrorTy
 
 /**
  */
-bool error_collector_has_fatal_error(AuxlGRPCErrorCollector* collector)
+bool error_collector_has_fatal_error(const AuxlGRPCErrorCollector* collector)
 {
     for (int i = 0; i < collector->error_count; i++) {
         if (collector->errors[i]->level == FATAL) {

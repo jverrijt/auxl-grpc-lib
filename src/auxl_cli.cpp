@@ -6,13 +6,17 @@
 #include "parser.h"
 #include "util.h"
 
-#include "types.h"
+#include "descriptor.hpp"
+
+#include "options.h"
 #include "connection.h"
+#include "error_collector.h"
 
 #include <nlohmann/json.hpp>
 
 #include <cxxopts.hpp>
 
+using namespace auxl::grpc;
 
 /**
  */
@@ -21,7 +25,8 @@ int cmd_describe(int argc, char **argv)
     cxxopts::Options options("auxl_grpc_cli describe", "Returns the descriptors of a given GRPC service and/or set of protofiles");
     options.add_options("describe")
         ("proto_files", "Comma delimited list of proto files", cxxopts::value<std::vector<std::string>>())
-        ("endpoint", "The endpoint of GRPC service", cxxopts::value<std::string>());
+        ("endpoint", "The endpoint of GRPC service", cxxopts::value<std::string>())
+        ("connection_config", "Path to a json file containing the connection options", cxxopts::value<std::string>());
     
     auto result = options.parse(argc, argv);
     
@@ -30,9 +35,8 @@ int cmd_describe(int argc, char **argv)
         return 0;
     }
     
-    std::string endpoint;
+    std::string endpoint, connection_config;
     std::vector<std::string> proto_files;
-    
     
     if (result.count("endpoint")) {
         endpoint = result["endpoint"].as<std::string>();
@@ -42,18 +46,46 @@ int cmd_describe(int argc, char **argv)
         proto_files = result["proto_files"].as<std::vector<std::string>>();
     }
     
-    GRPCConfig config;
-    config.options.use_ssl = false;
-    config.options.ssl_root_certs_path = (char*) "/Users/joostverrijt/Projects/var/temp/roots.pem";
+    GRPCConnectionOptions *opts = connection_options_default();
+    if (result.count("connection_config")) {
+        std::string connection_opts_json;
+        
+        if (util::load_file(result["connection_config"].as<std::string>(), &connection_opts_json)
+            && !connection_opts_json.empty()) {
+               
+            connection_options_free(opts);
+            opts = util::options_from_json(connection_opts_json);
+        }
+    }
     
-    config.endpoint = (char*) endpoint.c_str();
-
-    auto connection = auxl::grpc::create_connection(config);
-
-    std::string json = auxl::grpc::describe(proto_files, &connection);
+    auto connection = Connection::create_connection(endpoint, *opts);
+    connection_options_free(opts);
+    
+    Descriptor descriptor(proto_files, connection.get());
+    
+    std::string json_out = descriptor.to_json();
+    
+    auto error_collector = descriptor.get_error_collector();
+     
+    // Process errors
+    if (error_collector->error_count > 0) {
+        bool is_fatal = error_collector_has_fatal_error(error_collector);
+        
+        std::cerr << "Describing service " << (is_fatal ? "failed" : "finished")
+            << "with the following issues:" << std::endl;
+        
+        for (int i = 0; i < error_collector->error_count; i++) {
+            auto err = error_collector->errors[i];
+            std::cerr << (err->level == FATAL ? "⛔️" : "⚠️") << ": " << err->message << std::endl;
+        }
+        
+        if (is_fatal) {
+            return 0;
+        }
+    }
     
     // Parse it so we can prettify.
-    auto parsed_json = nlohmann::json::parse(json);
+    auto parsed_json = nlohmann::json::parse(json_out);
     
     std::cout << parsed_json.dump(4) << std::endl;
     
@@ -62,22 +94,48 @@ int cmd_describe(int argc, char **argv)
 
 /**
  */
-int cmd_template(int argc, char **argv)
+int cmd_message(int argc, char **argv)
 {
-    cxxopts::Options options("auxl_grpc_cli template", "Create template messages with default values");
-    options.add_options("template")
-        ("type", "The message type", cxxopts::value<std::string>())
-        ("descriptor", "The descriptor", cxxopts::value<std::string>());
+    cxxopts::Options options("auxl_grpc_cli message", "Create messages with default values");
+    options.add_options("message")
+        ("type_name", "(required) The message type <package.message>", cxxopts::value<std::string>())
+        ("descriptors", "(required) Path to the json representation descriptor", cxxopts::value<std::string>());
     
     auto result = options.parse(argc, argv);
     
-    if (result.arguments().size() == 0) {
-        std::cout << options.help() << std::endl;
+    if (result.arguments().size() == 0 || !result.count("descriptors") || !result.count("type_name")) {
+        std::cerr << options.help() << std::endl;
+        return 1;
+    }
+    
+    Descriptor *descriptors;
+    
+    std::string descriptor_string;
+    if (util::load_file(result["descriptors"].as<std::string>(), &descriptor_string) && !descriptor_string.empty()) {
+        auto descr = Descriptor::from_json(descriptor_string);
+        
+        if (descr == NULL) {
+            std::cerr << "Invalid descriptors" << std::endl;
+            return 0;
+        }
+        
+        descriptors = descr.get();
+    } else {
+        std::cerr << "Could not load descriptors at path: " << result["descriptors"].as<std::string>() << std::endl;
+        return 0 ;
+    }
+    
+    auto message = descriptors->create_message(result["type_name"].as<std::string>());
+    
+    if (message.get() == NULL) {
+        std::cerr << "Message with given type not found" << std::endl;
         return 0;
     }
-
-    std::string descriptor = auxl::grpc::util::load_file(result["descriptor"].as<std::string>());
-    auxl::grpc::create_template_message(result["type"].as<std::string>(), descriptor);
+    
+    auto json = descriptors->message_to_json(*message);
+    auto parsed_json = nlohmann::json::parse(json);
+    
+    std::cout << parsed_json.dump(4) << std::endl;
     
     return 0;
 }
@@ -99,12 +157,12 @@ int main(int argc, char **argv)
     if (strcmp(command, "describe") == 0) {
         cmd_describe(argc, argv);
     }
-    else if (strcmp(command, "template") == 0) {
-        cmd_template(argc, argv);
+    else if (strcmp(command, "message") == 0) {
+        cmd_message(argc, argv);
     }
     else {
         std::cout << "Unknown commmand:" << command;
-        std::cout << "Available commands are: describe, template, convert, and call." << std::endl;
+        std::cout << "Available commands are: describe, message, and call." << std::endl;
     }
 
     return 0;

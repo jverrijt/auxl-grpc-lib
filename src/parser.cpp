@@ -129,10 +129,10 @@ void descriptors_from_reflect(const Connection& connection, SimpleDescriptorData
 
 /**
  */
-std::shared_ptr<DescriptorDatabase> parse_descriptors(std::string descriptors)
+std::unique_ptr<SimpleDescriptorDatabase> parse_descriptors(const std::string& descriptors)
 {
     json o = json::parse(descriptors);
-    auto descr_db = std::make_shared<SimpleDescriptorDatabase>();
+    auto descr_db = std::unique_ptr<SimpleDescriptorDatabase>(new SimpleDescriptorDatabase());
     
     for (int i = 0; i < o.size(); i++) {
         auto proto = new google::protobuf::FileDescriptorProto();
@@ -144,6 +144,7 @@ std::shared_ptr<DescriptorDatabase> parse_descriptors(std::string descriptors)
     
     return descr_db;
 }
-}
-}
+
+} // ns grpc
+} // ns auxl
 

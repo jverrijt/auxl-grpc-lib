@@ -4,6 +4,7 @@
 
 #ifdef __cplusplus
 extern "C" {
+#endif
 
 typedef enum GRPCConnectionError_t {
     CONNECTION_ERROR = 0,
@@ -39,20 +40,8 @@ typedef enum kGRPCCallType {
     GRPCCallTypeCall
 } kGRPCCallType;
 
-/**
- */
-typedef struct GRPCConnectionOptions {
-    bool use_ssl;
-    
-    char* ssl_client_cert;
-    char* ssl_client_key;
-    char* ssl_root_certs_path;
-    
-} GRPCConnectionOptions;
-
-
+#ifdef __cplusplus
 }
-
 #endif
 
 #endif

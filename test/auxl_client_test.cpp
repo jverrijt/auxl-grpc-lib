@@ -13,6 +13,7 @@
 #include "session.h"
 #include "descriptor_session_delegate.hpp"
 #include <nlohmann/json.hpp>
+#include "options.h"
 
 
 namespace auxl {
@@ -78,10 +79,30 @@ TEST_F(AuxlClientTest, TestMessageGeneration)
     
     msg = descriptor.create_message("greet.HelloRequest");
     ASSERT_TRUE(msg.get() != nullptr);
+    
+    std::string test;
+    util::load_file("test_resources/greet.proto", &test);
+    
+    ASSERT_FALSE(test.empty());
 }
 
+/**
+ */
+TEST_F(AuxlClientTest, TestParseConnectionConfig)
+{
+    std::string json_config;
+    util::load_file("test_resources/connection_config.json", &json_config);
 
-
+    ASSERT_FALSE(json_config.empty());
+    
+    auto opts = util::options_from_json(json_config);
+    
+    ASSERT_TRUE(opts->use_ssl);
+    ASSERT_TRUE(strcmp(opts->ssl_client_cert, "test client cert") == 0);
+    ASSERT_TRUE(strcmp(opts->ssl_client_key, "test client key") == 0);
+    
+    connection_options_free(opts);
+}
 
 }
 } // ns grpc

@@ -25,7 +25,6 @@ namespace grpc {
 Descriptor::Descriptor(std::vector<std::string> proto_files, const Connection* connection)
 {
     error_collector_ = create_error_collector();
-    
     db_ = std::unique_ptr<SimpleDescriptorDatabase>(new SimpleDescriptorDatabase());
 
     if (proto_files.size() > 0) {
@@ -38,6 +37,12 @@ Descriptor::Descriptor(std::vector<std::string> proto_files, const Connection* c
     
     pool_ = std::unique_ptr<DescriptorPool>(new DescriptorPool(db_.get()));
     factory_ = std::unique_ptr<DynamicMessageFactory>(new DynamicMessageFactory(pool_.get()));
+}
+
+/**
+ */
+Descriptor::Descriptor() {
+    error_collector_ = create_error_collector();
 }
 
 /**
@@ -191,6 +196,25 @@ std::shared_ptr<Message> Descriptor::build_message(const google::protobuf::Descr
     }
     
     return message;
+}
+
+/**
+ */
+std::unique_ptr<Descriptor> Descriptor::from_json(const std::string& json)
+{
+    auto db = parse_descriptors(json);
+    
+    if (db.get() != nullptr) {
+        auto descriptor = std::unique_ptr<Descriptor>(new Descriptor());
+        
+        descriptor->pool_ = std::unique_ptr<DescriptorPool>(new DescriptorPool(db.get()));
+        descriptor->db_ = std::move(db);
+        descriptor->factory_ = std::unique_ptr<DynamicMessageFactory>(new DynamicMessageFactory(descriptor->pool_.get()));
+        
+        return descriptor;
+    }
+    
+    return NULL;
 }
 
 /**

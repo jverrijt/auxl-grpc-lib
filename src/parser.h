@@ -29,7 +29,7 @@ void descriptors_from_reflect(const Connection& connection,
 /**
  Parse the given descriptors in Json format into a descriptor databse
  */
-std::shared_ptr<google::protobuf::DescriptorDatabase> parse_descriptors(std::string descriptors);
+std::unique_ptr<google::protobuf::SimpleDescriptorDatabase> parse_descriptors(const std::string& descriptors);
 
 
 } // ns grpc
