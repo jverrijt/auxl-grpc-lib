@@ -31,7 +31,7 @@ GRPCConnectionOptions* connection_options_create(bool use_ssl,
  */
 GRPCConnectionOptions* connection_options_default()
 {
-    return  connection_options_create(false, NULL, NULL, NULL);
+    return  connection_options_create(false, "", "", "");
 }
 
 /**

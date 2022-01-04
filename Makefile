@@ -25,12 +25,13 @@ OBJS_TST = test/auxl_main_test.o \
 
 OBJS_CLI = src/auxl_cli.o
 OBJS_LIB = src/parser.o \
-		src/template.o \
 		src/util.o \
 		src/connection.o \
 		src/descriptor.o \
 		src/session.o \
 		src/cli_call.o \
+		src/options.o \
+		src/error_collector.o \
 		modules/grpc/test/cpp/util/proto_reflection_descriptor_database.o \
 		modules/grpc/cmake/build/gens/src/proto/grpc/reflection/v1alpha/reflection.grpc.pb.o
 

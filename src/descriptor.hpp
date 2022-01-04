@@ -22,11 +22,14 @@
 namespace auxl {
 namespace grpc {
 
+// These json options work best when deserializing proto descriptors.
+// For convenience, set always_print_primitive_fields to true when serializing messages
 inline google::protobuf::util::JsonPrintOptions default_json_options()
 {
     google::protobuf::util::JsonPrintOptions opts;
     opts.add_whitespace = true;
-    opts.always_print_primitive_fields = true;
+    opts.always_print_primitive_fields = false;
+    opts.preserve_proto_field_names = true;
     return opts;
 };
 
@@ -34,6 +37,8 @@ inline google::protobuf::util::JsonPrintOptions default_json_options()
 class Descriptor
 {
 public:
+    Descriptor();
+    
     Descriptor(std::vector<std::string> proto_files, const Connection* connection);
     ~Descriptor();
 
@@ -71,13 +76,11 @@ public:
     
     /**
      */
-    static std::unique_ptr<Descriptor> from_json(const std::string& json);
+    bool load_json(const std::string& json);
     
     const AuxlGRPCErrorCollector* get_error_collector();
 
 private:
-    Descriptor();
-    
     std::shared_ptr<google::protobuf::Message> build_message(const google::protobuf::Descriptor& descriptor,
                                                              google::protobuf::DynamicMessageFactory& factory, int depth = 0, int max_depth = 1);
     

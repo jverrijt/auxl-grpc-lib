@@ -92,6 +92,7 @@
 		D6F88FD127843E2700D9DDCE /* connection_config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = connection_config.json; sourceTree = "<group>"; };
 		D6F88FD327844B8400D9DDCE /* options.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = options.h; sourceTree = "<group>"; };
 		D6F88FD427844B8400D9DDCE /* options.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = options.c; sourceTree = "<group>"; };
+		D6F88FD727848C3800D9DDCE /* descriptor_local.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = descriptor_local.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +175,7 @@
 		D6F88FB62780FB9D00D9DDCE /* test_resources */ = {
 			isa = PBXGroup;
 			children = (
+				D6F88FD727848C3800D9DDCE /* descriptor_local.json */,
 				D6F88FB72780FB9D00D9DDCE /* greet.proto */,
 				D6F88FD127843E2700D9DDCE /* connection_config.json */,
 			);

@@ -1,0 +1,64 @@
+[{
+ "name": "greet.proto",
+ "package": "greet",
+ "message_type": [
+  {
+   "name": "HelloRequest",
+   "field": [
+    {
+     "name": "name",
+     "number": 1,
+     "label": "LABEL_OPTIONAL",
+     "type": "TYPE_STRING"
+    }
+   ]
+  },
+  {
+   "name": "HelloReply",
+   "field": [
+    {
+     "name": "message",
+     "number": 1,
+     "label": "LABEL_OPTIONAL",
+     "type": "TYPE_STRING"
+    }
+   ]
+  }
+ ],
+ "service": [
+  {
+   "name": "Greeter",
+   "method": [
+    {
+     "name": "SayHello",
+     "input_type": ".greet.HelloRequest",
+     "output_type": ".greet.HelloReply"
+    },
+    {
+     "name": "SayHelloServerStream",
+     "input_type": ".greet.HelloRequest",
+     "output_type": ".greet.HelloReply",
+     "server_streaming": true
+    },
+    {
+     "name": "SayHelloClientStream",
+     "input_type": ".greet.HelloRequest",
+     "output_type": ".greet.HelloReply",
+     "client_streaming": true
+    },
+    {
+     "name": "SayHelloBidiStream",
+     "input_type": ".greet.HelloRequest",
+     "output_type": ".greet.HelloReply",
+     "client_streaming": true,
+     "server_streaming": true
+    }
+   ]
+  }
+ ],
+ "options": {
+  "csharp_namespace": "GRPC_service"
+ },
+ "syntax": "proto3"
+}
+]

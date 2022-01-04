@@ -41,7 +41,8 @@ Descriptor::Descriptor(std::vector<std::string> proto_files, const Connection* c
 
 /**
  */
-Descriptor::Descriptor() {
+Descriptor::Descriptor()
+{
     error_collector_ = create_error_collector();
 }
 
@@ -59,6 +60,9 @@ std::shared_ptr<google::protobuf::Message> Descriptor::create_message(const std:
 {
     std::shared_ptr<google::protobuf::Message> msg;
     auto descr = pool_->FindMessageTypeByName(message_type_name);
+    
+//    std::vector<std::string> message_names;
+//    db_->FindAllMessageNames(&message_names);
     
     if (descr != nullptr) {
         msg = build_message(*descr, *factory_);
@@ -126,6 +130,9 @@ std::string Descriptor::to_json(google::protobuf::util::JsonPrintOptions options
     std::vector<std::string> file_names;
     db_->FindAllFileNames(&file_names);
     
+//    options.preserve_proto_field_names = true;
+//    options.always_print_primitive_fields = false
+    
     std::string jsonOutput;
     jsonOutput += "[";
 
@@ -137,6 +144,8 @@ std::string Descriptor::to_json(google::protobuf::util::JsonPrintOptions options
             ::util::MessageToJsonString(*proto, &output, options);
             jsonOutput += output + ",";
         }
+        
+        delete proto;
     }
 
     // Remove trailing comma
@@ -200,21 +209,19 @@ std::shared_ptr<Message> Descriptor::build_message(const google::protobuf::Descr
 
 /**
  */
-std::unique_ptr<Descriptor> Descriptor::from_json(const std::string& json)
+bool Descriptor::load_json(const std::string& json)
 {
     auto db = parse_descriptors(json);
     
     if (db.get() != nullptr) {
-        auto descriptor = std::unique_ptr<Descriptor>(new Descriptor());
+        db_ = std::move(db);
+        pool_ = std::unique_ptr<DescriptorPool>(new DescriptorPool(db_.get()));
+        factory_ = std::unique_ptr<DynamicMessageFactory>(new DynamicMessageFactory(pool_.get()));
         
-        descriptor->pool_ = std::unique_ptr<DescriptorPool>(new DescriptorPool(db.get()));
-        descriptor->db_ = std::move(db);
-        descriptor->factory_ = std::unique_ptr<DynamicMessageFactory>(new DynamicMessageFactory(descriptor->pool_.get()));
-        
-        return descriptor;
+        return true;
     }
     
-    return NULL;
+    return false;
 }
 
 /**

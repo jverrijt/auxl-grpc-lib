@@ -108,31 +108,33 @@ int cmd_message(int argc, char **argv)
         return 1;
     }
     
-    Descriptor *descriptors;
+    Descriptor descriptors;
     
     std::string descriptor_string;
     if (util::load_file(result["descriptors"].as<std::string>(), &descriptor_string) && !descriptor_string.empty()) {
-        auto descr = Descriptor::from_json(descriptor_string);
-        
-        if (descr == NULL) {
+        if (descriptors.load_json(descriptor_string) == false) {
             std::cerr << "Invalid descriptors" << std::endl;
             return 0;
         }
-        
-        descriptors = descr.get();
     } else {
         std::cerr << "Could not load descriptors at path: " << result["descriptors"].as<std::string>() << std::endl;
         return 0 ;
     }
     
-    auto message = descriptors->create_message(result["type_name"].as<std::string>());
+    auto message = descriptors.create_message(result["type_name"].as<std::string>());
     
     if (message.get() == NULL) {
         std::cerr << "Message with given type not found" << std::endl;
         return 0;
     }
     
-    auto json = descriptors->message_to_json(*message);
+    google::protobuf::util::JsonPrintOptions json_opts;
+    
+    // This will ensure we se all the fields for a given message.
+    json_opts.always_print_primitive_fields = true;
+    
+    
+    auto json = descriptors.message_to_json(*message, json_opts);
     auto parsed_json = nlohmann::json::parse(json);
     
     std::cout << parsed_json.dump(4) << std::endl;
@@ -144,6 +146,12 @@ int cmd_message(int argc, char **argv)
  */
 int main(int argc, char **argv)
 {
+//    char* new_args[5] = { (char*) "message", (char*) "--type_name", (char*) "greet.HelloRequest", (char*) "--descriptors", (char*) "/Users/joostverrijt/Projects/Metamotifs/vlui/auxl-grpc/test/test_resources/descriptor_local.json" };
+//    int new_arg_c = 5;
+//
+//    return cmd_message(new_arg_c, new_args);
+//
+    
     if (argc == 1) {
         // Print usage
         std::cout << "No command given." << std::endl;

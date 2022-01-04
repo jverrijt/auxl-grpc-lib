@@ -104,6 +104,31 @@ TEST_F(AuxlClientTest, TestParseConnectionConfig)
     connection_options_free(opts);
 }
 
+/**
+ */
+TEST_F(AuxlClientTest, TestParseJsonDescriptor)
+{
+    Descriptor descriptor({"test_resources/greet.proto"}, NULL);
+    
+    auto json = descriptor.to_json();
+    
+    std::cout << json << std::endl;
+    
+    ASSERT_FALSE(json.empty());
+    
+    Descriptor d;
+    
+    d.load_json(json);
+    
+    ASSERT_FALSE(d.to_json().empty());
+    
+    auto msg = d.create_message("greet.HelloRequest");
+    
+    
+ 
+}
+
+
 }
 } // ns grpc
 } // ns auxl
