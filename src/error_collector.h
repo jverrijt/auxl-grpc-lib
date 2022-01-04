@@ -18,7 +18,9 @@ extern "C" {
 typedef enum AuxlGRPCErrorType
 {
     PROTO_ERROR = 1,
-    ENDPOINT_NOT_REACHEABLE = 3
+    REFLECTION_NOT_AVAILABLE = 2,
+    REFLECTION_FAILED = 3,
+    ENDPOINT_NOT_REACHEABLE = 4
 } AuxlGRPCErrorType;
 
 

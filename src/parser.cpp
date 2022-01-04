@@ -3,10 +3,11 @@
 #include <google/protobuf/compiler/importer.h>
 
 #include <google/protobuf/util/json_util.h>
-#include "../modules/grpc/test/cpp/util/proto_reflection_descriptor_database.h"
+#include "proto_reflection_descriptor_database.h"
 
 #include <iostream>
 #include <libgen.h>
+#include <sstream>
 
 #include <nlohmann/json.hpp>
 
@@ -86,7 +87,8 @@ void descriptors_from_proto_files(std::vector<std::string> proto_files,
 
 /**
  */
-void descriptors_from_reflect(const Connection& connection, SimpleDescriptorDatabase* db,  AuxlGRPCErrorCollector *error_collector)
+void descriptors_from_reflect(const Connection& connection, SimpleDescriptorDatabase* db,
+                              AuxlGRPCErrorCollector *error_collector)
 {
     auto desc_db = std::shared_ptr<ProtoReflectionDescriptorDatabase>(new ProtoReflectionDescriptorDatabase(connection.channel));
     
@@ -124,6 +126,21 @@ void descriptors_from_reflect(const Connection& connection, SimpleDescriptorData
         }
         
         delete fd;
+    }
+    
+    // Process any errors here
+    auto status = desc_db->CloseStream();
+    
+    if (!status.ok()) {
+        if (status.error_code() == StatusCode::UNIMPLEMENTED) {
+            error_collector_add_error(error_collector, REFLECTION_NOT_AVAILABLE,
+                                      (char*) "This endpoint does not implement the reflection service", FATAL);
+        } else {
+            std::ostringstream code;
+            code << static_cast<int>(status.error_code());
+            std::string e = "Reflection call failed: " + status.error_message() + " (code: " + code.str() + ")";
+            error_collector_add_error(error_collector, REFLECTION_FAILED, (char*) e.c_str(), FATAL);
+        }
     }
 }
 

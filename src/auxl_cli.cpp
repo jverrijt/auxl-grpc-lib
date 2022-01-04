@@ -76,11 +76,11 @@ int cmd_describe(int argc, char **argv)
         bool is_fatal = error_collector_has_fatal_error(error_collector);
         
         std::cerr << "Describing service " << (is_fatal ? "failed" : "finished")
-            << "with the following issues:" << std::endl;
+            << " with the following issues:" << std::endl;
         
         for (int i = 0; i < error_collector->error_count; i++) {
             auto err = error_collector->errors[i];
-            std::cerr << (err->level == FATAL ? "⛔️" : "⚠️") << ": " << err->message << std::endl;
+            std::cerr << (err->level == FATAL ? "[ERR]" : "[WARN]") << ": " << err->message << std::endl;
         }
         
         if (is_fatal) {
@@ -157,10 +157,10 @@ int main(int argc, char **argv)
 //
 //        return cmd_describe(new_arg_c, new_args);
     
-//    char* new_args[5] = { (char*) "describe", (char*) "--endpoint", (char*) "localhost:5000" };
-//    int new_arg_c = 3;
-//
-//    return cmd_describe(new_arg_c, new_args);
+    char* new_args[5] = { (char*) "describe", (char*) "--endpoint", (char*) "localhost:323" };
+    int new_arg_c = 3;
+
+    return cmd_describe(new_arg_c, new_args);
     
 //    char* new_args[5] = { (char*) "message", (char*) "--type_name", (char*) "greet.HelloRequest", (char*) "--descriptors", (char*) "/Users/joostverrijt/Projects/Metamotifs/vlui/auxl-grpc/test/test_resources/descriptor_local.json" };
 //    int new_arg_c = 5;

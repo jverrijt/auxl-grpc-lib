@@ -147,9 +147,9 @@ std::string Descriptor::to_json(google::protobuf::util::JsonPrintOptions options
         
         delete proto;
     }
-
+    
     // Remove trailing comma
-    if (!jsonOutput.empty()) {
+    if (!jsonOutput.empty() && jsonOutput.find_last_of(",") == jsonOutput.length() - 1) {
         jsonOutput.pop_back();
     }
 
