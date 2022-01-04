@@ -1,12 +1,12 @@
 CXX = clang++
 
 # Fix the include path
-CXXFLAGS = -g -O0 -Wpedantic -Wno-unused-command-line-argument -std=c++11 -I./modules/grpc/cmake/build/gens/ \
- -I./modules/grpc/ \
+CXXFLAGS = -g -O0 -Wpedantic -Wno-unused-command-line-argument -std=c++11 \
  -I./include \
  -I./modules/grpc/third_party/googletest/googletest/include \
  -I./modules/grpc/third_party/googletest/googletest \
- -I./src
+ -I./src \
+ -I./src/vendor
 
 # absl dependencies
 LIB_ABSL_LIB_PATH = /usr/local/lib
@@ -29,11 +29,11 @@ OBJS_LIB = src/parser.o \
 		src/connection.o \
 		src/descriptor.o \
 		src/session.o \
-		src/cli_call.o \
 		src/options.o \
 		src/error_collector.o \
-		modules/grpc/test/cpp/util/proto_reflection_descriptor_database.o \
-		modules/grpc/cmake/build/gens/src/proto/grpc/reflection/v1alpha/reflection.grpc.pb.o
+		src/vendor/proto_reflection_descriptor_database.o \
+		src/vendor/reflection.grpc.pb.o \
+		src/vendor/cli_call.o
 
 .PHONY: clean
 

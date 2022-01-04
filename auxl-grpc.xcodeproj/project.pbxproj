@@ -11,10 +11,6 @@
 		D6F88F7127788ADC00D9DDCE /* auxl_cli.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6A27788ADC00D9DDCE /* auxl_cli.cpp */; };
 		D6F88F7227788ADC00D9DDCE /* connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6C27788ADC00D9DDCE /* connection.cpp */; };
 		D6F88F7327788ADC00D9DDCE /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6D27788ADC00D9DDCE /* parser.cpp */; };
-		D6F88F762778934D00D9DDCE /* reflection.grpc.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F752778934D00D9DDCE /* reflection.grpc.pb.cc */; };
-		D6F88F7A2778939C00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F792778939C00D9DDCE /* proto_reflection_descriptor_database.cc */; };
-		D6F88F81277B0FA700D9DDCE /* proto_reflection_descriptor_database.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F792778939C00D9DDCE /* proto_reflection_descriptor_database.cc */; };
-		D6F88F82277B0FA700D9DDCE /* reflection.grpc.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F752778934D00D9DDCE /* reflection.grpc.pb.cc */; };
 		D6F88F83277B0FA700D9DDCE /* tool.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.c */; };
 		D6F88F84277B0FA700D9DDCE /* connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6C27788ADC00D9DDCE /* connection.cpp */; };
 		D6F88F87277B0FA700D9DDCE /* auxl_main_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F7D277B0F7300D9DDCE /* auxl_main_test.cpp */; };
@@ -36,6 +32,12 @@
 		D6F88FD22784402E00D9DDCE /* connection_config.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FD127843E2700D9DDCE /* connection_config.json */; };
 		D6F88FD527844B8400D9DDCE /* options.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FD427844B8400D9DDCE /* options.c */; };
 		D6F88FD627844B8400D9DDCE /* options.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FD427844B8400D9DDCE /* options.c */; };
+		D6F88FDB2784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FD92784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc */; };
+		D6F88FDC2784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FD92784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc */; };
+		D6F88FE12784DC8C00D9DDCE /* reflection.grpc.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FDE2784DC8C00D9DDCE /* reflection.grpc.pb.cc */; };
+		D6F88FE22784DC8C00D9DDCE /* reflection.grpc.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FDE2784DC8C00D9DDCE /* reflection.grpc.pb.cc */; };
+		D6F88FE32784DC8C00D9DDCE /* reflection.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */; };
+		D6F88FE42784DC8C00D9DDCE /* reflection.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -72,8 +74,6 @@
 		D6F88F6B27788ADC00D9DDCE /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		D6F88F6C27788ADC00D9DDCE /* connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = connection.cpp; sourceTree = "<group>"; };
 		D6F88F6D27788ADC00D9DDCE /* parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parser.cpp; sourceTree = "<group>"; };
-		D6F88F752778934D00D9DDCE /* reflection.grpc.pb.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = reflection.grpc.pb.cc; path = modules/grpc/cmake/build/gens/src/proto/grpc/reflection/v1alpha/reflection.grpc.pb.cc; sourceTree = "<group>"; };
-		D6F88F792778939C00D9DDCE /* proto_reflection_descriptor_database.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = proto_reflection_descriptor_database.cc; path = modules/grpc/test/cpp/util/proto_reflection_descriptor_database.cc; sourceTree = "<group>"; };
 		D6F88F7B277895DE00D9DDCE /* auxl_grpc_cli.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = auxl_grpc_cli.entitlements; sourceTree = "<group>"; };
 		D6F88F7D277B0F7300D9DDCE /* auxl_main_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = auxl_main_test.cpp; sourceTree = "<group>"; };
 		D6F88F8F277B0FA700D9DDCE /* auxl_grpc_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = auxl_grpc_test; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +93,13 @@
 		D6F88FD327844B8400D9DDCE /* options.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = options.h; sourceTree = "<group>"; };
 		D6F88FD427844B8400D9DDCE /* options.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = options.c; sourceTree = "<group>"; };
 		D6F88FD727848C3800D9DDCE /* descriptor_local.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = descriptor_local.json; sourceTree = "<group>"; };
+		D6F88FD92784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = proto_reflection_descriptor_database.cc; sourceTree = "<group>"; };
+		D6F88FDA2784DC4A00D9DDCE /* proto_reflection_descriptor_database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = proto_reflection_descriptor_database.h; sourceTree = "<group>"; };
+		D6F88FDD2784DC8C00D9DDCE /* reflection.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reflection.pb.h; sourceTree = "<group>"; };
+		D6F88FDE2784DC8C00D9DDCE /* reflection.grpc.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = reflection.grpc.pb.cc; sourceTree = "<group>"; };
+		D6F88FDF2784DC8C00D9DDCE /* reflection.grpc.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reflection.grpc.pb.h; sourceTree = "<group>"; };
+		D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = reflection.pb.cc; sourceTree = "<group>"; };
+		D6F88FE52784DF5800D9DDCE /* cli_call.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cli_call.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,8 +126,6 @@
 				D6F88FA4277B136700D9DDCE /* gtest-all.cc */,
 				D6F88F90277B104700D9DDCE /* gtest_main.cc */,
 				D6F88F7B277895DE00D9DDCE /* auxl_grpc_cli.entitlements */,
-				D6F88F792778939C00D9DDCE /* proto_reflection_descriptor_database.cc */,
-				D6F88F752778934D00D9DDCE /* reflection.grpc.pb.cc */,
 				D6F88F6227788ADC00D9DDCE /* src */,
 				D6F88F7C277B02B200D9DDCE /* test */,
 				D6F88F5927788A4300D9DDCE /* Products */,
@@ -139,7 +144,7 @@
 		D6F88F6227788ADC00D9DDCE /* src */ = {
 			isa = PBXGroup;
 			children = (
-				D6F88FB92781AD6A00D9DDCE /* cli_call.cc */,
+				D6F88FD82784DC4A00D9DDCE /* vendor */,
 				D6F88F6C27788ADC00D9DDCE /* connection.cpp */,
 				D6F88F6327788ADC00D9DDCE /* connection.h */,
 				D6F88F6B27788ADC00D9DDCE /* util.h */,
@@ -180,6 +185,21 @@
 				D6F88FD127843E2700D9DDCE /* connection_config.json */,
 			);
 			path = test_resources;
+			sourceTree = "<group>";
+		};
+		D6F88FD82784DC4A00D9DDCE /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				D6F88FE52784DF5800D9DDCE /* cli_call.h */,
+				D6F88FB92781AD6A00D9DDCE /* cli_call.cc */,
+				D6F88FDE2784DC8C00D9DDCE /* reflection.grpc.pb.cc */,
+				D6F88FDF2784DC8C00D9DDCE /* reflection.grpc.pb.h */,
+				D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */,
+				D6F88FDD2784DC8C00D9DDCE /* reflection.pb.h */,
+				D6F88FD92784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc */,
+				D6F88FDA2784DC4A00D9DDCE /* proto_reflection_descriptor_database.h */,
+			);
+			path = vendor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,17 +277,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F88FAF277EEBE800D9DDCE /* descriptor.cpp in Sources */,
-				D6F88F7A2778939C00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
-				D6F88F762778934D00D9DDCE /* reflection.grpc.pb.cc in Sources */,
 				D6F88FA8277B59F400D9DDCE /* session.cpp in Sources */,
 				D6F88FCF27832AB300D9DDCE /* util.cpp in Sources */,
 				D6F88F7027788ADC00D9DDCE /* tool.c in Sources */,
+				D6F88FE32784DC8C00D9DDCE /* reflection.pb.cc in Sources */,
+				D6F88FDB2784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
 				D6F88FBA2781AD6A00D9DDCE /* cli_call.cc in Sources */,
 				D6F88F7227788ADC00D9DDCE /* connection.cpp in Sources */,
 				D6F88F7127788ADC00D9DDCE /* auxl_cli.cpp in Sources */,
 				D6F88F7327788ADC00D9DDCE /* parser.cpp in Sources */,
 				D6F88FD527844B8400D9DDCE /* options.c in Sources */,
 				D6F88FC22781BB5D00D9DDCE /* error_collector.c in Sources */,
+				D6F88FE12784DC8C00D9DDCE /* reflection.grpc.pb.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,17 +299,18 @@
 				D6F88FA5277B136700D9DDCE /* gtest-all.cc in Sources */,
 				D6F88FD627844B8400D9DDCE /* options.c in Sources */,
 				D6F88FB0277F13C900D9DDCE /* descriptor.cpp in Sources */,
+				D6F88FE42784DC8C00D9DDCE /* reflection.pb.cc in Sources */,
 				D6F88F91277B104700D9DDCE /* gtest_main.cc in Sources */,
-				D6F88F81277B0FA700D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
-				D6F88F82277B0FA700D9DDCE /* reflection.grpc.pb.cc in Sources */,
 				D6F88FBB2781AD6A00D9DDCE /* cli_call.cc in Sources */,
 				D6F88F83277B0FA700D9DDCE /* tool.c in Sources */,
 				D6F88F84277B0FA700D9DDCE /* connection.cpp in Sources */,
 				D6F88FAC277BA5EA00D9DDCE /* session.cpp in Sources */,
 				D6F88FD027832AB400D9DDCE /* util.cpp in Sources */,
+				D6F88FDC2784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
 				D6F88FCA2783062C00D9DDCE /* auxl_client_test.cpp in Sources */,
 				D6F88F87277B0FA700D9DDCE /* auxl_main_test.cpp in Sources */,
 				D6F88F88277B0FA700D9DDCE /* parser.cpp in Sources */,
+				D6F88FE22784DC8C00D9DDCE /* reflection.grpc.pb.cc in Sources */,
 				D6F88FC32781BB5D00D9DDCE /* error_collector.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,11 +386,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}/modules/grpc/cmake/build/gens/",
-					"${PROJECT_DIR}/modules/grpc/include",
 					"${PROJECT_DIR}/include/",
 					/usr/local/include,
-					"${PROJECT_DIR}/modules/grpc/",
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
@@ -515,11 +534,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}/modules/grpc/cmake/build/gens/",
-					"${PROJECT_DIR}/modules/grpc/include",
 					"${PROJECT_DIR}/include/",
 					/usr/local/include,
-					"${PROJECT_DIR}/modules/grpc/",
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 11.3;

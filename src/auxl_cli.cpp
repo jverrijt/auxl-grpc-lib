@@ -38,28 +38,32 @@ int cmd_describe(int argc, char **argv)
     std::string endpoint, connection_config;
     std::vector<std::string> proto_files;
     
+    std::unique_ptr<Connection> connection;
+    
     if (result.count("endpoint")) {
         endpoint = result["endpoint"].as<std::string>();
+    
+        GRPCConnectionOptions *opts = connection_options_default();
+        if (result.count("connection_config")) {
+            std::string connection_opts_json;
+            
+            if (util::load_file(result["connection_config"].as<std::string>(), &connection_opts_json)
+                && !connection_opts_json.empty()) {
+                   
+                connection_options_free(opts);
+                opts = util::options_from_json(connection_opts_json);
+            }
+        }
+        
+        auto conn = Connection::create_connection(endpoint, *opts);
+        connection = std::move(conn);
+        
+        connection_options_free(opts);
     }
     
     if (result.count("proto_files")) {
         proto_files = result["proto_files"].as<std::vector<std::string>>();
     }
-    
-    GRPCConnectionOptions *opts = connection_options_default();
-    if (result.count("connection_config")) {
-        std::string connection_opts_json;
-        
-        if (util::load_file(result["connection_config"].as<std::string>(), &connection_opts_json)
-            && !connection_opts_json.empty()) {
-               
-            connection_options_free(opts);
-            opts = util::options_from_json(connection_opts_json);
-        }
-    }
-    
-    auto connection = Connection::create_connection(endpoint, *opts);
-    connection_options_free(opts);
     
     Descriptor descriptor(proto_files, connection.get());
     
@@ -146,6 +150,18 @@ int cmd_message(int argc, char **argv)
  */
 int main(int argc, char **argv)
 {
+    // bin/auxl_grpc_cli describe --proto_files /Users/joostverrijt/Projects/var/auxl-grpc-mock/demo.proto
+    
+//        char* new_args[5] = { (char*) "describe", (char*) "--proto_files", (char*) "/Users/joostverrijt/Projects/var/auxl-grpc-mock/demo.proto" };
+//        int new_arg_c = 3;
+//
+//        return cmd_describe(new_arg_c, new_args);
+    
+//    char* new_args[5] = { (char*) "describe", (char*) "--endpoint", (char*) "localhost:5000" };
+//    int new_arg_c = 3;
+//
+//    return cmd_describe(new_arg_c, new_args);
+    
 //    char* new_args[5] = { (char*) "message", (char*) "--type_name", (char*) "greet.HelloRequest", (char*) "--descriptors", (char*) "/Users/joostverrijt/Projects/Metamotifs/vlui/auxl-grpc/test/test_resources/descriptor_local.json" };
 //    int new_arg_c = 5;
 //

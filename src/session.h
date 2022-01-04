@@ -13,7 +13,7 @@
 #include <thread>
 
 #include <google/protobuf/dynamic_message.h>
-#include "test/cpp/util/cli_call.h"
+#include "cli_call.h"
 #include "parser.h"
 #include "descriptor.hpp"
 #include "types.h"
