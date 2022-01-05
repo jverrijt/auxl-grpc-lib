@@ -54,6 +54,26 @@ GRPCConnectionOptions* options_from_json(const std::string& json)
     }
 }
 
+/**
+ */
+std::tuple<bool, std::string, std::string> split_service_method(const std::string& input)
+{
+    auto lp = input.find_last_of(".");
+    
+    std::string service_part;
+    std::string method_part;
+    
+    if(lp == std::string::npos) {
+        // invalid
+        return std::make_tuple(false, "", "");
+    }
+    
+    service_part = input.substr(0, lp);
+    method_part = input.substr(lp + 1, std::string::npos);
+    
+    return std::make_tuple(true, service_part, method_part);
 }
-}
-}
+
+} // ns util
+} // ns grpc
+} // ns auxl

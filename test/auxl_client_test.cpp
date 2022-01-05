@@ -53,7 +53,18 @@ TEST_F(AuxlClientTest, TestDescriptorClient)
     
     Descriptor descriptor({}, connection.get());
     
-    const auto method_descr = descriptor.get_method_descriptor("greet.Greeter", "SayHello");
+    auto splitted = util::split_service_method("greet.Greeter.SayHello");
+    
+    bool is_valid_method_string = std::get<0>(splitted);
+    ASSERT_TRUE(is_valid_method_string);
+    
+    std::string package_service = std::get<1>(splitted);
+    std::string method = std::get<2>(splitted);
+    
+    ASSERT_TRUE(package_service == "greet.Greeter");
+    ASSERT_TRUE(method == "SayHello");
+    
+    const auto method_descr = descriptor.get_method_descriptor(package_service, method);
     
     DescriptorSessionDelegate delegate(&descriptor, method_descr->output_type()->full_name());
 

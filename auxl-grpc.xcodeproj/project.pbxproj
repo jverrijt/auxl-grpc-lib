@@ -38,6 +38,7 @@
 		D6F88FE22784DC8C00D9DDCE /* reflection.grpc.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FDE2784DC8C00D9DDCE /* reflection.grpc.pb.cc */; };
 		D6F88FE32784DC8C00D9DDCE /* reflection.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */; };
 		D6F88FE42784DC8C00D9DDCE /* reflection.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */; };
+		D6F88FE62785EB0C00D9DDCE /* descriptor_local.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FD727848C3800D9DDCE /* descriptor_local.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,6 +57,7 @@
 			dstPath = test_resources;
 			dstSubfolderSpec = 16;
 			files = (
+				D6F88FE62785EB0C00D9DDCE /* descriptor_local.json in CopyFiles */,
 				D6F88FD22784402E00D9DDCE /* connection_config.json in CopyFiles */,
 				D6F88FB82780FBA600D9DDCE /* greet.proto in CopyFiles */,
 			);
@@ -100,6 +102,7 @@
 		D6F88FDF2784DC8C00D9DDCE /* reflection.grpc.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reflection.grpc.pb.h; sourceTree = "<group>"; };
 		D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = reflection.pb.cc; sourceTree = "<group>"; };
 		D6F88FE52784DF5800D9DDCE /* cli_call.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cli_call.h; sourceTree = "<group>"; };
+		D6F88FE72785EBB500D9DDCE /* hello_request_message.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hello_request_message.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +183,7 @@
 		D6F88FB62780FB9D00D9DDCE /* test_resources */ = {
 			isa = PBXGroup;
 			children = (
+				D6F88FE72785EBB500D9DDCE /* hello_request_message.json */,
 				D6F88FD727848C3800D9DDCE /* descriptor_local.json */,
 				D6F88FB72780FB9D00D9DDCE /* greet.proto */,
 				D6F88FD127843E2700D9DDCE /* connection_config.json */,

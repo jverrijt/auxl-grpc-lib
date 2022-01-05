@@ -138,7 +138,7 @@ void descriptors_from_reflect(const Connection& connection, SimpleDescriptorData
         } else {
             std::ostringstream code;
             code << static_cast<int>(status.error_code());
-            std::string e = "Reflection call failed: " + status.error_message() + " (code: " + code.str() + ")";
+            std::string e = "Reflection call failed: " + status.error_message();
             error_collector_add_error(error_collector, REFLECTION_FAILED, (char*) e.c_str(), FATAL);
         }
     }
