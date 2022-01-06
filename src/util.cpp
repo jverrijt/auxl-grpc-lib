@@ -74,6 +74,29 @@ std::tuple<bool, std::string, std::string> split_service_method(const std::strin
     return std::make_tuple(true, service_part, method_part);
 }
 
+/**
+ */
+GRPCCallInfo call_info(const google::protobuf::MethodDescriptor& descriptor)
+{
+    GRPCCallInfo info = { };
+    
+    if (descriptor.client_streaming() && descriptor.server_streaming()) {
+        info.name =  (char*) "bidirectional streaming";
+        info.type = BidirectionalStreaming;
+    } else if (descriptor.client_streaming() && !descriptor.server_streaming()) {
+        info.name =  (char*) "client streaming";
+        info.type = ClientStreaming;
+    } else if (!descriptor.client_streaming() && descriptor.server_streaming()) {
+        info.name =  (char*) "server streaming";
+        info.type = ServerStreaming;
+    } else {
+        info.name =  (char*) "unary";
+        info.type = Unary;
+    }
+    
+    return info;
+}
+
 } // ns util
 } // ns grpc
 } // ns auxl

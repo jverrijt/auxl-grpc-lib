@@ -27,7 +27,7 @@ public:
     void AddError(const std::string& filename, int line, int column,
                   const std::string& message) override {
         std::string full_message = message + " -> " + filename;
-        error_collector_add_error(collector_, PROTO_ERROR, (char*) full_message.c_str(), WARNING);
+        error_collector_add_error(collector_, PROTO_ERROR, (char*) full_message.c_str(), FATAL);
     }
     
     void AddWarning(const std::string& filename, int line, int column,

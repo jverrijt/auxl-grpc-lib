@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D6F88F7027788ADC00D9DDCE /* tool.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.c */; };
-		D6F88F7127788ADC00D9DDCE /* auxl_cli.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6A27788ADC00D9DDCE /* auxl_cli.cpp */; };
+		D6F88F7127788ADC00D9DDCE /* auxl_grpc_cli.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6A27788ADC00D9DDCE /* auxl_grpc_cli.cpp */; };
 		D6F88F7227788ADC00D9DDCE /* connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6C27788ADC00D9DDCE /* connection.cpp */; };
 		D6F88F7327788ADC00D9DDCE /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6D27788ADC00D9DDCE /* parser.cpp */; };
 		D6F88F83277B0FA700D9DDCE /* tool.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.c */; };
@@ -39,17 +39,31 @@
 		D6F88FE32784DC8C00D9DDCE /* reflection.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */; };
 		D6F88FE42784DC8C00D9DDCE /* reflection.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */; };
 		D6F88FE62785EB0C00D9DDCE /* descriptor_local.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FD727848C3800D9DDCE /* descriptor_local.json */; };
+		D6F88FEF2786DCD300D9DDCE /* hello_request_message_1.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FE92785F47B00D9DDCE /* hello_request_message_1.json */; };
+		D6F88FF02786DCD300D9DDCE /* hello_request_message_2.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FE82785F47B00D9DDCE /* hello_request_message_2.json */; };
+		D6F88FF12786DD3000D9DDCE /* hello_request_message_1.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FE92785F47B00D9DDCE /* hello_request_message_1.json */; };
+		D6F88FF22786DD3000D9DDCE /* hello_request_message_2.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FE82785F47B00D9DDCE /* hello_request_message_2.json */; };
+		D6F88FF32786DD3000D9DDCE /* descriptor_local.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FD727848C3800D9DDCE /* descriptor_local.json */; };
+		D6F88FF42786DD3000D9DDCE /* greet.proto in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FB72780FB9D00D9DDCE /* greet.proto */; };
+		D6F88FF52786DD3000D9DDCE /* connection_config.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FD127843E2700D9DDCE /* connection_config.json */; };
+		D6F88FF82786F33600D9DDCE /* cli_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FF62786F33600D9DDCE /* cli_util.cpp */; };
+		D6F88FF92786F33600D9DDCE /* cli_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FF62786F33600D9DDCE /* cli_util.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		D6F88F5627788A4300D9DDCE /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = test_resources;
+			dstSubfolderSpec = 16;
 			files = (
+				D6F88FF12786DD3000D9DDCE /* hello_request_message_1.json in CopyFiles */,
+				D6F88FF22786DD3000D9DDCE /* hello_request_message_2.json in CopyFiles */,
+				D6F88FF32786DD3000D9DDCE /* descriptor_local.json in CopyFiles */,
+				D6F88FF42786DD3000D9DDCE /* greet.proto in CopyFiles */,
+				D6F88FF52786DD3000D9DDCE /* connection_config.json in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D6F88F8B277B0FA700D9DDCE /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -57,6 +71,8 @@
 			dstPath = test_resources;
 			dstSubfolderSpec = 16;
 			files = (
+				D6F88FEF2786DCD300D9DDCE /* hello_request_message_1.json in CopyFiles */,
+				D6F88FF02786DCD300D9DDCE /* hello_request_message_2.json in CopyFiles */,
 				D6F88FE62785EB0C00D9DDCE /* descriptor_local.json in CopyFiles */,
 				D6F88FD22784402E00D9DDCE /* connection_config.json in CopyFiles */,
 				D6F88FB82780FBA600D9DDCE /* greet.proto in CopyFiles */,
@@ -72,7 +88,7 @@
 		D6F88F6627788ADC00D9DDCE /* tool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tool.c; sourceTree = "<group>"; };
 		D6F88F6827788ADC00D9DDCE /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		D6F88F6927788ADC00D9DDCE /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
-		D6F88F6A27788ADC00D9DDCE /* auxl_cli.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = auxl_cli.cpp; sourceTree = "<group>"; };
+		D6F88F6A27788ADC00D9DDCE /* auxl_grpc_cli.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = auxl_grpc_cli.cpp; sourceTree = "<group>"; };
 		D6F88F6B27788ADC00D9DDCE /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		D6F88F6C27788ADC00D9DDCE /* connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = connection.cpp; sourceTree = "<group>"; };
 		D6F88F6D27788ADC00D9DDCE /* parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parser.cpp; sourceTree = "<group>"; };
@@ -102,7 +118,11 @@
 		D6F88FDF2784DC8C00D9DDCE /* reflection.grpc.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reflection.grpc.pb.h; sourceTree = "<group>"; };
 		D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = reflection.pb.cc; sourceTree = "<group>"; };
 		D6F88FE52784DF5800D9DDCE /* cli_call.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cli_call.h; sourceTree = "<group>"; };
-		D6F88FE72785EBB500D9DDCE /* hello_request_message.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hello_request_message.json; sourceTree = "<group>"; };
+		D6F88FE82785F47B00D9DDCE /* hello_request_message_2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hello_request_message_2.json; sourceTree = "<group>"; };
+		D6F88FE92785F47B00D9DDCE /* hello_request_message_1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hello_request_message_1.json; sourceTree = "<group>"; };
+		D6F88FEC2786D80000D9DDCE /* cli_session_delegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = cli_session_delegate.hpp; sourceTree = "<group>"; };
+		D6F88FF62786F33600D9DDCE /* cli_util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cli_util.cpp; sourceTree = "<group>"; };
+		D6F88FF72786F33600D9DDCE /* cli_util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = cli_util.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +167,7 @@
 		D6F88F6227788ADC00D9DDCE /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D6F88FEA2786003500D9DDCE /* cli */,
 				D6F88FD82784DC4A00D9DDCE /* vendor */,
 				D6F88F6C27788ADC00D9DDCE /* connection.cpp */,
 				D6F88F6327788ADC00D9DDCE /* connection.h */,
@@ -156,7 +177,6 @@
 				D6F88F6827788ADC00D9DDCE /* types.h */,
 				D6F88F6927788ADC00D9DDCE /* parser.h */,
 				D6F88F6D27788ADC00D9DDCE /* parser.cpp */,
-				D6F88F6A27788ADC00D9DDCE /* auxl_cli.cpp */,
 				D6F88FA6277B59F400D9DDCE /* session.cpp */,
 				D6F88FA7277B59F400D9DDCE /* session.h */,
 				D6F88FAD277EEBE800D9DDCE /* descriptor.cpp */,
@@ -183,7 +203,8 @@
 		D6F88FB62780FB9D00D9DDCE /* test_resources */ = {
 			isa = PBXGroup;
 			children = (
-				D6F88FE72785EBB500D9DDCE /* hello_request_message.json */,
+				D6F88FE92785F47B00D9DDCE /* hello_request_message_1.json */,
+				D6F88FE82785F47B00D9DDCE /* hello_request_message_2.json */,
 				D6F88FD727848C3800D9DDCE /* descriptor_local.json */,
 				D6F88FB72780FB9D00D9DDCE /* greet.proto */,
 				D6F88FD127843E2700D9DDCE /* connection_config.json */,
@@ -204,6 +225,17 @@
 				D6F88FDA2784DC4A00D9DDCE /* proto_reflection_descriptor_database.h */,
 			);
 			path = vendor;
+			sourceTree = "<group>";
+		};
+		D6F88FEA2786003500D9DDCE /* cli */ = {
+			isa = PBXGroup;
+			children = (
+				D6F88F6A27788ADC00D9DDCE /* auxl_grpc_cli.cpp */,
+				D6F88FEC2786D80000D9DDCE /* cli_session_delegate.hpp */,
+				D6F88FF62786F33600D9DDCE /* cli_util.cpp */,
+				D6F88FF72786F33600D9DDCE /* cli_util.hpp */,
+			);
+			path = cli;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,7 +320,8 @@
 				D6F88FDB2784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
 				D6F88FBA2781AD6A00D9DDCE /* cli_call.cc in Sources */,
 				D6F88F7227788ADC00D9DDCE /* connection.cpp in Sources */,
-				D6F88F7127788ADC00D9DDCE /* auxl_cli.cpp in Sources */,
+				D6F88FF82786F33600D9DDCE /* cli_util.cpp in Sources */,
+				D6F88F7127788ADC00D9DDCE /* auxl_grpc_cli.cpp in Sources */,
 				D6F88F7327788ADC00D9DDCE /* parser.cpp in Sources */,
 				D6F88FD527844B8400D9DDCE /* options.c in Sources */,
 				D6F88FC22781BB5D00D9DDCE /* error_collector.c in Sources */,
@@ -313,6 +346,7 @@
 				D6F88FDC2784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
 				D6F88FCA2783062C00D9DDCE /* auxl_client_test.cpp in Sources */,
 				D6F88F87277B0FA700D9DDCE /* auxl_main_test.cpp in Sources */,
+				D6F88FF92786F33600D9DDCE /* cli_util.cpp in Sources */,
 				D6F88F88277B0FA700D9DDCE /* parser.cpp in Sources */,
 				D6F88FE22784DC8C00D9DDCE /* reflection.grpc.pb.cc in Sources */,
 				D6F88FC32781BB5D00D9DDCE /* error_collector.c in Sources */,

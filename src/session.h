@@ -29,6 +29,8 @@ class SessionDelegate
 public:
     virtual void session_did_start() = 0;
     
+    virtual void session_did_send(const google::protobuf::Message& message) {};
+    
     virtual void session_did_receive(std::string response,
                              std::multimap<::grpc::string_ref, ::grpc::string_ref> meta_data) = 0;
     

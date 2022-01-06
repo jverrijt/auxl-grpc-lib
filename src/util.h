@@ -2,6 +2,8 @@
 #include <tuple>
 #include <string>
 #include "options.h"
+#include "types.h"
+#include <google/protobuf/dynamic_message.h>
 
 namespace auxl {
 namespace grpc {
@@ -22,6 +24,14 @@ GRPCConnectionOptions* options_from_json(const std::string& json);
  Split a given string into its package.service and method components
  */
 std::tuple<bool, std::string, std::string> split_service_method(const std::string& input);
+
+
+/**
+ Returns GRPC call type (i.e. unary, clientstreaming etc) and textual name.
+ */
+GRPCCallInfo call_info(const google::protobuf::MethodDescriptor& descriptor);
+
+
 
 } // ns util
 } // ns grpc

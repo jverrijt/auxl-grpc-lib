@@ -25,8 +25,6 @@ void Session::read_response()
     
     bool receive_initial_metadata = true;
     while (current_call_->ReadAndMaybeNotifyWrite(&response, receive_initial_metadata ? &incoming_meta_data : nullptr)) {
-        fprintf(stderr, "got response. %s\n", response.c_str());
-
         if (delegate != nullptr) {
             delegate->session_did_receive(response, incoming_meta_data);
         }
@@ -55,6 +53,11 @@ void Session::send_message(const google::protobuf::Message& message)
 {
     std::string payload;
     message.SerializeToString(&payload);
+    
+    // Technically the message has not yet been sent here but WriteAndWait blocks.
+    if (delegate != nullptr) {
+        delegate->session_did_send(message);
+    }
     
     current_call_->WriteAndWait(payload);
 }
