@@ -46,7 +46,9 @@ public:
         delegate = nullptr;
     };
     
-    void start(const google::protobuf::MethodDescriptor& method_descriptor,
+    /**
+     */
+    bool start(const google::protobuf::MethodDescriptor& method_descriptor,
               const std::multimap<std::string, std::string>& metadata);
     
     /**

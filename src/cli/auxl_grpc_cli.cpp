@@ -141,7 +141,6 @@ int cmd_message(int argc, char **argv)
     // This will ensure we se all the fields for a given message.
     json_opts.always_print_primitive_fields = true;
     
-    
     auto json = descriptors.message_to_json(*message, json_opts);
     auto parsed_json = nlohmann::json::parse(json);
     
@@ -232,7 +231,10 @@ int cmd_call(int argc, char** argv)
     CliSessionDelegate session_delegate(&descriptors, method_descr->output_type()->full_name(), call_info.type);
     session.delegate = &session_delegate;
     
-    session.start(*method_descr, metadata);
+    if(!session.start(*method_descr, metadata)) {
+        std::cerr << "[ERR] Service unreachable" << std::endl;
+        return 0;
+    }
 
     if (message_files.size() > 1) {
         auto print_available_message_prompt = [](std::vector<std::string> message_files) {
