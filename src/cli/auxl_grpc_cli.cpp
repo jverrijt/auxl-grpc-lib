@@ -23,7 +23,6 @@
 using namespace auxl::grpc;
 using namespace auxl::grpc::cli;
 
-
 /**
  */
 int cmd_describe(int argc, char **argv)
@@ -211,7 +210,7 @@ int cmd_call(int argc, char** argv)
             for (int i = 0; i < message_files.size(); i++) {
                 std::cout << i + 1 << ". " << message_files[i] << std::endl;
             }
-            std::cout << "Enter # of message to send or q to quit." << std::endl;            
+            std::cout << "Enter # of message to send or q to quit." << std::endl;
         };
         
         print_available_message_prompt(message_files);

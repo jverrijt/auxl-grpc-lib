@@ -28,9 +28,13 @@ void Session::read_response()
         if (delegate != nullptr) {
             delegate->session_did_receive(response, incoming_meta_data);
         }
-    }
         
-    std::cout << "Ending thread..." << std::endl;
+        // Initial meta data received, don't notify the delegate again.
+        if (!incoming_meta_data.empty()) {
+            receive_initial_metadata = false;
+            incoming_meta_data.clear();
+        }
+    }
 }
 
 /**

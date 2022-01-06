@@ -46,6 +46,16 @@ public:
         std::cout << "[" << std::to_string(passed_time_in_ms) << "ms] Received response\n\n";
         auto msg = descriptor_->create_message(output_type_name_);
         
+        if (!meta_data.empty()) {
+            std::cout << "Metadata:" << std::endl;
+            
+            for (auto &m: meta_data) {
+                std::cout << m.first << ": " << m.second << std::endl;
+            }
+            
+            std::cout << std::endl;
+        }
+        
         if (msg != nullptr) {
             msg->ParseFromString(response);
             std::string json_output = descriptor_->message_to_json(*msg);
