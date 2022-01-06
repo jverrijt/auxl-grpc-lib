@@ -16,16 +16,16 @@ namespace util {
  */
 bool load_file(const std::string& path, std::string* in_string) {
     std::ifstream in(path);
-
+    
     if (!in) {
         std::cerr <<  "Unable to open file:" << path << std::endl;
         return false;
     }
-
+    
     std::string contents((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
     
     in_string->assign(contents);
-
+    
     return true;
 }
 
@@ -38,14 +38,16 @@ GRPCConnectionOptions* options_from_json(const std::string& json)
         
         bool use_ssl = o.contains("use_ssl") ? o["use_ssl"].get<bool>() : false;
         
+        double timeout = o.contains("timeout") ? o["timeout"].get<double>() : -1;
         std::string ssl_client_cert = o.contains("ssl_client_cert") ? o["ssl_client_cert"].get<std::string>() : "";
         std::string ssl_client_key = o.contains("ssl_client_key") ? o["ssl_client_key"].get<std::string>() : "";
         std::string ssl_root_certs_path = o.contains("ssl_root_certs_path") ? o["ssl_root_certs_path"].get<std::string>() : "";
-
-        GRPCConnectionOptions *opts =connection_options_create(use_ssl,
-                                  (char*) ssl_client_cert.c_str(),
-                                  (char*) ssl_client_key.c_str(),
-                                  (char*) ssl_root_certs_path.c_str());
+        
+        GRPCConnectionOptions *opts = connection_options_create(timeout,
+                                                                use_ssl,
+                                                                (char*) ssl_client_cert.c_str(),
+                                                                (char*) ssl_client_key.c_str(),
+                                                                (char*) ssl_root_certs_path.c_str());
         return opts;
     } catch(...) {
         std::cerr << "Cold not parse connection options, returning defaults.";
@@ -93,8 +95,20 @@ GRPCCallInfo call_info(const google::protobuf::MethodDescriptor& descriptor)
         info.name =  (char*) "unary";
         info.type = Unary;
     }
-    
     return info;
+}
+
+/**
+ */
+void parse_meta_data(std::map<std::string, std::string>& map, const std::string& text)
+{
+//    int start = 0, end1 = 0, end2 = 0;
+//    while ((end1 = text.find(":", start)) != std::string::npos && (end2 = text.find(sep, end1+1)) != std::string::npos) {
+//        std::string key = text.substr(start, end1 - start);
+//        std::string val = text.substr(end1 + 1, end2 - end1 - 1);
+//        map.insert(std::pair<std::string,std::string>(key, val));
+//        start = end2 + 1;
+//    }
 }
 
 } // ns util

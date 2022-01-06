@@ -23,7 +23,8 @@ OBJS_TST = test/auxl_main_test.o \
 	modules/grpc/third_party/googletest/googletest/src/gtest-all.o \
 	modules/grpc/third_party/googletest/googletest/src/gtest_main.o
 
-OBJS_CLI = src/cli/auxl_grpc_cli.o
+OBJS_CLI = src/cli/auxl_grpc_cli.o \
+		src/cli/cli_util.cpp
 OBJS_LIB = src/parser.o \
 		src/util.o \
 		src/connection.o \

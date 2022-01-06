@@ -22,9 +22,7 @@ std::shared_ptr<Connection> cli_create_connection(const std::string& endpoint, c
     if (path_to_options != NULL) {
         std::string connection_opts_json;
         
-        if (util::load_file(*path_to_options, &connection_opts_json)
-            && !connection_opts_json.empty()) {
-               
+        if (util::load_file(*path_to_options, &connection_opts_json) && !connection_opts_json.empty()) {
             connection_options_free(opts);
             opts = util::options_from_json(connection_opts_json);
         }
@@ -51,6 +49,23 @@ void load_and_send_message_at_path(const std::string& message_path,
         session.send_message(*message);
     } else {
         std::cerr << "Could not load message at " << message_path << std::endl;
+    }
+}
+
+/**
+ */
+void parse_metadata(const std::vector<std::string>& key_val_pairs, std::multimap<std::string, std::string>& map)
+{
+    for (std::string metadata : key_val_pairs) {
+        
+        auto found = metadata.find_last_of(":");
+        
+        if (found != std::string::npos) {
+            std::string key = metadata.substr(0, found);
+            std::string val = metadata.substr(found + 1, std::string::npos);
+            
+            map.insert(std::pair<std::string, std::string>(key, val));
+        }
     }
 }
 

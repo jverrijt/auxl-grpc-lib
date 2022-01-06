@@ -43,7 +43,7 @@ public:
         auto passed_time_in_ms = duration_cast<milliseconds>(std::chrono::system_clock::now() - message_send_time).count();
         message_send_time = system_clock::now();
 
-        std::cout << "[" << std::to_string(passed_time_in_ms) << "ms] Received response\n\n";
+        std::cout << "[" << std::to_string(passed_time_in_ms) << "ms] Received response " << std::to_string(++response_count) << "\n\n";
         auto msg = descriptor_->create_message(output_type_name_);
         
         if (!meta_data.empty()) {
@@ -72,9 +72,14 @@ public:
      */
     inline void session_did_close(::grpc::Status stat, std::multimap<::grpc::string_ref, ::grpc::string_ref> metadata) override
     {
-        std::cout << "Session did close with status: " <<  stat.ok() << std::endl;
+        if (stat.ok()) {
+            std::cout << "Session closed normally." << std::endl;
+        } else {
+            std::cerr << "Session closed with error: " << stat.error_message() << std::endl;
+        }
     }
     
+    int response_count = 0;
     std::chrono::system_clock::time_point message_send_time;
     
 private:

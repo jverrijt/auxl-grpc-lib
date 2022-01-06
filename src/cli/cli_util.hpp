@@ -28,6 +28,11 @@ void load_and_send_message_at_path(const std::string& message_path,
                                      Descriptor& descriptors,
                                    Session& session);
 
+/**
+ Parse meta data into map.
+ */
+void parse_metadata(const std::vector<std::string>& key_val_pairs, std::multimap<std::string, std::string>& map);
+
 } // ns cli
 } // ns grpc
 } // ns auxl

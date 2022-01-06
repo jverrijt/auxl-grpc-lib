@@ -59,6 +59,8 @@ std::unique_ptr<Connection> Connection::create_connection(const std::string& end
 
     std::unique_ptr<Connection> connection(new Connection(endpoint, channel));
     
+    connection->timeout = options.timeout;
+    
     return connection;
 }
 

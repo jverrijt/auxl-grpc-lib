@@ -29,6 +29,9 @@ public:
     /**
      */
     static std::unique_ptr<Connection> create_connection(const std::string& endpoint, GRPCConnectionOptions options);
+    
+    
+    double timeout = -1;
 };
 
 } // ns grpc

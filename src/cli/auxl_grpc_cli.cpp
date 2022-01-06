@@ -33,7 +33,14 @@ int cmd_describe(int argc, char **argv)
         ("endpoint", "The endpoint of GRPC service", cxxopts::value<std::string>())
         ("connection_options", "Path to a json file containing the connection options", cxxopts::value<std::string>());
     
-    auto result = options.parse(argc, argv);
+    cxxopts::ParseResult result;
+    
+    try {
+        result = options.parse(argc, argv);
+    } catch(const cxxopts::OptionException& e) {
+        std::cout << e.what() << std::endl;
+        return 0;
+    }
     
     if (result.arguments().size() == 0) {
         std::cout << options.help() << std::endl;
@@ -95,7 +102,14 @@ int cmd_message(int argc, char **argv)
         ("type_name", "(required) The message type <package.message>", cxxopts::value<std::string>())
         ("descriptors", "(required) Path to the json representation descriptor", cxxopts::value<std::string>());
     
-    auto result = options.parse(argc, argv);
+    cxxopts::ParseResult result;
+    
+    try {
+        result = options.parse(argc, argv);
+    } catch(const cxxopts::OptionException& e) {
+        std::cout << e.what() << std::endl;
+        return 0;
+    }
     
     if (result.arguments().size() == 0 || !result.count("descriptors") || !result.count("type_name")) {
         std::cerr << options.help() << std::endl;
@@ -147,9 +161,17 @@ int cmd_call(int argc, char** argv)
         ("method", "(required) The method which to call. Formulate it like so: package.service.method", cxxopts::value<std::string>())
         ("descriptors", "(required) Path to the json representation descriptor", cxxopts::value<std::string>())
         ("message", "Path to a message to send. Repeat this option to allow sending multiple messages (i.e. streaming)", cxxopts::value<std::vector<std::string>>())
-        ("connection_options", "Path to a json file containing the connection options", cxxopts::value<std::string>());
+        ("connection_options", "Path to a json file containing the connection options", cxxopts::value<std::string>())
+        ("metadata", "Pass along metadata. Format: key:val,key:val,key:val,...", cxxopts::value<std::vector<std::string>>());
+        
+    cxxopts::ParseResult result;
     
-    auto result = options.parse(argc, argv);
+    try {
+        result = options.parse(argc, argv);
+    } catch(const cxxopts::OptionException& e) {
+        std::cout << e.what() << std::endl;
+        return 0;
+    }
     
     if (result.arguments().size() == 0) {
         std::cout << options.help() << std::endl;
@@ -160,6 +182,11 @@ int cmd_call(int argc, char** argv)
         std::cout << "Missing required option" << std::endl;
         std::cout << options.help() << std::endl;
         return 0;
+    }
+    
+    std::multimap<std::string, std::string> metadata;
+    if (result.count("metadata")) {
+        auxl::grpc::cli::parse_metadata(result["metadata"].as<std::vector<std::string>>(), metadata);
     }
     
     Descriptor descriptors;
@@ -195,14 +222,17 @@ int cmd_call(int argc, char** argv)
     
     const auto method_descr = descriptors.get_method_descriptor(std::get<1>(service_and_method), std::get<2>(service_and_method));
     
-    std::cout << "Starting a " << util::call_info(*method_descr).name << " call to " << std::get<1>(service_and_method) << "." << std::get<2>(service_and_method) << std::endl;
+    GRPCCallInfo call_info = util::call_info(*method_descr);
+    
+    std::cout << "Starting a " << call_info.name << " call to " << std::get<1>(service_and_method)
+        << "." << std::get<2>(service_and_method) << std::endl;
     
     Session session(connection.get());
     
-    CliSessionDelegate session_delegate(&descriptors, method_descr->output_type()->full_name(), util::call_info(*method_descr).type);
+    CliSessionDelegate session_delegate(&descriptors, method_descr->output_type()->full_name(), call_info.type);
     session.delegate = &session_delegate;
     
-    session.start(*method_descr);
+    session.start(*method_descr, metadata);
 
     if (message_files.size() > 1) {
         auto print_available_message_prompt = [](std::vector<std::string> message_files) {
@@ -226,6 +256,11 @@ int cmd_call(int argc, char** argv)
                 print_available_message_prompt(message_files);
             } else {
                 load_and_send_message_at_path(message_files[selection - 1], method_descr->input_type()->full_name(), descriptors, session);
+                
+                // Here the user has provided multiple messages to a unary or server streaming call so break after the selected message is sent.
+                if (call_info.type == Unary || call_info.type == ServerStreaming) {
+                    break;
+                }
             }
         }
     } else if (message_files.size() == 1) {
@@ -237,17 +272,10 @@ int cmd_call(int argc, char** argv)
     return 0;
 }
 
-void print_usage() {
-    std::cout << "Usage: auxl_grpc_cli <command> [OPTIONS...]\n" << std::endl;
-    std::cout << "Available commands are:\n\tdescribe\n\tmessage\n\tcall\n" << std::endl;
-    std::cout << "Use auxl_grpc_cli <command> to get more help on a specific command\n" << std::endl;
-}
-
-/**
- */
-int main(int argc, char **argv)
+/* For test purposes, remove */
+int test_call()
 {
-    char* new_args[11] = {
+    char* new_args[13] = {
         (char*) "call",
         (char*) "--endpoint",
         (char*) "localhost:5000",
@@ -258,36 +286,29 @@ int main(int argc, char **argv)
         (char*) "--message",
         (char*) "test_resources/hello_request_message_1.json",
         (char*) "--message",
-        (char*) "test_resources/hello_request_message_2.json"
-        
+        (char*) "test_resources/hello_request_message_2.json",
+        (char*) "--metadata",
+        (char*) "key_a:val_a,key_b:val_b"
+    
     };
-    int new_arg_c = 11;
-
+    int new_arg_c = 13;
+    
     return cmd_call(new_arg_c, new_args);
-    
-    
-//     bin/auxl_grpc_cli describe --proto_files /Users/joostverrijt/Projects/var/auxl-grpc-mock/demo.proto
-//
-//    char* new_args[5] = { (char*) "describe",
-//        (char*) "--proto_files",
-//        (char*) "/Users/joostverrijt/Projects/var/auxl-grpc-mock/demo.proto",
-//        (char*) "--endpoint",
-//        (char*) "localhost:5000"
-//    };
-//    int new_arg_c = 5;
-//
-//    return cmd_describe(new_arg_c, new_args);
-    
-//    char* new_args[5] = { (char*) "describe", (char*) "--endpoint", (char*) "localhost:323" };
-//    int new_arg_c = 3;
-//
-//    return cmd_describe(new_arg_c, new_args);
-    
-//    char* new_args[5] = { (char*) "message", (char*) "--type_name", (char*) "greet.HelloRequest", (char*) "--descriptors", (char*) "/Users/joostverrijt/Projects/Metamotifs/vlui/auxl-grpc/test/test_resources/descriptor_local.json" };
-//    int new_arg_c = 5;
-//
-//    return cmd_message(new_arg_c, new_args);
-//
+}
+
+
+void print_usage() {
+    std::cout << "Usage: auxl_grpc_cli <command> [OPTIONS...]\n" << std::endl;
+    std::cout << "Available commands are:\n\tdescribe\n\tmessage\n\tcall\n" << std::endl;
+    std::cout << "Use auxl_grpc_cli <command> to get more help on a specific command\n" << std::endl;
+}
+
+
+/**
+ */
+int main(int argc, char **argv)
+{
+    return test_call();
     
     if (argc == 1) {
         // Print usage

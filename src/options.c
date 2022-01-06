@@ -11,13 +11,15 @@
 
 /**
  */
-GRPCConnectionOptions* connection_options_create(bool use_ssl,
-                                      char* ssl_client_cert,
-                                      char* ssl_client_key,
-                                      char* ssl_root_certs_path)
+GRPCConnectionOptions* connection_options_create(double timeout,
+                                                 bool use_ssl,
+                                                 char* ssl_client_cert,
+                                                 char* ssl_client_key,
+                                                 char* ssl_root_certs_path)
 {
     GRPCConnectionOptions* opts = (GRPCConnectionOptions*) malloc(sizeof(GRPCConnectionOptions));
-        
+    
+    opts->timeout = timeout;
     opts->use_ssl = use_ssl;
     
     opts->ssl_client_cert = strdup(ssl_client_cert);
@@ -31,7 +33,7 @@ GRPCConnectionOptions* connection_options_create(bool use_ssl,
  */
 GRPCConnectionOptions* connection_options_default()
 {
-    return  connection_options_create(false, "", "", "");
+    return  connection_options_create(-1, false, "", "", "");
 }
 
 /**

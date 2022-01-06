@@ -47,7 +47,7 @@ public:
     };
     
     void start(const google::protobuf::MethodDescriptor& method_descriptor,
-              std::multimap<std::string, std::string> metadata = {} , double timeout = -1);
+              const std::multimap<std::string, std::string>& metadata);
     
     /**
      */

@@ -1,4 +1,5 @@
 {
+    "timeout": 100,
     "use_ssl": true,
     "ssl_client_cert": "test client cert",
     "ssl_client_key": "test client key",
