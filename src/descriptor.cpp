@@ -106,9 +106,20 @@ std::shared_ptr<Message> Descriptor::message_from_json(const std::string& messag
 
 /**
  */
-const MethodDescriptor* Descriptor::get_method_descriptor(const std::string& service, const std::string& method)
+const MethodDescriptor* Descriptor::get_method_descriptor(const std::string& package_service_method)
 {
-    auto service_descr = pool_->FindServiceByName(service);
+    auto splitted = util::split_service_method(package_service_method);
+        
+    bool is_valid_method_string = std::get<0>(splitted);
+
+    if (!is_valid_method_string) {
+        return nullptr;
+    }
+    
+    std::string package_service = std::get<1>(splitted);
+    std::string method = std::get<2>(splitted);
+    
+    auto service_descr = pool_->FindServiceByName(package_service);
     
     if (service_descr == nullptr) {
         return nullptr;

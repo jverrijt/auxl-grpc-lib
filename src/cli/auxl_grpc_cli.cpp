@@ -53,7 +53,7 @@ int cmd_describe(int argc, char **argv)
     std::shared_ptr<Connection> connection;
     
     if (result.count("endpoint")) {
-        auto connection_options_path = result.count("connection_config") ?
+        auto connection_options_path = result.count("connection_options") ?
             &(result["connection_options"].as<std::string>()) : NULL;
         connection = cli_create_connection(result["endpoint"].as<std::string>(), connection_options_path);
     }
@@ -200,7 +200,7 @@ int cmd_call(int argc, char** argv)
         return 0 ;
     }
     
-    auto connection_options_path = result.count("connection_config") ?
+    auto connection_options_path = result.count("connection_options") ?
         &(result["connection_options"].as<std::string>()) : NULL;
     
     auto connection = cli_create_connection(result["endpoint"].as<std::string>(), connection_options_path);
@@ -298,6 +298,21 @@ int test_call()
     return cmd_call(new_arg_c, new_args);
 }
 
+int test_describe()
+{
+    char* new_args[5] = {
+        (char*) "describe",
+        (char*) "--endpoint",
+        (char*) "demo.gripgrpc.dev:443",
+        (char*) "--connection_options",
+        (char*) "test_resources/connection_config.json",
+    };
+    int new_arg_c = 5;
+    
+    return cmd_describe(new_arg_c, new_args);
+    
+}
+
 
 void print_usage() {
     std::cout << "Usage: auxl_grpc_cli <command> [OPTIONS...]\n" << std::endl;
@@ -310,7 +325,8 @@ void print_usage() {
  */
 int main(int argc, char **argv)
 {
-    return test_call();
+    // return test_call();
+    return test_describe();
     
     if (argc == 1) {
         // Print usage

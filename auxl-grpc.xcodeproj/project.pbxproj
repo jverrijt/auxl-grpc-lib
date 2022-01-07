@@ -123,6 +123,7 @@
 		D6F88FEC2786D80000D9DDCE /* cli_session_delegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = cli_session_delegate.hpp; sourceTree = "<group>"; };
 		D6F88FF62786F33600D9DDCE /* cli_util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cli_util.cpp; sourceTree = "<group>"; };
 		D6F88FF72786F33600D9DDCE /* cli_util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = cli_util.hpp; sourceTree = "<group>"; };
+		D6F88FFA2788346400D9DDCE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +147,7 @@
 		D6F88F4D277889BE00D9DDCE = {
 			isa = PBXGroup;
 			children = (
+				D6F88FFA2788346400D9DDCE /* README.md */,
 				D6F88FA4277B136700D9DDCE /* gtest-all.cc */,
 				D6F88F90277B104700D9DDCE /* gtest_main.cc */,
 				D6F88F7B277895DE00D9DDCE /* auxl_grpc_cli.entitlements */,

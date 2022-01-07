@@ -62,8 +62,9 @@ public:
     std::shared_ptr<google::protobuf::Message> message_from_json(const std::string& message_type_name, const std::string& json);
     
     /**
+     Returns a nullptr if the given method can't be found.
      */
-    const google::protobuf::MethodDescriptor* get_method_descriptor(const std::string& service, const std::string& method);
+    const google::protobuf::MethodDescriptor* get_method_descriptor(const std::string& package_service_method);
     
     /**
      Return these descriptors as JSON

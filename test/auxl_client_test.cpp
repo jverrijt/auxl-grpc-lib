@@ -41,6 +41,29 @@ std::shared_ptr<google::protobuf::Message> create_input_message(Descriptor& desc
     return msg;
 }
 
+
+/**
+ */
+TEST_F(AuxlClientTest, TestExample)
+{
+    GRPCConnectionOptions options;
+    auto connection = Connection::create_connection("localhost:5000", options);
+    
+    Descriptor descriptor({}, connection.get());
+    
+    // Create a message
+    auto message = descriptor.create_message("HelloRequest");
+    
+    // Get the method to that we will call
+    const auto method_descr = descriptor.get_method_descriptor("greet.Greeter.SayHello");
+    
+    if (method_descr) {
+        Session session(connection.get());
+        session.start(*method_descr)
+        session.send_message(*message);
+    }
+}
+
 /**
  */
 TEST_F(AuxlClientTest, TestDescriptorClient)
@@ -52,19 +75,7 @@ TEST_F(AuxlClientTest, TestDescriptorClient)
     auto connection = Connection::create_connection("localhost:5000", options);
     
     Descriptor descriptor({}, connection.get());
-    
-    auto splitted = util::split_service_method("greet.Greeter.SayHello");
-    
-    bool is_valid_method_string = std::get<0>(splitted);
-    ASSERT_TRUE(is_valid_method_string);
-    
-    std::string package_service = std::get<1>(splitted);
-    std::string method = std::get<2>(splitted);
-    
-    ASSERT_TRUE(package_service == "greet.Greeter");
-    ASSERT_TRUE(method == "SayHello");
-    
-    const auto method_descr = descriptor.get_method_descriptor(package_service, method);
+    const auto method_descr = descriptor.get_method_descriptor("greet.Greeter.SayHello");
     
     DescriptorSessionDelegate delegate(&descriptor, method_descr->output_type()->full_name());
 

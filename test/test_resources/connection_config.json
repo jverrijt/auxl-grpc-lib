@@ -1,7 +1,5 @@
 {
-    "timeout": 100,
+    "timeout": -1,
     "use_ssl": true,
-    "ssl_client_cert": "test client cert",
-    "ssl_client_key": "test client key",
-    "ssl_root_certs_path": "root certs"
+    "ssl_root_certs_path": "/Users/joostverrijt/Projects/var/temp/roots.pem"
 }
