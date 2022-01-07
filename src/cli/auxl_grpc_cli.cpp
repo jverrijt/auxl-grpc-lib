@@ -205,13 +205,6 @@ int cmd_call(int argc, char** argv)
     
     auto connection = cli_create_connection(result["endpoint"].as<std::string>(), connection_options_path);
     
-    auto service_and_method = util::split_service_method(result["method"].as<std::string>());
-    
-    if (std::get<0>(service_and_method) == false) {
-        std::cerr << "Invalid service / method name" << std::endl;
-        std::cout << options.help() << std::endl;
-    }
-    
     std::vector<std::string> message_files = result["message"].as<std::vector<std::string>>();
     
     if (message_files.empty()) {
@@ -219,12 +212,12 @@ int cmd_call(int argc, char** argv)
         return 0;
     }
     
-    const auto method_descr = descriptors.get_method_descriptor(std::get<1>(service_and_method), std::get<2>(service_and_method));
+    std::string service_and_method = result["method"].as<std::string>();
+    const auto method_descr = descriptors.get_method_descriptor(service_and_method);
     
     GRPCCallInfo call_info = util::call_info(*method_descr);
     
-    std::cout << "Starting a " << call_info.name << " call to " << std::get<1>(service_and_method)
-        << "." << std::get<2>(service_and_method) << std::endl;
+    std::cout << "Starting a " << call_info.name << " call to " << service_and_method << std::endl;
     
     Session session(connection.get());
     
@@ -325,8 +318,8 @@ void print_usage() {
  */
 int main(int argc, char **argv)
 {
-    // return test_call();
-    return test_describe();
+    return test_call();
+    // return test_describe();
     
     if (argc == 1) {
         // Print usage

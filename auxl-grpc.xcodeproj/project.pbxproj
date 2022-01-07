@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D68536182788818F00408F38 /* connection_opts_test.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D68536172788818400408F38 /* connection_opts_test.json */; };
+		D6853619278882F100408F38 /* connection_opts_test.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D68536172788818400408F38 /* connection_opts_test.json */; };
 		D6F88F7027788ADC00D9DDCE /* tool.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.c */; };
 		D6F88F7127788ADC00D9DDCE /* auxl_grpc_cli.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6A27788ADC00D9DDCE /* auxl_grpc_cli.cpp */; };
 		D6F88F7227788ADC00D9DDCE /* connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6C27788ADC00D9DDCE /* connection.cpp */; };
@@ -57,6 +59,7 @@
 			dstPath = test_resources;
 			dstSubfolderSpec = 16;
 			files = (
+				D68536182788818F00408F38 /* connection_opts_test.json in CopyFiles */,
 				D6F88FF12786DD3000D9DDCE /* hello_request_message_1.json in CopyFiles */,
 				D6F88FF22786DD3000D9DDCE /* hello_request_message_2.json in CopyFiles */,
 				D6F88FF32786DD3000D9DDCE /* descriptor_local.json in CopyFiles */,
@@ -71,6 +74,7 @@
 			dstPath = test_resources;
 			dstSubfolderSpec = 16;
 			files = (
+				D6853619278882F100408F38 /* connection_opts_test.json in CopyFiles */,
 				D6F88FEF2786DCD300D9DDCE /* hello_request_message_1.json in CopyFiles */,
 				D6F88FF02786DCD300D9DDCE /* hello_request_message_2.json in CopyFiles */,
 				D6F88FE62785EB0C00D9DDCE /* descriptor_local.json in CopyFiles */,
@@ -82,6 +86,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D68536172788818400408F38 /* connection_opts_test.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = connection_opts_test.json; sourceTree = "<group>"; };
 		D6F88F5827788A4300D9DDCE /* auxl_grpc_cli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = auxl_grpc_cli; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F88F6327788ADC00D9DDCE /* connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connection.h; sourceTree = "<group>"; };
 		D6F88F6527788ADC00D9DDCE /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
@@ -205,6 +210,7 @@
 		D6F88FB62780FB9D00D9DDCE /* test_resources */ = {
 			isa = PBXGroup;
 			children = (
+				D68536172788818400408F38 /* connection_opts_test.json */,
 				D6F88FE92785F47B00D9DDCE /* hello_request_message_1.json */,
 				D6F88FE82785F47B00D9DDCE /* hello_request_message_2.json */,
 				D6F88FD727848C3800D9DDCE /* descriptor_local.json */,

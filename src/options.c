@@ -9,6 +9,17 @@
 #include <string.h>
 #include <stdlib.h>
 
+
+GRPCConnectionOptions init_connection_options()
+{
+    GRPCConnectionOptions opts = {
+        .timeout = -1,
+        .use_ssl = false
+    };
+    
+    return opts;
+}
+
 /**
  */
 GRPCConnectionOptions* connection_options_create(double timeout,

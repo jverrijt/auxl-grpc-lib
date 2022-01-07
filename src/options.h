@@ -29,6 +29,10 @@ typedef struct GRPCConnectionOptions {
 
 /**
  */
+GRPCConnectionOptions init_connection_options(void);
+
+/**
+ */
 GRPCConnectionOptions* connection_options_create(double timeout,
                                                  bool use_ssl,
                                                  char* ssl_client_cert,

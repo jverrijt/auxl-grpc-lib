@@ -80,8 +80,7 @@ TEST_F(AuxlClientTest, TestDescriptorClient)
 {
     std::cout << "descriptor test" << std::endl;
     
-    GRPCConnectionOptions options;
-    options.use_ssl = false;
+    GRPCConnectionOptions options = init_connection_options();
     auto connection = Connection::create_connection("localhost:5000", options);
     
     Descriptor descriptor({}, connection.get());
@@ -123,15 +122,16 @@ TEST_F(AuxlClientTest, TestMessageGeneration)
 TEST_F(AuxlClientTest, TestParseConnectionConfig)
 {
     std::string json_config;
-    util::load_file("test_resources/connection_config.json", &json_config);
+    util::load_file("test_resources/connection_opts_test.json", &json_config);
 
     ASSERT_FALSE(json_config.empty());
     
     auto opts = util::options_from_json(json_config);
     
     ASSERT_TRUE(opts->use_ssl);
+    ASSERT_TRUE(strcmp(opts->ssl_root_certs_path, (char*) "Path to roots.pem") == 0);
     
-    connection_options_free(opts);
+    // connection_options_free(opts);
 }
 
 /**

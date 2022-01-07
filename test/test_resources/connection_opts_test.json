@@ -1,0 +1,7 @@
+{
+    "timeout": 100,
+    "use_ssl": true,
+    "ssl_client_key": "test client key",
+    "ssl_client_path": "test client path",
+    "ssl_root_certs_path": "Path to roots.pem"
+}

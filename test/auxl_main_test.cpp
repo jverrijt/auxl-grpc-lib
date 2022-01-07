@@ -46,6 +46,7 @@ public:
 std::unique_ptr<Connection> get_connection(std::string endpoint)
 {
     GRPCConnectionOptions options;
+    options.timeout = -1;
     options.use_ssl = false;
     options.ssl_root_certs_path = (char*) "/Users/joostverrijt/Projects/var/temp/roots.pem";
     
@@ -168,7 +169,7 @@ TEST_F(AuxlGrpcTest, SendUnary) {
 
 /**
  */
-TEST_F(AuxlGrpcTest, DISABLED_TestClientStream)
+TEST_F(AuxlGrpcTest, TestClientStream)
 {
     auto connection = get_connection("localhost:5000");
     std::multimap<std::string, std::string> metadata;
