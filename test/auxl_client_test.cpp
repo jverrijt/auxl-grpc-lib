@@ -15,6 +15,8 @@
 #include <nlohmann/json.hpp>
 #include "options.h"
 
+#include "cli_session_delegate.hpp"
+
 
 namespace auxl {
 namespace grpc {
@@ -46,21 +48,29 @@ std::shared_ptr<google::protobuf::Message> create_input_message(Descriptor& desc
  */
 TEST_F(AuxlClientTest, TestExample)
 {
-    GRPCConnectionOptions options;
-    auto connection = Connection::create_connection("localhost:5000", options);
+    auto connection = Connection::create_connection("localhost:5000", {});
     
+    // Create descriptors from server reflection
     Descriptor descriptor({}, connection.get());
     
     // Create a message
     auto message = descriptor.create_message("HelloRequest");
     
-    // Get the method to that we will call
+    // The method that we will call
     const auto method_descr = descriptor.get_method_descriptor("greet.Greeter.SayHello");
     
-    if (method_descr) {
+    if (method_descr != nullptr && message != nullptr)
+    {
         Session session(connection.get());
-        session.start(*method_descr)
+        
+        // A session delegates allows for capturing and formatting output.
+        // It also captures errors
+        DescriptorSessionDelegate delegate(&descriptor, "HelloResponse");
+        session.delegate = &delegate;
+        
+        session.start(*method_descr);
         session.send_message(*message);
+        session.close();
     }
 }
 
@@ -120,8 +130,6 @@ TEST_F(AuxlClientTest, TestParseConnectionConfig)
     auto opts = util::options_from_json(json_config);
     
     ASSERT_TRUE(opts->use_ssl);
-    ASSERT_TRUE(strcmp(opts->ssl_client_cert, "test client cert") == 0);
-    ASSERT_TRUE(strcmp(opts->ssl_client_key, "test client key") == 0);
     
     connection_options_free(opts);
 }

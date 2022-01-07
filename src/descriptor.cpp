@@ -141,9 +141,6 @@ std::string Descriptor::to_json(google::protobuf::util::JsonPrintOptions options
     std::vector<std::string> file_names;
     db_->FindAllFileNames(&file_names);
     
-//    options.preserve_proto_field_names = true;
-//    options.always_print_primitive_fields = false
-    
     std::string jsonOutput;
     jsonOutput += "[";
 

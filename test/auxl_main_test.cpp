@@ -148,7 +148,7 @@ TEST_F(AuxlGrpcTest, SendUnary) {
     TestSessionDelegate delegate;
     sess.delegate = &delegate;
     
-    auto method_descr = descriptor.get_method_descriptor("greet.Greeter", "SayHello");
+    auto method_descr = descriptor.get_method_descriptor("greet.Greeter.SayHello");
     std::string input_type_name = method_descr->input_type()->full_name();
     
     std::cout << "Creating input message: " << input_type_name << std::endl;
@@ -168,7 +168,7 @@ TEST_F(AuxlGrpcTest, SendUnary) {
 
 /**
  */
-TEST_F(AuxlGrpcTest, TestClientStream)
+TEST_F(AuxlGrpcTest, DISABLED_TestClientStream)
 {
     auto connection = get_connection("localhost:5000");
     std::multimap<std::string, std::string> metadata;
@@ -177,7 +177,7 @@ TEST_F(AuxlGrpcTest, TestClientStream)
     
     Session session(connection.get());
     
-    auto method_descr = descriptor->get_method_descriptor("greet.Greeter", "SayHelloBidiStream");
+    auto method_descr = descriptor->get_method_descriptor("greet.Greeter.SayHelloBidiStream");
 
     // Generate some test message to send.
     std::vector<std::shared_ptr<google::protobuf::Message>> messages;

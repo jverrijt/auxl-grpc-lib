@@ -68,7 +68,7 @@ void Session::send_message(const google::protobuf::Message& message)
     std::string payload;
     message.SerializeToString(&payload);
     
-    // Technically the message has not yet been sent here but WriteAndWait blocks.
+    // Technically the message has not yet been sent here but WriteAndWait will block.
     if (delegate != nullptr) {
         delegate->session_did_send(message);
     }
