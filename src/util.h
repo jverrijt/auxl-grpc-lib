@@ -32,12 +32,6 @@ std::tuple<bool, std::string, std::string> split_service_method(const std::strin
 GRPCCallInfo call_info(const google::protobuf::MethodDescriptor& descriptor);
 
 
-/**
- Splits metadata in string form (key:val,key:val,...) into key, value pairs
- */
-void parse_meta_data(std::map<std::string, std::string>& map, const std::string& text);
-
-
 } // ns util
 } // ns grpc
 } // ns auxl

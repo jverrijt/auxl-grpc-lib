@@ -87,6 +87,7 @@
 
 /* Begin PBXFileReference section */
 		D68536172788818400408F38 /* connection_opts_test.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = connection_opts_test.json; sourceTree = "<group>"; };
+		D685361B2789BEC800408F38 /* test_session_delegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = test_session_delegate.hpp; sourceTree = "<group>"; };
 		D6F88F5827788A4300D9DDCE /* auxl_grpc_cli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = auxl_grpc_cli; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F88F6327788ADC00D9DDCE /* connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connection.h; sourceTree = "<group>"; };
 		D6F88F6527788ADC00D9DDCE /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
@@ -203,6 +204,7 @@
 				D6F88FB62780FB9D00D9DDCE /* test_resources */,
 				D6F88F7D277B0F7300D9DDCE /* auxl_main_test.cpp */,
 				D6F88FC82783062C00D9DDCE /* auxl_client_test.cpp */,
+				D685361B2789BEC800408F38 /* test_session_delegate.hpp */,
 			);
 			path = test;
 			sourceTree = "<group>";

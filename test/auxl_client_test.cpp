@@ -45,16 +45,18 @@ std::shared_ptr<google::protobuf::Message> create_input_message(Descriptor& desc
 
 
 /**
+ The example used in the README
  */
 TEST_F(AuxlClientTest, TestExample)
 {
-    auto connection = Connection::create_connection("localhost:5000", {});
+    GRPCConnectionOptions options = init_connection_options();
+    auto connection = Connection::create_connection("localhost:5000", options);
     
     // Create descriptors from server reflection
     Descriptor descriptor({}, connection.get());
     
     // Create a message
-    auto message = descriptor.create_message("HelloRequest");
+    auto message = descriptor.create_message("greet.HelloRequest");
     
     // The method that we will call
     const auto method_descr = descriptor.get_method_descriptor("greet.Greeter.SayHello");
@@ -64,7 +66,7 @@ TEST_F(AuxlClientTest, TestExample)
         Session session(connection.get());
         
         // A session delegates allows for capturing and formatting output.
-        // It also captures errors
+        // It also captures any errors and other session events.
         DescriptorSessionDelegate delegate(&descriptor, "HelloResponse");
         session.delegate = &delegate;
         
@@ -85,6 +87,8 @@ TEST_F(AuxlClientTest, TestDescriptorClient)
     
     Descriptor descriptor({}, connection.get());
     const auto method_descr = descriptor.get_method_descriptor("greet.Greeter.SayHello");
+    
+    ASSERT_TRUE(method_descr != nullptr);
     
     DescriptorSessionDelegate delegate(&descriptor, method_descr->output_type()->full_name());
 
@@ -151,11 +155,6 @@ TEST_F(AuxlClientTest, TestParseJsonDescriptor)
     d.load_json(json);
     
     ASSERT_FALSE(d.to_json().empty());
-    
-    auto msg = d.create_message("greet.HelloRequest");
-    
-    
- 
 }
 
 

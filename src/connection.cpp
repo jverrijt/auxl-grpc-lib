@@ -52,6 +52,10 @@ std::shared_ptr<ChannelCredentials> Connection::get_channel_credentials(GRPCConn
  */
 std::unique_ptr<Connection> Connection::create_connection(const std::string& endpoint, GRPCConnectionOptions options)
 {
+    if (options.timeout == 0) {
+        std::cerr << "Warning, timeout is set to 0. This may result undefined behavior." << std::endl;
+    }
+    
     ChannelArguments args;
 
     args.SetInt(GRPC_ARG_MAX_METADATA_SIZE, 10 * 1024 * 1024);

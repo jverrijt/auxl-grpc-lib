@@ -98,19 +98,6 @@ GRPCCallInfo call_info(const google::protobuf::MethodDescriptor& descriptor)
     return info;
 }
 
-/**
- */
-void parse_meta_data(std::map<std::string, std::string>& map, const std::string& text)
-{
-//    int start = 0, end1 = 0, end2 = 0;
-//    while ((end1 = text.find(":", start)) != std::string::npos && (end2 = text.find(sep, end1+1)) != std::string::npos) {
-//        std::string key = text.substr(start, end1 - start);
-//        std::string val = text.substr(end1 + 1, end2 - end1 - 1);
-//        map.insert(std::pair<std::string,std::string>(key, val));
-//        start = end2 + 1;
-//    }
-}
-
 } // ns util
 } // ns grpc
 } // ns auxl
