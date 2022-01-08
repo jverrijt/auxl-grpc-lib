@@ -1,3 +1,20 @@
+/*
+ *
+ * Copyright 2022 Joost Verrijt.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 #include <iostream>
 #include <string>
@@ -29,9 +46,9 @@ int cmd_describe(int argc, char **argv)
 {
     cxxopts::Options options("auxl_grpc_cli describe", "Returns the descriptors of a given GRPC service and/or set of protofiles");
     options.add_options("describe")
-        ("proto_files", "Comma delimited list of proto files", cxxopts::value<std::vector<std::string>>())
-        ("endpoint", "The endpoint of GRPC service", cxxopts::value<std::string>())
-        ("connection_options", "Path to a json file containing the connection options", cxxopts::value<std::string>());
+    ("proto_files", "Comma delimited list of proto files", cxxopts::value<std::vector<std::string>>())
+    ("endpoint", "The endpoint of GRPC service", cxxopts::value<std::string>())
+    ("connection_options", "Path to a json file containing the connection options", cxxopts::value<std::string>());
     
     cxxopts::ParseResult result;
     
@@ -54,7 +71,7 @@ int cmd_describe(int argc, char **argv)
     
     if (result.count("endpoint")) {
         auto connection_options_path = result.count("connection_options") ?
-            &(result["connection_options"].as<std::string>()) : NULL;
+        &(result["connection_options"].as<std::string>()) : NULL;
         connection = cli_create_connection(result["endpoint"].as<std::string>(), connection_options_path);
     }
     
@@ -67,13 +84,13 @@ int cmd_describe(int argc, char **argv)
     std::string json_out = descriptor.to_json();
     
     auto error_collector = descriptor.get_error_collector();
-     
+    
     // Process errors
     if (error_collector->error_count > 0) {
         bool is_fatal = error_collector_has_fatal_error(error_collector);
         
         std::cerr << "Describing service " << (is_fatal ? "failed" : "finished")
-            << " with the following issues:" << std::endl;
+        << " with the following issues:" << std::endl;
         
         for (int i = 0; i < error_collector->error_count; i++) {
             auto err = error_collector->errors[i];
@@ -99,8 +116,8 @@ int cmd_message(int argc, char **argv)
 {
     cxxopts::Options options("auxl_grpc_cli message", "Create messages with default values");
     options.add_options("message")
-        ("type_name", "(required) The message type <package.message>", cxxopts::value<std::string>())
-        ("descriptors", "(required) Path to the json representation descriptor", cxxopts::value<std::string>());
+    ("type_name", "(required) The message type <package.message>", cxxopts::value<std::string>())
+    ("descriptors", "(required) Path to the json representation descriptor", cxxopts::value<std::string>());
     
     cxxopts::ParseResult result;
     
@@ -156,13 +173,13 @@ int cmd_call(int argc, char** argv)
 {
     cxxopts::Options options("auxl_grpc_cli call", "Call GRPC services");
     options.add_options("call")
-        ("endpoint", "(required) The endpoint of GRPC service", cxxopts::value<std::string>())
-        ("method", "(required) The method which to call. Formulate it like so: package.service.method", cxxopts::value<std::string>())
-        ("descriptors", "(required) Path to the json representation descriptor", cxxopts::value<std::string>())
-        ("message", "Path to a message to send. Repeat this option to allow sending multiple messages (i.e. streaming)", cxxopts::value<std::vector<std::string>>())
-        ("connection_options", "Path to a json file containing the connection options", cxxopts::value<std::string>())
-        ("metadata", "Pass along metadata. Format: key:val,key:val,key:val,...", cxxopts::value<std::vector<std::string>>());
-        
+    ("endpoint", "(required) The endpoint of GRPC service", cxxopts::value<std::string>())
+    ("method", "(required) The method which to call. Formulate it like so: package.service.method", cxxopts::value<std::string>())
+    ("descriptors", "(required) Path to the json representation descriptor", cxxopts::value<std::string>())
+    ("message", "Path to a message to send. Repeat this option to allow sending multiple messages (i.e. streaming)", cxxopts::value<std::vector<std::string>>())
+    ("connection_options", "Path to a json file containing the connection options", cxxopts::value<std::string>())
+    ("metadata", "Pass along metadata. Format: key:val,key:val,key:val,...", cxxopts::value<std::vector<std::string>>());
+    
     cxxopts::ParseResult result;
     
     try {
@@ -201,7 +218,7 @@ int cmd_call(int argc, char** argv)
     }
     
     auto connection_options_path = result.count("connection_options") ?
-        &(result["connection_options"].as<std::string>()) : NULL;
+    &(result["connection_options"].as<std::string>()) : NULL;
     
     auto connection = cli_create_connection(result["endpoint"].as<std::string>(), connection_options_path);
     
@@ -228,7 +245,7 @@ int cmd_call(int argc, char** argv)
         std::cerr << "[ERR] Service unreachable" << std::endl;
         return 0;
     }
-
+    
     if (message_files.size() > 1) {
         auto print_available_message_prompt = [](std::vector<std::string> message_files) {
             std::cout << "Available messages: \n";
@@ -239,14 +256,14 @@ int cmd_call(int argc, char** argv)
         };
         
         print_available_message_prompt(message_files);
-
+        
         for (std::string line; std::getline(std::cin, line);) {
             if (line == "q") {
                 break;
             }
-
+            
             int selection = atoi(line.c_str());
-
+            
             if (selection < 1 || selection > message_files.size()) {
                 print_available_message_prompt(message_files);
             } else {
@@ -261,7 +278,7 @@ int cmd_call(int argc, char** argv)
     } else if (message_files.size() == 1) {
         load_and_send_message_at_path(message_files[0], method_descr->input_type()->full_name(), descriptors, session);
     }
-
+    
     session.close();
     
     return 0;
@@ -284,13 +301,14 @@ int test_call()
         (char*) "test_resources/hello_request_message_2.json",
         (char*) "--metadata",
         (char*) "key_a:val_a,key_b:val_b"
-    
+        
     };
     int new_arg_c = 13;
     
     return cmd_call(new_arg_c, new_args);
 }
 
+/* For test purposes, remove */
 int test_describe()
 {
     char* new_args[5] = {
@@ -343,6 +361,6 @@ int main(int argc, char **argv)
         std::cout << "Unknown commmand." << std::endl;
         print_usage();
     }
-
+    
     return 0;
 }

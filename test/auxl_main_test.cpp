@@ -12,8 +12,8 @@
 #include "gtest/gtest.h"
 
 #include "descriptor.hpp"
-#include "connection.h"
-#include "session.h"
+#include "connection.hpp"
+#include "session.hpp"
 #include "test_session_delegate.hpp"
 #include "error_collector.h"
 

@@ -9,8 +9,8 @@
 
 #include "gtest/gtest.h"
 #include "descriptor.hpp"
-#include "connection.h"
-#include "session.h"
+#include "connection.hpp"
+#include "session.hpp"
 #include "descriptor_session_delegate.hpp"
 #include <nlohmann/json.hpp>
 #include "options.h"
@@ -42,7 +42,6 @@ std::shared_ptr<google::protobuf::Message> create_input_message(Descriptor& desc
     
     return msg;
 }
-
 
 /**
  The example used in the README

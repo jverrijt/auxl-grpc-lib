@@ -14,6 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
+ * NOTICE: Includes the following changes pertaining to the auxl_grpc project:
+ * - Commented out closing stream and error handling in descructor in favor of
+ *  the CloseStream() method.
  */
 #ifndef GRPC_TEST_CPP_PROTO_SERVER_REFLECTION_DATABSE_H
 #define GRPC_TEST_CPP_PROTO_SERVER_REFLECTION_DATABSE_H

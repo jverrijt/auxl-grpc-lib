@@ -14,6 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
+ * NOTICE: Includes the following changes pertaining to the auxl_grpc project:
+ * - Added Cancel method that tries to cancel the underlying request
  */
 
 #ifndef GRPC_TEST_CPP_UTIL_CLI_CALL_H
@@ -89,6 +91,8 @@ public:
     Status Finish(IncomingMetadataContainer* server_trailing_metadata);
     
     std::string peer() const { return ctx_.peer(); }
+    
+    void Cancel();
     
     // Set when the cli call constructor completes
     bool finish_status;

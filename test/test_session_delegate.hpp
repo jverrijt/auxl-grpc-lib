@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "gtest/gtest.h"
 
-#include "session.h"
+#include "session.hpp"
 #include "descriptor.hpp"
 
 class TestSessionDelegate: public auxl::grpc::SessionDelegate {
