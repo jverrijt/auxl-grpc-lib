@@ -120,7 +120,6 @@ autom4te.cache
 /autoscan-*.log
 /aclocal.m4
 /config.cache
-/config.h.in
 /config.log
 /config.status
 /configure.scan
