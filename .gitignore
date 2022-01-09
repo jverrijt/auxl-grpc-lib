@@ -100,17 +100,21 @@ DerivedData/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+/gen/gen
+
 # End of https://www.toptal.com/developers/gitignore/api/xcode,c++,macos
+#
+
 
 ### Autotools ###
 # http://www.gnu.org/software/automake
 
+Makefile.in
 /ar-lib
 /mdate-sh
 /py-compile
 /test-driver
 /ylwrap
-/gen/gen
 .deps/
 .dirstamp
 
@@ -119,13 +123,20 @@ DerivedData/
 autom4te.cache
 /autoscan.log
 /autoscan-*.log
+/aclocal.m4
+/compile
 /config.cache
+/config.guess
+/config.h.in
 /config.log
 /config.status
+/config.sub
+/configure
 /configure.scan
+/depcomp
+/install-sh
+/missing
 /stamp-h1
-/configure~
-/config.h.in~
 
 # https://www.gnu.org/software/libtool/
 
