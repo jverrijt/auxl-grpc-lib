@@ -119,7 +119,6 @@ DerivedData/
 autom4te.cache
 /autoscan.log
 /autoscan-*.log
-/aclocal.m4
 /config.cache
 /config.log
 /config.status
