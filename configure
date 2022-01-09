@@ -10622,6 +10622,56 @@ then :
 fi
 
 
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gen/gen/reflection.pb.h" >&5
+printf %s "checking for gen/gen/reflection.pb.h... " >&6; }
+if test ${ac_cv_file_gen_gen_reflection_pb_h+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "gen/gen/reflection.pb.h"; then
+  ac_cv_file_gen_gen_reflection_pb_h=yes
+else
+  ac_cv_file_gen_gen_reflection_pb_h=no
+fi
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_file_gen_gen_reflection_pb_h" >&5
+printf "%s\n" "$ac_cv_file_gen_gen_reflection_pb_h" >&6; }
+if test "x$ac_cv_file_gen_gen_reflection_pb_h" = xyes
+then :
+
+printf "%s\n" "#define HAVE_GEN_GEN_REFLECTION_PB_H 1" >>confdefs.h
+
+else $as_nop
+  as_fn_error $? "Could not find the required generated proto files. Run generate-reflection-support.sh" "$LINENO" 5
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gen/gen/reflection.pb.cc" >&5
+printf %s "checking for gen/gen/reflection.pb.cc... " >&6; }
+if test ${ac_cv_file_gen_gen_reflection_pb_cc+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "gen/gen/reflection.pb.cc"; then
+  ac_cv_file_gen_gen_reflection_pb_cc=yes
+else
+  ac_cv_file_gen_gen_reflection_pb_cc=no
+fi
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_file_gen_gen_reflection_pb_cc" >&5
+printf "%s\n" "$ac_cv_file_gen_gen_reflection_pb_cc" >&6; }
+if test "x$ac_cv_file_gen_gen_reflection_pb_cc" = xyes
+then :
+
+printf "%s\n" "#define HAVE_GEN_GEN_REFLECTION_PB_CC 1" >>confdefs.h
+
+else $as_nop
+  as_fn_error $? "Could not find the required generated proto files. Run generate-reflection-support.sh" "$LINENO" 5
+fi
+
+
 # Checks for typedefs, structures, and compiler characteristics.
 ac_fn_c_check_type "$LINENO" "_Bool" "ac_cv_type__Bool" "$ac_includes_default"
 if test "x$ac_cv_type__Bool" = xyes

@@ -131,6 +131,8 @@ AC_CHECK_LIB([crypto], [main])
 # Checks for header files.
 AC_CHECK_HEADERS([arpa/inet.h fcntl.h inttypes.h mach/mach.h malloc.h netdb.h netinet/in.h stdint.h strings.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h unistd.h])
 
+AC_CHECK_FILES([gen/gen/reflection.pb.h gen/gen/reflection.pb.cc], [], AC_MSG_ERROR([Could not find the required generated proto files. Run generate-reflection-support.sh]))
+
 # Checks for typedefs, structures, and compiler characteristics.
 AC_CHECK_HEADER_STDBOOL
 AC_C_INLINE

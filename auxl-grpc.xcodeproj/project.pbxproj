@@ -36,10 +36,6 @@
 		D6F88FD627844B8400D9DDCE /* options.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FD427844B8400D9DDCE /* options.c */; };
 		D6F88FDB2784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FD92784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc */; };
 		D6F88FDC2784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FD92784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc */; };
-		D6F88FE12784DC8C00D9DDCE /* reflection.grpc.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FDE2784DC8C00D9DDCE /* reflection.grpc.pb.cc */; };
-		D6F88FE22784DC8C00D9DDCE /* reflection.grpc.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FDE2784DC8C00D9DDCE /* reflection.grpc.pb.cc */; };
-		D6F88FE32784DC8C00D9DDCE /* reflection.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */; };
-		D6F88FE42784DC8C00D9DDCE /* reflection.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */; };
 		D6F88FE62785EB0C00D9DDCE /* descriptor_local.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FD727848C3800D9DDCE /* descriptor_local.json */; };
 		D6F88FEF2786DCD300D9DDCE /* hello_request_message_1.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FE92785F47B00D9DDCE /* hello_request_message_1.json */; };
 		D6F88FF02786DCD300D9DDCE /* hello_request_message_2.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FE82785F47B00D9DDCE /* hello_request_message_2.json */; };
@@ -119,10 +115,6 @@
 		D6F88FD727848C3800D9DDCE /* descriptor_local.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = descriptor_local.json; sourceTree = "<group>"; };
 		D6F88FD92784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = proto_reflection_descriptor_database.cc; sourceTree = "<group>"; };
 		D6F88FDA2784DC4A00D9DDCE /* proto_reflection_descriptor_database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = proto_reflection_descriptor_database.h; sourceTree = "<group>"; };
-		D6F88FDD2784DC8C00D9DDCE /* reflection.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reflection.pb.h; sourceTree = "<group>"; };
-		D6F88FDE2784DC8C00D9DDCE /* reflection.grpc.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = reflection.grpc.pb.cc; sourceTree = "<group>"; };
-		D6F88FDF2784DC8C00D9DDCE /* reflection.grpc.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reflection.grpc.pb.h; sourceTree = "<group>"; };
-		D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = reflection.pb.cc; sourceTree = "<group>"; };
 		D6F88FE52784DF5800D9DDCE /* cli_call.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cli_call.h; sourceTree = "<group>"; };
 		D6F88FE82785F47B00D9DDCE /* hello_request_message_2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hello_request_message_2.json; sourceTree = "<group>"; };
 		D6F88FE92785F47B00D9DDCE /* hello_request_message_1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hello_request_message_1.json; sourceTree = "<group>"; };
@@ -227,10 +219,6 @@
 			children = (
 				D6F88FE52784DF5800D9DDCE /* cli_call.h */,
 				D6F88FB92781AD6A00D9DDCE /* cli_call.cc */,
-				D6F88FDE2784DC8C00D9DDCE /* reflection.grpc.pb.cc */,
-				D6F88FDF2784DC8C00D9DDCE /* reflection.grpc.pb.h */,
-				D6F88FE02784DC8C00D9DDCE /* reflection.pb.cc */,
-				D6F88FDD2784DC8C00D9DDCE /* reflection.pb.h */,
 				D6F88FD92784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc */,
 				D6F88FDA2784DC4A00D9DDCE /* proto_reflection_descriptor_database.h */,
 			);
@@ -326,7 +314,6 @@
 				D6F88FA8277B59F400D9DDCE /* session.cpp in Sources */,
 				D6F88FCF27832AB300D9DDCE /* util.cpp in Sources */,
 				D6F88F7027788ADC00D9DDCE /* tool.c in Sources */,
-				D6F88FE32784DC8C00D9DDCE /* reflection.pb.cc in Sources */,
 				D6F88FDB2784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
 				D6F88FBA2781AD6A00D9DDCE /* cli_call.cc in Sources */,
 				D6F88F7227788ADC00D9DDCE /* connection.cpp in Sources */,
@@ -335,7 +322,6 @@
 				D6F88F7327788ADC00D9DDCE /* parser.cpp in Sources */,
 				D6F88FD527844B8400D9DDCE /* options.c in Sources */,
 				D6F88FC22781BB5D00D9DDCE /* error_collector.c in Sources */,
-				D6F88FE12784DC8C00D9DDCE /* reflection.grpc.pb.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +332,6 @@
 				D6F88FA5277B136700D9DDCE /* gtest-all.cc in Sources */,
 				D6F88FD627844B8400D9DDCE /* options.c in Sources */,
 				D6F88FB0277F13C900D9DDCE /* descriptor.cpp in Sources */,
-				D6F88FE42784DC8C00D9DDCE /* reflection.pb.cc in Sources */,
 				D6F88F91277B104700D9DDCE /* gtest_main.cc in Sources */,
 				D6F88FBB2781AD6A00D9DDCE /* cli_call.cc in Sources */,
 				D6F88F83277B0FA700D9DDCE /* tool.c in Sources */,
@@ -358,7 +343,6 @@
 				D6F88F87277B0FA700D9DDCE /* auxl_main_test.cpp in Sources */,
 				D6F88FF92786F33600D9DDCE /* cli_util.cpp in Sources */,
 				D6F88F88277B0FA700D9DDCE /* parser.cpp in Sources */,
-				D6F88FE22784DC8C00D9DDCE /* reflection.grpc.pb.cc in Sources */,
 				D6F88FC32781BB5D00D9DDCE /* error_collector.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -742,6 +726,7 @@
 					"${PROJECT_DIR}/modules/grpc/",
 					"${PROJECT_DIR}/modules/grpc/third_party/googletest/googletest/include",
 					"${PROJECT_DIR}/modules/grpc/third_party/googletest/googletest",
+					"${PROJECT_DIR}/gen",
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
@@ -895,6 +880,7 @@
 					"${PROJECT_DIR}/modules/grpc/",
 					"${PROJECT_DIR}/modules/grpc/third_party/googletest/googletest/include",
 					"${PROJECT_DIR}/modules/grpc/third_party/googletest/googletest",
+					"${PROJECT_DIR}/gen",
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 11.3;

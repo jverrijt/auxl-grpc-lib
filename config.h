@@ -45,6 +45,12 @@
 /* Define to 1 if you have the `fork' function. */
 #define HAVE_FORK 1
 
+/* Define to 1 if you have the file `gen/gen/reflection.pb.cc'. */
+#define HAVE_GEN_GEN_REFLECTION_PB_CC 1
+
+/* Define to 1 if you have the file `gen/gen/reflection.pb.h'. */
+#define HAVE_GEN_GEN_REFLECTION_PB_H 1
+
 /* Define to 1 if you have the `getcwd' function. */
 #define HAVE_GETCWD 1
 

@@ -29,7 +29,7 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/impl/codegen/config_protobuf.h>
 
-#include "reflection.grpc.pb.h"
+#include "gen/reflection.grpc.pb.h"
 
 namespace grpc {
 

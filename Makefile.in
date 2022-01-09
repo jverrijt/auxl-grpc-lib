@@ -121,9 +121,8 @@ am_libauxl_grpc_a_OBJECTS = src/parser.$(OBJEXT) src/util.$(OBJEXT) \
 	src/session.$(OBJEXT) src/options.$(OBJEXT) \
 	src/error_collector.$(OBJEXT) \
 	src/vendor/proto_reflection_descriptor_database.$(OBJEXT) \
-	src/vendor/reflection.grpc.pb.$(OBJEXT) \
-	src/vendor/cli_call.$(OBJEXT) \
-	src/vendor/reflection.pb.$(OBJEXT)
+	gen/gen/reflection.grpc.pb.$(OBJEXT) \
+	gen/gen/reflection.pb.$(OBJEXT) src/vendor/cli_call.$(OBJEXT)
 libauxl_grpc_a_OBJECTS = $(am_libauxl_grpc_a_OBJECTS)
 am_auxl_grpc_cli_OBJECTS = src/cli/auxl_grpc_cli.$(OBJEXT) \
 	src/cli/cli_util.$(OBJEXT)
@@ -144,15 +143,14 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = src/$(DEPDIR)/connection.Po \
+am__depfiles_remade = gen/gen/$(DEPDIR)/reflection.grpc.pb.Po \
+	gen/gen/$(DEPDIR)/reflection.pb.Po src/$(DEPDIR)/connection.Po \
 	src/$(DEPDIR)/descriptor.Po src/$(DEPDIR)/error_collector.Po \
 	src/$(DEPDIR)/options.Po src/$(DEPDIR)/parser.Po \
 	src/$(DEPDIR)/session.Po src/$(DEPDIR)/util.Po \
 	src/cli/$(DEPDIR)/auxl_grpc_cli.Po \
 	src/cli/$(DEPDIR)/cli_util.Po src/vendor/$(DEPDIR)/cli_call.Po \
-	src/vendor/$(DEPDIR)/proto_reflection_descriptor_database.Po \
-	src/vendor/$(DEPDIR)/reflection.grpc.pb.Po \
-	src/vendor/$(DEPDIR)/reflection.pb.Po
+	src/vendor/$(DEPDIR)/proto_reflection_descriptor_database.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -340,7 +338,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = subdir-objects
-AM_CXXFLAGS = -std=c++11 -I$(srcdir)/src -I$(srcdir)/include -I$(srcdir)/src/vendor
+AM_CXXFLAGS = -std=c++11 -I$(srcdir)/src -I$(srcdir)/include -I$(srcdir)/src/vendor -I$(srcdir)/gen
 AM_LDFLAGS = $(am__append_1)
 noinst_LIBRARIES = libauxl_grpc.a
 libauxl_grpc_a_SOURCES = src/parser.cpp \
@@ -351,9 +349,9 @@ libauxl_grpc_a_SOURCES = src/parser.cpp \
 		src/options.c \
 		src/error_collector.c \
 		src/vendor/proto_reflection_descriptor_database.cc \
-		src/vendor/reflection.grpc.pb.cc \
-		src/vendor/cli_call.cc \
-		src/vendor/reflection.pb.cc
+		gen/gen/reflection.grpc.pb.cc \
+		gen/gen/reflection.pb.cc \
+		src/vendor/cli_call.cc
 
 lib_auxl_grpc_a_CFLAGS = 
 auxl_grpc_cli_SOURCES = src/cli/auxl_grpc_cli.cpp \
@@ -486,11 +484,17 @@ src/vendor/$(DEPDIR)/$(am__dirstamp):
 src/vendor/proto_reflection_descriptor_database.$(OBJEXT):  \
 	src/vendor/$(am__dirstamp) \
 	src/vendor/$(DEPDIR)/$(am__dirstamp)
-src/vendor/reflection.grpc.pb.$(OBJEXT): src/vendor/$(am__dirstamp) \
-	src/vendor/$(DEPDIR)/$(am__dirstamp)
+gen/gen/$(am__dirstamp):
+	@$(MKDIR_P) gen/gen
+	@: > gen/gen/$(am__dirstamp)
+gen/gen/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) gen/gen/$(DEPDIR)
+	@: > gen/gen/$(DEPDIR)/$(am__dirstamp)
+gen/gen/reflection.grpc.pb.$(OBJEXT): gen/gen/$(am__dirstamp) \
+	gen/gen/$(DEPDIR)/$(am__dirstamp)
+gen/gen/reflection.pb.$(OBJEXT): gen/gen/$(am__dirstamp) \
+	gen/gen/$(DEPDIR)/$(am__dirstamp)
 src/vendor/cli_call.$(OBJEXT): src/vendor/$(am__dirstamp) \
-	src/vendor/$(DEPDIR)/$(am__dirstamp)
-src/vendor/reflection.pb.$(OBJEXT): src/vendor/$(am__dirstamp) \
 	src/vendor/$(DEPDIR)/$(am__dirstamp)
 
 libauxl_grpc.a: $(libauxl_grpc_a_OBJECTS) $(libauxl_grpc_a_DEPENDENCIES) $(EXTRA_libauxl_grpc_a_DEPENDENCIES) 
@@ -514,6 +518,7 @@ auxl_grpc_cli$(EXEEXT): $(auxl_grpc_cli_OBJECTS) $(auxl_grpc_cli_DEPENDENCIES) $
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f gen/gen/*.$(OBJEXT)
 	-rm -f src/*.$(OBJEXT)
 	-rm -f src/cli/*.$(OBJEXT)
 	-rm -f src/vendor/*.$(OBJEXT)
@@ -521,6 +526,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@gen/gen/$(DEPDIR)/reflection.grpc.pb.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@gen/gen/$(DEPDIR)/reflection.pb.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/connection.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/descriptor.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/error_collector.Po@am__quote@ # am--include-marker
@@ -532,8 +539,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cli/$(DEPDIR)/cli_util.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/vendor/$(DEPDIR)/cli_call.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/vendor/$(DEPDIR)/proto_reflection_descriptor_database.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@src/vendor/$(DEPDIR)/reflection.grpc.pb.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@src/vendor/$(DEPDIR)/reflection.pb.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -853,6 +858,8 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f gen/gen/$(DEPDIR)/$(am__dirstamp)
+	-rm -f gen/gen/$(am__dirstamp)
 	-rm -f src/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/$(am__dirstamp)
 	-rm -f src/cli/$(DEPDIR)/$(am__dirstamp)
@@ -870,7 +877,9 @@ clean-am: clean-binPROGRAMS clean-generic clean-noinstLIBRARIES \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-		-rm -f src/$(DEPDIR)/connection.Po
+		-rm -f gen/gen/$(DEPDIR)/reflection.grpc.pb.Po
+	-rm -f gen/gen/$(DEPDIR)/reflection.pb.Po
+	-rm -f src/$(DEPDIR)/connection.Po
 	-rm -f src/$(DEPDIR)/descriptor.Po
 	-rm -f src/$(DEPDIR)/error_collector.Po
 	-rm -f src/$(DEPDIR)/options.Po
@@ -881,8 +890,6 @@ distclean: distclean-am
 	-rm -f src/cli/$(DEPDIR)/cli_util.Po
 	-rm -f src/vendor/$(DEPDIR)/cli_call.Po
 	-rm -f src/vendor/$(DEPDIR)/proto_reflection_descriptor_database.Po
-	-rm -f src/vendor/$(DEPDIR)/reflection.grpc.pb.Po
-	-rm -f src/vendor/$(DEPDIR)/reflection.pb.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-tags
@@ -930,7 +937,9 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-		-rm -f src/$(DEPDIR)/connection.Po
+		-rm -f gen/gen/$(DEPDIR)/reflection.grpc.pb.Po
+	-rm -f gen/gen/$(DEPDIR)/reflection.pb.Po
+	-rm -f src/$(DEPDIR)/connection.Po
 	-rm -f src/$(DEPDIR)/descriptor.Po
 	-rm -f src/$(DEPDIR)/error_collector.Po
 	-rm -f src/$(DEPDIR)/options.Po
@@ -941,8 +950,6 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/cli/$(DEPDIR)/cli_util.Po
 	-rm -f src/vendor/$(DEPDIR)/cli_call.Po
 	-rm -f src/vendor/$(DEPDIR)/proto_reflection_descriptor_database.Po
-	-rm -f src/vendor/$(DEPDIR)/reflection.grpc.pb.Po
-	-rm -f src/vendor/$(DEPDIR)/reflection.pb.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
