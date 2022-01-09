@@ -21,14 +21,14 @@
 #include <vector>
 #include <tuple>
 
-#include "parser.h"
+#include "parser.hpp"
 #include "util.h"
 
 #include "descriptor.hpp"
 
 #include "options.h"
-#include "connection.h"
-#include "session.h"
+#include "connection.hpp"
+#include "session.hpp"
 #include "error_collector.h"
 #include "cli_session_delegate.hpp"
 #include "cli_util.hpp"
@@ -331,14 +331,10 @@ void print_usage() {
     std::cout << "Use auxl_grpc_cli <command> to get more help on a specific command\n" << std::endl;
 }
 
-
 /**
  */
 int main(int argc, char **argv)
 {
-    return test_call();
-    // return test_describe();
-    
     if (argc == 1) {
         // Print usage
         print_usage();

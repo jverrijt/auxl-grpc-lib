@@ -226,9 +226,8 @@ Status CliCall::Finish(IncomingMetadataContainer* server_trailing_metadata) {
  */
 void CliCall::Cancel()
 {
-    if (ctx_ != nullptr) {
-        ctx_.TryCancel();
-    }
+    ctx_.TryCancel();
+    
 }
 
 }  // namespace testing
