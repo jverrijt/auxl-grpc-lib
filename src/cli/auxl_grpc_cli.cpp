@@ -22,7 +22,7 @@
 #include <tuple>
 
 #include "parser.hpp"
-#include "util.h"
+#include "util.hpp"
 
 #include "descriptor.hpp"
 
