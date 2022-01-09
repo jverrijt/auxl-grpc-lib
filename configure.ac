@@ -4,6 +4,7 @@
 AC_PREREQ([2.71])
 AC_INIT([auxl-grpc-lib], [0.1], [joost@metamotifs.nl])
 AM_INIT_AUTOMAKE([foreign])
+AC_USE_SYSTEM_EXTENSIONS
 AM_PROG_CC_C_O
 AC_CONFIG_SRCDIR([src/cli/auxl_grpc_cli.cpp])
 AC_CONFIG_HEADERS([config.h])
