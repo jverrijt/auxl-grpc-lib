@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.71])
+AC_PREREQ([2.69])
 AC_INIT([auxl-grpc-lib], [0.1], [joost@metamotifs.nl])
 AM_INIT_AUTOMAKE([foreign])
 AC_USE_SYSTEM_EXTENSIONS
@@ -35,6 +35,8 @@ AM_CONDITIONAL([LINUX], [test "$build_linux" = "yes"])
 AM_CONDITIONAL([WINDOWS], [test "$build_windows" = "yes"])
 AM_CONDITIONAL([OSX], [test "$build_mac" = "yes"])
 
+
+
 # Checks for programs.
 AC_PROG_CXX
 AC_PROG_AWK
@@ -47,6 +49,9 @@ AC_PROG_OBJC
 AC_PROG_RANLIB
 
 # Checks for libraries.
+AC_CHECK_LIB([ssl], [main])
+AC_CHECK_LIB([crypto], [main])
+AC_CHECK_LIB([pthread], [main])
 AC_CHECK_LIB([absl_bad_any_cast_impl], [main])
 AC_CHECK_LIB([absl_bad_optional_access], [main])
 AC_CHECK_LIB([absl_bad_variant_access], [main])
@@ -117,16 +122,20 @@ AC_CHECK_LIB([address_sorting], [main])
 AC_CHECK_LIB([cares], [main])
 AC_CHECK_LIB([dl], [main])
 AC_CHECK_LIB([gpr], [main])
-AC_CHECK_LIB([grpc], [main])
 AC_CHECK_LIB([grpc++], [main])
+AC_CHECK_LIB([grpc], [main])
 AC_CHECK_LIB([grpcpp_channelz], [main])
 AC_CHECK_LIB([protobuf], [main])
-AC_CHECK_LIB([pthread], [main])
 AC_CHECK_LIB([re2], [main])
 AC_CHECK_LIB([upb], [main])
 AC_CHECK_LIB([z], [main])
-AC_CHECK_LIB([ssl], [main])
-AC_CHECK_LIB([crypto], [main])
+
+# FIXME don't kown how to add a -Wl,--end-group
+if test "$build_linux" = "yes"
+then 
+	LDFLAGS="-Wl,--start-group"
+fi
+AC_SUBST([LDFLAGS])
 
 # Checks for header files.
 AC_CHECK_HEADERS([arpa/inet.h fcntl.h inttypes.h mach/mach.h malloc.h netdb.h netinet/in.h stdint.h strings.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h unistd.h])
