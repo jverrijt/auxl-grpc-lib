@@ -45,30 +45,6 @@ std::shared_ptr<google::protobuf::Message> create_input_message(Descriptor& desc
     return msg;
 }
 
-
-TEST_F(AuxlClientTest, TestCInterface)
-{
-    
-    GRPCConnectionOptions def = init_connection_options();
-    MConnectionHandle connection = create_connection((char*) "localhost:5000", def);
-    
-    MDescriptorHandle descriptor = create_descriptor(NULL, 0, connection);
-    
-    char* json_result = descriptor_to_json(descriptor);
-    
-    printf("%s", json_result);
-    
-    
-    free(json_result);
-    free_connection(connection);
-    free_descriptor(descriptor);
-    
-    printf("We're done\n");
-    
-    
-}
-
-
 /**
  The example used in the README
  */

@@ -67,7 +67,6 @@ void load_and_send_message_at_path(const std::string& message_path,
 void parse_metadata(const std::vector<std::string>& key_val_pairs, std::multimap<std::string, std::string>& map)
 {
     for (std::string metadata : key_val_pairs) {
-        
         auto found = metadata.find_last_of(":");
         
         if (found != std::string::npos) {

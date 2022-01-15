@@ -29,10 +29,6 @@
 namespace auxl {
 namespace grpc {
 
-struct SessionResponse {
-    
-}; 
-
 class DescriptorSessionDelegate : public SessionDelegate
 {
 public:
