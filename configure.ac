@@ -35,8 +35,18 @@ AM_CONDITIONAL([LINUX], [test "$build_linux" = "yes"])
 AM_CONDITIONAL([WINDOWS], [test "$build_windows" = "yes"])
 AM_CONDITIONAL([OSX], [test "$build_mac" = "yes"])
 
+# FIXME don't kown how to add a -Wl,--end-group
+if test "$build_linux" = "yes"
+then 
+	LDFLAGS="-Wl,--start-group"
+fi
 
+if test "$build_mac" = "yes" 
+then 
+    LDFLAGS="-framework CoreFoundation"
+fi
 
+AC_SUBST([LDFLAGS])
 # Checks for programs.
 AC_PROG_CXX
 AC_PROG_AWK
@@ -129,13 +139,6 @@ AC_CHECK_LIB([protobuf], [main])
 AC_CHECK_LIB([re2], [main])
 AC_CHECK_LIB([upb], [main])
 AC_CHECK_LIB([z], [main])
-
-# FIXME don't kown how to add a -Wl,--end-group
-if test "$build_linux" = "yes"
-then 
-	LDFLAGS="-Wl,--start-group"
-fi
-AC_SUBST([LDFLAGS])
 
 # Checks for header files.
 AC_CHECK_HEADERS([arpa/inet.h fcntl.h inttypes.h mach/mach.h malloc.h netdb.h netinet/in.h stdint.h strings.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h unistd.h])
