@@ -72,9 +72,6 @@ std::shared_ptr<google::protobuf::Message> Descriptor::create_message(const std:
     std::shared_ptr<google::protobuf::Message> msg;
     auto descr = pool_->FindMessageTypeByName(message_type_name);
     
-//    std::vector<std::string> message_names;
-//    db_->FindAllMessageNames(&message_names);
-    
     if (descr != nullptr) {
         msg = build_message(*descr, *factory_);
     }

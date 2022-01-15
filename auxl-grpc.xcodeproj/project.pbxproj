@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		D68536182788818F00408F38 /* connection_opts_test.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D68536172788818400408F38 /* connection_opts_test.json */; };
 		D6853619278882F100408F38 /* connection_opts_test.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D68536172788818400408F38 /* connection_opts_test.json */; };
-		D6F88F7027788ADC00D9DDCE /* tool.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.c */; };
+		D6F88F7027788ADC00D9DDCE /* tool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.cpp */; };
 		D6F88F7127788ADC00D9DDCE /* auxl_grpc_cli.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6A27788ADC00D9DDCE /* auxl_grpc_cli.cpp */; };
 		D6F88F7227788ADC00D9DDCE /* connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6C27788ADC00D9DDCE /* connection.cpp */; };
 		D6F88F7327788ADC00D9DDCE /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6D27788ADC00D9DDCE /* parser.cpp */; };
-		D6F88F83277B0FA700D9DDCE /* tool.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.c */; };
+		D6F88F83277B0FA700D9DDCE /* tool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.cpp */; };
 		D6F88F84277B0FA700D9DDCE /* connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6C27788ADC00D9DDCE /* connection.cpp */; };
 		D6F88F87277B0FA700D9DDCE /* auxl_main_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F7D277B0F7300D9DDCE /* auxl_main_test.cpp */; };
 		D6F88F88277B0FA700D9DDCE /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6D27788ADC00D9DDCE /* parser.cpp */; };
@@ -82,12 +82,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D65C5502279309DD00A7AAC0 /* tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tool.h; sourceTree = "<group>"; };
 		D68536172788818400408F38 /* connection_opts_test.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = connection_opts_test.json; sourceTree = "<group>"; };
 		D685361B2789BEC800408F38 /* test_session_delegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = test_session_delegate.hpp; sourceTree = "<group>"; };
 		D6F88F5827788A4300D9DDCE /* auxl_grpc_cli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = auxl_grpc_cli; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F88F6327788ADC00D9DDCE /* connection.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = connection.hpp; sourceTree = "<group>"; };
 		D6F88F6527788ADC00D9DDCE /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
-		D6F88F6627788ADC00D9DDCE /* tool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tool.c; sourceTree = "<group>"; };
+		D6F88F6627788ADC00D9DDCE /* tool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tool.cpp; sourceTree = "<group>"; };
 		D6F88F6827788ADC00D9DDCE /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		D6F88F6927788ADC00D9DDCE /* parser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = parser.hpp; sourceTree = "<group>"; };
 		D6F88F6A27788ADC00D9DDCE /* auxl_grpc_cli.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = auxl_grpc_cli.cpp; sourceTree = "<group>"; };
@@ -173,7 +174,8 @@
 				D6F88F6327788ADC00D9DDCE /* connection.hpp */,
 				D6F88F6B27788ADC00D9DDCE /* util.hpp */,
 				D6F88F6527788ADC00D9DDCE /* util.cpp */,
-				D6F88F6627788ADC00D9DDCE /* tool.c */,
+				D65C5502279309DD00A7AAC0 /* tool.h */,
+				D6F88F6627788ADC00D9DDCE /* tool.cpp */,
 				D6F88F6827788ADC00D9DDCE /* types.h */,
 				D6F88F6927788ADC00D9DDCE /* parser.hpp */,
 				D6F88F6D27788ADC00D9DDCE /* parser.cpp */,
@@ -313,7 +315,7 @@
 				D6F88FAF277EEBE800D9DDCE /* descriptor.cpp in Sources */,
 				D6F88FA8277B59F400D9DDCE /* session.cpp in Sources */,
 				D6F88FCF27832AB300D9DDCE /* util.cpp in Sources */,
-				D6F88F7027788ADC00D9DDCE /* tool.c in Sources */,
+				D6F88F7027788ADC00D9DDCE /* tool.cpp in Sources */,
 				D6F88FDB2784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
 				D6F88FBA2781AD6A00D9DDCE /* cli_call.cc in Sources */,
 				D6F88F7227788ADC00D9DDCE /* connection.cpp in Sources */,
@@ -334,7 +336,7 @@
 				D6F88FB0277F13C900D9DDCE /* descriptor.cpp in Sources */,
 				D6F88F91277B104700D9DDCE /* gtest_main.cc in Sources */,
 				D6F88FBB2781AD6A00D9DDCE /* cli_call.cc in Sources */,
-				D6F88F83277B0FA700D9DDCE /* tool.c in Sources */,
+				D6F88F83277B0FA700D9DDCE /* tool.cpp in Sources */,
 				D6F88F84277B0FA700D9DDCE /* connection.cpp in Sources */,
 				D6F88FAC277BA5EA00D9DDCE /* session.cpp in Sources */,
 				D6F88FD027832AB400D9DDCE /* util.cpp in Sources */,
