@@ -39,10 +39,12 @@ typedef struct GRPCConnectionOptions {
 } GRPCConnectionOptions;
 
 /**
+ Returns default connection options
  */
 GRPCConnectionOptions init_connection_options(void);
 
 /**
+ Returns a pointer to connection options allocated on the heap.
  */
 GRPCConnectionOptions* connection_options_create(double timeout,
                                                  bool use_ssl,
@@ -51,10 +53,12 @@ GRPCConnectionOptions* connection_options_create(double timeout,
                                                  char* ssl_root_certs_path);
 
 /**
+ Default connection options, heap allocated.
  */
 GRPCConnectionOptions* connection_options_default(void);
 
 /**
+ Free connection options
  */
 void connection_options_free(GRPCConnectionOptions* opts);
 

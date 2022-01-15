@@ -232,6 +232,11 @@ int cmd_call(int argc, char** argv)
     std::string service_and_method = result["method"].as<std::string>();
     const auto method_descr = descriptors.get_method_descriptor(service_and_method);
     
+    if (method_descr == nullptr) {
+        std::cerr << "Method not found: " << service_and_method << std::endl;
+        return 0;
+    }
+    
     GRPCCallInfo call_info = util::call_info(*method_descr);
     
     std::cout << "Starting a " << call_info.name << " call to " << service_and_method << std::endl;
@@ -292,7 +297,7 @@ int test_call()
         (char*) "--endpoint",
         (char*) "localhost:5000",
         (char*) "--method",
-        (char*) "greet.Greeter.SayHelloBidiStream",
+        (char*) "Greeter.SayHelloBidiStream",
         (char*) "--descriptors",
         (char*) "test_resources/descriptor_local.json",
         (char*) "--message",
