@@ -20,10 +20,14 @@
 #define tool_h
 
 #include "options.h"
+#include "error_collector.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#define MSESSION_STATUS_CODE_ERROR -1
+#define MSESSION_STATUS_CODE_OK 0
 
 typedef void* MSessionHandle;
 typedef void* MMessageHandle;
@@ -38,6 +42,7 @@ typedef struct MMetadata_t {
 } MMetadata;
 
 typedef struct MSessionResponse_t {
+    int status_code;
     char* response;
     MMetadata* metadata;
 } MSessionResponse;
@@ -45,14 +50,14 @@ typedef struct MSessionResponse_t {
 // Function pointers
 typedef void (*session_did_start_m)(void);
 typedef void (*session_did_send_m)(MMessageHandle message);
-typedef void (*session_did_receive_m)(MSessionResponse* response);
-typedef void (*session_did_close_m)(MMetadata* closing_metadata);
+typedef void (*session_did_recieve_m)(MSessionResponse* response);
+typedef void (*session_did_close_m)(MSessionResponse* status, MMetadata* closing_metadata);
 
 typedef struct MSessionDelegate_t {
     char* output_type_name;
     session_did_start_m session_did_start;
     session_did_send_m session_did_send;
-    session_did_receive_m session_did_receive;
+    session_did_recieve_m session_did_recieve;
     session_did_close_m session_did_close;
 } MSessionDelegate;
 
@@ -62,18 +67,28 @@ void free_connection(MConnectionHandle connection);
 
 /* Descriptor */
 MDescriptorHandle create_descriptor(char** protof_files, int proto_file_count, MConnectionHandle connection);
+
+/**
+ Returns the error collector for a given descriptor handle
+ */
+const AuxlGRPCErrorCollector* descriptor_get_errors(MDescriptorHandle handle);
 char* descriptor_to_json(MDescriptorHandle handle);
+
+MMessageHandle descriptor_create_message_from_json(MDescriptorHandle handle, char* json, char* message_type);
+char* descriptor_create_json_message(MDescriptorHandle handle, char* type_name);
+
 void free_descriptor(MDescriptorHandle descriptor);
 
 /* Session */
 MSessionHandle create_session(MConnectionHandle connection, MDescriptorHandle descriptor, MSessionDelegate *delegate);
 MSessionResponse* create_session_response(char* response, MMetadata* metadata);
 
-MSessionDelegate* create_session_delegate(char* output_type_name, session_did_start_m start_method, session_did_send_m send_method, session_did_receive_m receive_method, session_did_close_m close_method);
-
-void free_session_delegate(MSessionDelegate* delegate);
-
 int session_start(MSessionHandle session, MDescriptorHandle descriptor, char* method_name);
+
+void session_send_message(MSessionHandle handle, char* json, char* message_type_name);
+
+void session_close(void);
+
 void free_session(MSessionHandle handle);
 void free_session_response(MSessionResponse* response);
 

@@ -49,7 +49,7 @@ public:
             }
             
             MSessionResponse *res = create_session_response((char*)json_output.c_str(), meta_data_map);
-            delegate_->session_did_receive(res);
+            delegate_->session_did_recieve(res);
         }
     }
     
@@ -57,11 +57,17 @@ public:
      */
     inline void session_did_close(::grpc::Status stat, std::multimap<::grpc::string_ref, ::grpc::string_ref> metadata) override
     {
+        auto meta_data_map = create_metadata(metadata.size());
+        
+        for (auto &m: metadata) {
+            metadata_push(meta_data_map, m.first.data(), m.second.data());
+        }
+        
+
+        
+        // delegate_->session_did_close(
         
         // delegate_->session_did_close(-1, )
-        
-        
-        std::cout << "Session did close with status: " <<  stat.ok() << std::endl;
     }
     
 private:

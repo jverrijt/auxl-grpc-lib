@@ -58,10 +58,39 @@ extern "C"
     
     /**
      */
+    const AuxlGRPCErrorCollector* descriptor_get_errors(MDescriptorHandle handle) {
+        return ((Descriptor*) handle)->get_error_collector();
+    }
+    
+    /**
+     */
     char* descriptor_to_json(MDescriptorHandle handle) {
         Descriptor *d = (Descriptor*) handle;
         std::string json = d->to_json();
         return strdup(json.c_str());
+    }
+    
+    /**
+     */
+    MMessageHandle descriptor_create_message_from_json(MDescriptorHandle handle, char* json, char* message_type) {
+        Descriptor *d = (Descriptor*) handle;
+        auto msg = d->message_from_json(message_type, json);
+        MMessageHandle mc = (MMessageHandle) msg.get();
+        
+        return mc;
+    }
+    
+    /**
+     */
+    char* descriptor_create_json_message(MDescriptorHandle handle, char* type_name) {
+        Descriptor* descriptor = (Descriptor*) handle;
+        auto msg = descriptor->create_message(type_name);
+        
+        if (msg != nullptr) {
+            return strdup(descriptor->message_to_json(*msg).c_str());
+        }
+        
+        return NULL;
     }
     
     /**
@@ -96,28 +125,6 @@ extern "C"
     
     /**
      */
-    MSessionDelegate* create_session_delegate(char* output_type_name, session_did_start_m start_method, session_did_send_m send_method, session_did_receive_m receive_method, session_did_close_m close_method) {
-        
-        MSessionDelegate* delegate = (MSessionDelegate*) malloc(sizeof(MSessionDelegate));
-        
-        delegate->output_type_name = strdup(output_type_name);
-        delegate->session_did_start = start_method;
-        delegate->session_did_send = send_method;
-        delegate->session_did_receive = receive_method;
-        delegate->session_did_close = close_method;
-        
-        return delegate;
-    }
-    
-    /**
-     */
-    void free_session_delegate(MSessionDelegate* delegate) {
-        free(delegate->output_type_name);
-        free(delegate);
-    }
-    
-    /**
-     */
     int session_start(MSessionHandle session, MDescriptorHandle descriptor, char* method_name) {
         const auto method = ((Descriptor*) descriptor)->get_method_descriptor(method_name);
         
@@ -130,6 +137,17 @@ extern "C"
         }
         
         return -1;
+    }
+    
+    /**
+     */
+    void session_send_message(MSessionHandle handle, char* json, char* message_type_name) {
+        Session* session = (Session*) session;
+        
+        
+        
+        // session->send_message()
+        
     }
 
     /**
@@ -150,7 +168,7 @@ extern "C"
     
     /**
      */
-    MMetadata *create_metadata(size_t size) {
+    MMetadata* create_metadata(size_t size) {
         MMetadata* data = (MMetadata*) malloc(sizeof(MMetadata));
         data->keys = (char**) malloc(sizeof(char*) * size);
         data->vals = (char**) malloc(sizeof(char*) * size);
