@@ -1,4 +1,4 @@
-#Auxl-gRCP-lib
+# Auxl-gRCP-lib
 
 The primary purpose of this project is to provide gRPC services for generic API clients (i.e. Auxl). It exposes an easy-to-use C/C++ interface with the following functionality: 
 
@@ -10,7 +10,7 @@ Example: Retrieving the descriptors from a given service through server reflecti
 
 ```c++
 GRPCConnectionOptions options = init_connection_options();
-auto connection = Connection::create_connection("localhost:5000", options);
+auto connection = Connection::create_connection(url_to_server, options);
     
 // Create descriptors from server reflection
 Descriptor descriptor({}, connection.get());
@@ -38,7 +38,7 @@ if (method_descr != nullptr && message != nullptr)
 
 Alternatively, a C interface is provided in `tool.h` but note that it is currently largely untested. View `auxl_extern_test.cpp` to learn how to use it.
 
-##Command line tool
+## Command line tool
 
 Get the descriptors for a given service that supports server reflection
 
@@ -64,7 +64,7 @@ Pass along connection options to the describe and call commands by setting the `
     "use_ssl": true,
     "ssl_client_cert": "",
     "ssl_client_key": "",
-    "ssl_root_certs_path": “path to file that contains the certificate authorities“
+    "ssl_root_certs_path": "path to file that contains the certificate authorities"
 }
 ```
 Omit or leave blank any value that’s not pertinent. To use SSL, at a minimum, `use_ssl` needs to be set to true and the `ssl_root_certs_path` needs to be set to a valid cacert bundle ([e.g. Mozilla's root certificates](https://github.com/gisle/mozilla-ca/blob/master/lib/Mozilla/CA/cacert.pem))
