@@ -55,7 +55,7 @@ Edit the message and call the service method `greet.Greeter.SayHello`
 For bidirectional- and client stream calls, add multiple `--message` options. A menu will be presented to allow selecting the message to be send to the stream.
 
 
-###Connection options
+### Connection options
 
 Pass along connection options to the describe and call commands by setting the `—connection_options` to a json file with the following format.
 ```json
