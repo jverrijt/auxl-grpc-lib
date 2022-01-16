@@ -289,47 +289,6 @@ int cmd_call(int argc, char** argv)
     return 0;
 }
 
-/* For test purposes, remove */
-int test_call()
-{
-    char* new_args[13] = {
-        (char*) "call",
-        (char*) "--endpoint",
-        (char*) "localhost:5000",
-        (char*) "--method",
-        (char*) "greet.Greeter.SayHelloBidiStream",
-        (char*) "--descriptors",
-        (char*) "test_resources/descriptor_local.json",
-        (char*) "--message",
-        (char*) "test_resources/hello_request_message_1.json",
-        (char*) "--message",
-        (char*) "test_resources/hello_request_message_2.json",
-        (char*) "--metadata",
-        (char*) "key_a:val_a,key_b:val_b"
-        
-    };
-    int new_arg_c = 13;
-    
-    return cmd_call(new_arg_c, new_args);
-}
-
-/* For test purposes, remove */
-int test_describe()
-{
-    char* new_args[5] = {
-        (char*) "describe",
-        (char*) "--endpoint",
-        (char*) "demo.gripgrpc.dev:443",
-        (char*) "--connection_options",
-        (char*) "test_resources/connection_config.json",
-    };
-    int new_arg_c = 5;
-    
-    return cmd_describe(new_arg_c, new_args);
-    
-}
-
-
 void print_usage() {
     std::cout << "Usage: auxl_grpc_cli <command> [OPTIONS...]\n" << std::endl;
     std::cout << "Available commands are:\n\tdescribe\n\tmessage\n\tcall\n" << std::endl;
@@ -340,8 +299,6 @@ void print_usage() {
  */
 int main(int argc, char **argv)
 {
-    return test_call();
-    
     if (argc == 1) {
         // Print usage
         print_usage();
