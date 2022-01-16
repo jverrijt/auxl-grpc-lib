@@ -8,32 +8,33 @@ The primary purpose of this project is to provide gRPC services for generic API 
 
 Example: Retrieving the descriptors from a given service through server reflection and setting up and performing a unary call.
 
-
-    GRPCConnectionOptions options = init_connection_options();
-    auto connection = Connection::create_connection("localhost:5000", options);
-        
-    // Create descriptors from server reflection
-    Descriptor descriptor({}, connection.get());
-        
-    // Create a message
-    auto message = descriptor.create_message("greet.HelloRequest");
-        
-    // The method that we will call
-    const auto method_descr = descriptor.get_method_descriptor("greet.Greeter.SayHello");
-        
-    if (method_descr != nullptr && message != nullptr)
-    {
-        Session session(connection.get());
-        
-        // A session delegates allows for capturing and formatting output.
-        // It also captures errors
-        DescriptorSessionDelegate delegate(&descriptor, "HelloResponse");
-        session.delegate = &delegate;
-        
-        session.start(*method_descr);
-        session.send_message(*message);
-        session.close();
-    }
+```c++
+GRPCConnectionOptions options = init_connection_options();
+auto connection = Connection::create_connection("localhost:5000", options);
+    
+// Create descriptors from server reflection
+Descriptor descriptor({}, connection.get());
+    
+// Create a message
+auto message = descriptor.create_message("greet.HelloRequest");
+    
+// The method that we will call
+const auto method_descr = descriptor.get_method_descriptor("greet.Greeter.SayHello");
+    
+if (method_descr != nullptr && message != nullptr)
+{
+    Session session(connection.get());
+    
+    // A session delegates allows for capturing and formatting output.
+    // It also captures errors
+    DescriptorSessionDelegate delegate(&descriptor, "HelloResponse");
+    session.delegate = &delegate;
+    
+    session.start(*method_descr);
+    session.send_message(*message);
+    session.close();
+}
+```
 
 Alternatively, a C interface is provided in `tool.h` but note that it is currently largely untested. View `auxl_extern_test.cpp` to learn how to use it.
 
@@ -57,15 +58,15 @@ For bidirectional- and client stream calls, add multiple `--message` options. A 
 ###Connection options
 
 Pass along connection options to the describe and call commands by setting the `—connection_options` to a json file with the following format.
-
-    {
-        "timeout": 100,
-        "use_ssl": true,
-        "ssl_client_cert": "",
-        "ssl_client_key": "",
-        "ssl_root_certs_path": “path to file that contains the certificate authorities“
-    }
-
+```json
+{
+    "timeout": 100,
+    "use_ssl": true,
+    "ssl_client_cert": "",
+    "ssl_client_key": "",
+    "ssl_root_certs_path": “path to file that contains the certificate authorities“
+}
+```
 Omit or leave blank any value that’s not pertinent. To use SSL, at a minimum, `use_ssl` needs to be set to true and the `ssl_root_certs_path` needs to be set to a valid cacert bundle ([e.g. Mozilla's root certificates](https://github.com/gisle/mozilla-ca/blob/master/lib/Mozilla/CA/cacert.pem))
 
 
