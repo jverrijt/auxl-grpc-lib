@@ -55,7 +55,7 @@ public:
     /**
      Create default message for given type name.
      */
-    std::shared_ptr<google::protobuf::Message> create_message(const std::string& message_type_name);
+    std::unique_ptr<google::protobuf::Message> create_message(const std::string& message_type_name);
     
     /**
      */
@@ -69,7 +69,7 @@ public:
     
     /**
      */
-    std::shared_ptr<google::protobuf::Message> message_from_json(const std::string& message_type_name, const std::string& json);
+    std::unique_ptr<google::protobuf::Message> message_from_json(const std::string& message_type_name, const std::string& json);
     
     /**
      Returns a nullptr if the given method can't be found.
@@ -92,7 +92,7 @@ public:
     const AuxlGRPCErrorCollector* get_error_collector();
 
 private:
-    std::shared_ptr<google::protobuf::Message> build_message(const google::protobuf::Descriptor& descriptor,
+    std::unique_ptr<google::protobuf::Message> build_message(const google::protobuf::Descriptor& descriptor,
                                                              google::protobuf::DynamicMessageFactory& factory, int depth = 0, int max_depth = 1);
     
     AuxlGRPCErrorCollector* error_collector_;

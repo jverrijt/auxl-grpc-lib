@@ -9,6 +9,7 @@
 #define extern_session_delegate_hpp
 
 #include <stdio.h>
+#include <sstream>
 
 #include "tool.h"
 
@@ -24,6 +25,13 @@ class ExternSessionDelegate : public SessionDelegate
 public:
     ExternSessionDelegate(Descriptor* descriptor, MSessionDelegate* delegate) :
         descriptor_(descriptor), delegate_(delegate) {}
+    
+    /**
+     */
+    void session_did_send(const google::protobuf::Message& message) override
+    {
+        delegate_->session_did_send((MMessageHandle) &message);
+    }
     
     /**
      */
@@ -45,10 +53,16 @@ public:
             auto meta_data_map = create_metadata(meta_data.size());
             
             for (auto &m: meta_data) {
-                metadata_push(meta_data_map, m.first.data(), m.second.data());
+                std::ostringstream key_stream;
+                std::ostringstream val_stream;
+                
+                key_stream << m.first;
+                val_stream << m.second;
+                    
+                metadata_push(meta_data_map, key_stream.str().c_str(), val_stream.str().c_str());
             }
             
-            MSessionResponse *res = create_session_response((char*)json_output.c_str(), meta_data_map);
+            MSessionResponse *res = create_session_response((char*)json_output.c_str(), meta_data_map, MSESSION_STATUS_CODE_OK);
             delegate_->session_did_recieve(res);
         }
     }
@@ -63,11 +77,10 @@ public:
             metadata_push(meta_data_map, m.first.data(), m.second.data());
         }
         
-
+        MSessionResponse *response = create_session_response((char*) stat.error_message().c_str(), meta_data_map,
+                                stat.ok() ? MSESSION_STATUS_CODE_OK : MSESSION_STATUS_CODE_ERROR);
         
-        // delegate_->session_did_close(
-        
-        // delegate_->session_did_close(-1, )
+        delegate_->session_did_close(response);
     }
     
 private:

@@ -23,8 +23,6 @@ void session_did_start() {
 
 void session_did_send(MMessageHandle message) {
     printf("Message did send\n");
-    
-    
 }
 
 void session_did_recieve(MSessionResponse* response) {
@@ -36,9 +34,17 @@ void session_did_recieve(MSessionResponse* response) {
     free_session_response(response);
 }
 
-void session_did_close(MSessionResponse* response, MMetadata* closing_metadata) {
-    printf("The session did indeed close\n");
-    
+void session_did_close(MSessionResponse* response) {
+    if (response->status_code == MSESSION_STATUS_CODE_OK) {
+        printf("The session did indeed close with OK status\n");
+        
+        printf("Metadata:\n");
+        for (int i = 0; i < response->metadata->count; i++) {
+            printf("Key: %s, val: %s\n", response->metadata->keys[i], response->metadata->vals[i]);
+        }
+    } else {
+        printf("The session closed with an error: %s", response->response);
+    }
     free_session_response(response);
 }
 
@@ -51,7 +57,7 @@ TEST_F(AuxlExternTest, TestCInterface)
     MDescriptorHandle descriptor = create_descriptor(NULL, 0, connection);
     
     MSessionDelegate delegate = {
-        .output_type_name = (char*) "HelloResponse",
+        .output_type_name = (char*) "greet.HelloReply",
         .session_did_start = &session_did_start,
         .session_did_send = &session_did_send,
         .session_did_recieve = &session_did_recieve,
@@ -60,29 +66,17 @@ TEST_F(AuxlExternTest, TestCInterface)
     
     MSessionHandle session = create_session(connection, descriptor, &delegate);
     
-    char* json_result = descriptor_to_json(descriptor);
+    char* json_message = (char*) "{ \"name\":\"Extern test\" }";
+    MMessageHandle message = descriptor_create_message_from_json(descriptor, json_message, (char*) "greet.HelloRequest");
     
     if (session_start(session, descriptor, (char*) "greet.Greeter.SayHello") != -1) {
-        char* hello_request_msg = descriptor_create_json_message(descriptor, "greet.HelloRequest");
-        //session_send_message(hello_request_msg, "greet.HelloRequest");
-        
-        
+        session_send_message(session, message);
+        session_close(session);
     }
-    
-    
-    
-    
-    
-    
-    printf("%s", json_result);
-    
-    free(json_result);
     
     free_connection(connection);
     free_descriptor(descriptor);
     free_session(session);
-    
-    printf("We're done\n");
 }
 
 }

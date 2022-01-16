@@ -297,7 +297,7 @@ int test_call()
         (char*) "--endpoint",
         (char*) "localhost:5000",
         (char*) "--method",
-        (char*) "Greeter.SayHelloBidiStream",
+        (char*) "greet.Greeter.SayHelloBidiStream",
         (char*) "--descriptors",
         (char*) "test_resources/descriptor_local.json",
         (char*) "--message",
@@ -340,6 +340,8 @@ void print_usage() {
  */
 int main(int argc, char **argv)
 {
+    return test_call();
+    
     if (argc == 1) {
         // Print usage
         print_usage();

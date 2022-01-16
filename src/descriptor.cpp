@@ -67,13 +67,14 @@ Descriptor::~Descriptor()
 /**
  Messages are dynamically allocated
  */
-std::shared_ptr<google::protobuf::Message> Descriptor::create_message(const std::string& message_type_name)
+std::unique_ptr<google::protobuf::Message> Descriptor::create_message(const std::string& message_type_name)
 {
-    std::shared_ptr<google::protobuf::Message> msg;
+    std::unique_ptr<google::protobuf::Message> msg;
     auto descr = pool_->FindMessageTypeByName(message_type_name);
     
     if (descr != nullptr) {
-        msg = build_message(*descr, *factory_);
+        auto p = build_message(*descr, *factory_);
+        msg = std::move(p);
     }
     
     return msg;
@@ -90,13 +91,13 @@ std::string Descriptor::message_to_json(const Message& message, google::protobuf
 
 /**
  */
-std::shared_ptr<Message> Descriptor::message_from_json(const std::string& message_type_name, const std::string& json)
+std::unique_ptr<Message> Descriptor::message_from_json(const std::string& message_type_name, const std::string& json)
 {
-    std::shared_ptr<Message> msg;
+    std::unique_ptr<Message> msg;
     auto descr = pool_->FindMessageTypeByName(message_type_name);
     
     if (descr != nullptr) {
-        msg = std::shared_ptr<Message>(factory_->GetPrototype(descr)->New());
+        msg = std::unique_ptr<Message>(factory_->GetPrototype(descr)->New());
         ::util::JsonParseOptions opts;
         
         opts.ignore_unknown_fields = true;
@@ -177,10 +178,10 @@ std::string Descriptor::to_json(google::protobuf::util::JsonPrintOptions options
 /**
  Create a message with some sensible defaults
  */
-std::shared_ptr<Message> Descriptor::build_message(const google::protobuf::Descriptor& descriptor,
+std::unique_ptr<Message> Descriptor::build_message(const google::protobuf::Descriptor& descriptor,
                                                    DynamicMessageFactory& factory, int depth, int max_depth)
 {
-    std::shared_ptr<Message> message(factory.GetPrototype(&descriptor)->New());
+    std::unique_ptr<Message> message(factory.GetPrototype(&descriptor)->New());
     
     auto refl = message->GetReflection();
        

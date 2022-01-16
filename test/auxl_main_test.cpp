@@ -170,7 +170,8 @@ TEST_F(AuxlGrpcTest, TestBidiStream)
     auto method_descr = descriptor->get_method_descriptor("greet.Greeter.SayHelloBidiStream");
 
     // Generate some test message to send.
-    std::vector<std::shared_ptr<google::protobuf::Message>> messages;
+    std::vector<std::unique_ptr<google::protobuf::Message>> messages;
+    // std::vector<google::protobuf::Message*> messages;
     for (int i = 0; i < 10; i++) {
         auto message = descriptor->create_message(method_descr->input_type()->full_name());
         
@@ -180,7 +181,7 @@ TEST_F(AuxlGrpcTest, TestBidiStream)
         
         message = descriptor->message_from_json(method_descr->input_type()->full_name(), p.dump());
             
-        messages.push_back(message);
+        messages.push_back(std::move(message));
     }
 
     TestSessionDelegate delegate(descriptor.get(), method_descr->output_type()->full_name());

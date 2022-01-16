@@ -30,7 +30,7 @@ extern "C"
 {
     /**
      */
-    MConnectionHandle create_connection(char* endpoint, GRPCConnectionOptions opts) {
+    MConnectionHandle create_connection(const char* endpoint, GRPCConnectionOptions opts) {
         auto connection = Connection::create_connection(endpoint, opts);
         MConnectionHandle mc = (MConnectionHandle) connection.release();
         return mc;
@@ -72,17 +72,16 @@ extern "C"
     
     /**
      */
-    MMessageHandle descriptor_create_message_from_json(MDescriptorHandle handle, char* json, char* message_type) {
+    MMessageHandle descriptor_create_message_from_json(MDescriptorHandle handle, const char* json, const char* message_type) {
         Descriptor *d = (Descriptor*) handle;
         auto msg = d->message_from_json(message_type, json);
-        MMessageHandle mc = (MMessageHandle) msg.get();
-        
+        MMessageHandle mc = (MMessageHandle) msg.release();
         return mc;
     }
     
     /**
      */
-    char* descriptor_create_json_message(MDescriptorHandle handle, char* type_name) {
+    char* descriptor_create_json_message(MDescriptorHandle handle, const char* type_name) {
         Descriptor* descriptor = (Descriptor*) handle;
         auto msg = descriptor->create_message(type_name);
         
@@ -95,10 +94,16 @@ extern "C"
     
     /**
      */
-    void free_descriptor(MDescriptorHandle descriptor) {
-        Descriptor *d = (Descriptor*) descriptor;
-        delete(d);
+    void free_descriptor(MDescriptorHandle handle) {
+        delete((Descriptor*) handle);
     }
+    
+    /**
+     */
+    void free_message(MMessageHandle handle) {
+        delete((google::protobuf::Message*) handle);
+    }
+    
     
     // MARK: session
     /**
@@ -116,16 +121,17 @@ extern "C"
     
     /**
      */
-    MSessionResponse* create_session_response(char* response, MMetadata* metadata) {
+    MSessionResponse* create_session_response(const char* response, MMetadata* metadata, int status_code) {
         MSessionResponse* r = (MSessionResponse*) malloc(sizeof(MSessionResponse));
         r->response = strdup(response);
-        metadata = metadata;
+        r->metadata = metadata;
+        r->status_code = status_code;
         return r;
     }
     
     /**
      */
-    int session_start(MSessionHandle session, MDescriptorHandle descriptor, char* method_name) {
+    int session_start(MSessionHandle session, MDescriptorHandle descriptor, const char* method_name) {
         const auto method = ((Descriptor*) descriptor)->get_method_descriptor(method_name);
         
         if (method == nullptr) {
@@ -141,13 +147,15 @@ extern "C"
     
     /**
      */
-    void session_send_message(MSessionHandle handle, char* json, char* message_type_name) {
-        Session* session = (Session*) session;
-        
-        
-        
-        // session->send_message()
-        
+    void session_send_message(MSessionHandle handle, MMessageHandle message) {
+        auto msg = (google::protobuf::Message*) message;
+        ((Session*) handle)->send_message(*msg);
+    }
+    
+    /**
+     */
+    void session_close(MSessionHandle handle) {
+        ((Session*) handle)->close();
     }
 
     /**
@@ -182,7 +190,7 @@ extern "C"
     /**
      */
     void metadata_push(MMetadata* data, const char* key, const char* val) {
-        if (data->count + 1 < data->size) {
+        if (data->count + 1 <= data->size) {
             data->keys[data->count] = strdup(key);
             data->vals[data->count] = strdup(val);
             data->count++;

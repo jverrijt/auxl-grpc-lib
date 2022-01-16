@@ -35,6 +35,8 @@ Example: Retrieving the descriptors from a given service through server reflecti
         session.close();
     }
 
+Alternatively, a C interface is provided in `tool.h` but note that it is currently largely untested. View `auxl_extern_test.cpp` to learn how to use it.
+
 ##Command line tool
 
 Get the descriptors for a given service that supports server reflection
