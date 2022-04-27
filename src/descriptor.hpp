@@ -63,6 +63,10 @@ public:
     
     /**
      */
+    std::string message_type_to_debug_string(const std::string& message_type_name);
+    
+    /**
+     */
     inline std::string message_to_json(const google::protobuf::Message& message) {
         return message_to_json(message, default_json_options());
     }

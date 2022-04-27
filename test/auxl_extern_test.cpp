@@ -52,9 +52,15 @@ void session_did_close(MSessionResponse* response) {
 TEST_F(AuxlExternTest, TestCInterface)
 {
     GRPCConnectionOptions def = init_connection_options();
-    MConnectionHandle connection = create_connection((char*) "localhost:5000", def);
+    MConnectionHandle connection = create_connection((char*) "localhost:5001", def);
     
     MDescriptorHandle descriptor = create_descriptor(NULL, 0, connection);
+    
+    char* d_json = descriptor_to_json(descriptor);
+    printf("desription from server reflection: %s", d_json);
+    
+    char* debug_str = descriptor_message_type_to_debugstring(descriptor, "HelloRequest");
+    printf("debug descriptor: %s", debug_str);
     
     MSessionDelegate delegate = {
         .output_type_name = (char*) "greet.HelloReply",

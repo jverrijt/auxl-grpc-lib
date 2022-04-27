@@ -76,6 +76,7 @@ const AuxlGRPCErrorCollector* descriptor_get_errors(MDescriptorHandle handle);
 /**
  */
 char* descriptor_to_json(MDescriptorHandle handle);
+char* descriptor_message_type_to_debugstring(MDescriptorHandle handle, const char* message_type_name);
 
 MMessageHandle descriptor_create_message_from_json(MDescriptorHandle handle, const char* json, const char* message_type);
 char* descriptor_create_json_message(MDescriptorHandle handle, const char* type_name);

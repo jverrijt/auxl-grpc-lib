@@ -1,4 +1,4 @@
-﻿syntax = "proto3";
+syntax = "proto3";
 
 option csharp_namespace = "GRPC_service";
 
@@ -18,7 +18,7 @@ service Greeter {
 
 // The request message containing the user's name.
 message HelloRequest {
-  string name = 1;
+  string name = 1; // The name
 }
 
 // The response message containing the greetings.

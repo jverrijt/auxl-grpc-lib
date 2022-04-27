@@ -176,6 +176,19 @@ std::string Descriptor::to_json(google::protobuf::util::JsonPrintOptions options
 }
 
 /**
+ * Returns a debug string
+ */
+std::string Descriptor::message_type_to_debug_string(const std::string& message_type_name) {
+    auto descr = pool_->FindMessageTypeByName(message_type_name);
+    
+    if (descr == nullptr) {
+        return nullptr;
+    }
+    
+    return descr->DebugString();
+}
+
+/**
  Create a message with some sensible defaults
  */
 std::unique_ptr<Message> Descriptor::build_message(const google::protobuf::Descriptor& descriptor,

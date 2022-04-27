@@ -742,8 +742,6 @@
 					"${PROJECT_DIR}/include/",
 					/usr/local/include,
 					"${PROJECT_DIR}/modules/grpc/",
-					"${PROJECT_DIR}/modules/grpc/third_party/googletest/googletest/include",
-					"${PROJECT_DIR}/modules/grpc/third_party/googletest/googletest",
 					"${PROJECT_DIR}/gen",
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
@@ -835,6 +833,8 @@
 					"-L/usr/local/lib",
 					"-framework",
 					CoreFoundation,
+					"-lgtest",
+					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -896,8 +896,6 @@
 					"${PROJECT_DIR}/include/",
 					/usr/local/include,
 					"${PROJECT_DIR}/modules/grpc/",
-					"${PROJECT_DIR}/modules/grpc/third_party/googletest/googletest/include",
-					"${PROJECT_DIR}/modules/grpc/third_party/googletest/googletest",
 					"${PROJECT_DIR}/gen",
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
@@ -988,6 +986,8 @@
 					"-L/usr/local/lib",
 					"-framework",
 					CoreFoundation,
+					"-lgtest",
+					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

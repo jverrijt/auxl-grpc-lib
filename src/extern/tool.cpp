@@ -40,7 +40,7 @@ extern "C"
      */
     void free_connection(MConnectionHandle connection) {
         Connection* c = (Connection*) connection;
-        delete(c);
+        free(c);
     }
     
     /**
@@ -70,6 +70,14 @@ extern "C"
         return strdup(json.c_str());
     }
     
+    /**
+     */
+    char* descriptor_message_type_to_debugstring(MDescriptorHandle handle, const char* message_type_name) {
+        Descriptor *d = (Descriptor*) handle;
+        std::string debug_str = d->message_type_to_debug_string(message_type_name);
+        return strdup(debug_str.c_str());
+    }
+
     /**
      */
     MMessageHandle descriptor_create_message_from_json(MDescriptorHandle handle, const char* json, const char* message_type) {
