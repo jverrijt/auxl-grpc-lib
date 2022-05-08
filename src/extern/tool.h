@@ -85,7 +85,7 @@ void free_descriptor(MDescriptorHandle handle);
 void free_message(MMessageHandle handle);
 
 /* Session */
-MSessionHandle create_session(MConnectionHandle connection, MDescriptorHandle descriptor, MSessionDelegate *delegate);
+MSessionHandle create_session(MConnectionHandle connection, MDescriptorHandle descriptor, MSessionDelegate *delegate, MMetadata *metadata);
 MSessionResponse* create_session_response(const char* response, MMetadata* metadata, int status_code);
 
 int session_start(MSessionHandle session, MDescriptorHandle descriptor, const char* method_name);

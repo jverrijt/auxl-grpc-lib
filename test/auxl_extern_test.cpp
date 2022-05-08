@@ -6,6 +6,7 @@
 //
 #include "gtest/gtest.h"
 #include "tool.h"
+#include "test_defines.h"
 
 namespace auxl {
 namespace grpc {
@@ -52,14 +53,14 @@ void session_did_close(MSessionResponse* response) {
 TEST_F(AuxlExternTest, TestCInterface)
 {
     GRPCConnectionOptions def = init_connection_options();
-    MConnectionHandle connection = create_connection((char*) "localhost:5001", def);
+    MConnectionHandle connection = create_connection((char*) TEST_ENDPOINT, def);
     
     MDescriptorHandle descriptor = create_descriptor(NULL, 0, connection);
     
     char* d_json = descriptor_to_json(descriptor);
     printf("desription from server reflection: %s", d_json);
     
-    char* debug_str = descriptor_message_type_to_debugstring(descriptor, "HelloRequest");
+    char* debug_str = descriptor_message_type_to_debugstring(descriptor, "greet.HelloRequest");
     printf("debug descriptor: %s", debug_str);
     
     MSessionDelegate delegate = {
@@ -70,7 +71,11 @@ TEST_F(AuxlExternTest, TestCInterface)
         .session_did_close = &session_did_close
     };
     
-    MSessionHandle session = create_session(connection, descriptor, &delegate);
+    MMetadata* metadata = create_metadata(2);
+    metadata_push(metadata, "extern_key_a", "extern_key_a");
+    metadata_push(metadata, "extern_key_b", "extern_key_b");
+    
+    MSessionHandle session = create_session(connection, descriptor, &delegate, metadata);
     
     char* json_message = (char*) "{ \"name\":\"Extern test\" }";
     MMessageHandle message = descriptor_create_message_from_json(descriptor, json_message, (char*) "greet.HelloRequest");
@@ -83,6 +88,7 @@ TEST_F(AuxlExternTest, TestCInterface)
     free_connection(connection);
     free_descriptor(descriptor);
     free_session(session);
+    free_metadata(metadata);
 }
 
 }

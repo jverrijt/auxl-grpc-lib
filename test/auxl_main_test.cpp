@@ -16,6 +16,7 @@
 #include "session.hpp"
 #include "test_session_delegate.hpp"
 #include "error_collector.h"
+#include "test_defines.h"
 
 namespace auxl {
 namespace grpc {
@@ -90,7 +91,7 @@ TEST_F(AuxlGrpcTest, TestDescriptorFromProto)
 TEST_F(AuxlGrpcTest, TestServiceReflect)
 {
     std::vector<std::string> proto;
-    auto descr = std::unique_ptr<Descriptor>(new Descriptor(proto, get_connection("localhost:5000").get()));
+    auto descr = std::unique_ptr<Descriptor>(new Descriptor(proto, get_connection(TEST_ENDPOINT).get()));
     
     google::protobuf::util::JsonPrintOptions options;
     
@@ -105,7 +106,7 @@ TEST_F(AuxlGrpcTest, TestServiceReflect)
 TEST_F(AuxlGrpcTest, TestCreateMessage)
 {
     std::vector<std::string> proto;
-    auto descr = std::unique_ptr<Descriptor>(new Descriptor(proto, get_connection("localhost:5000").get()));
+    auto descr = std::unique_ptr<Descriptor>(new Descriptor(proto, get_connection(TEST_ENDPOINT).get()));
     
     auto not_existing_msg = descr->create_message("bogus.does_not_exist");
     ASSERT_TRUE(not_existing_msg.get() == nullptr);
@@ -123,7 +124,7 @@ TEST_F(AuxlGrpcTest, TestCreateMessage)
  */
 TEST_F(AuxlGrpcTest, TestUnary)
 {
-    auto connection = get_connection("localhost:5000");
+    auto connection = get_connection(TEST_ENDPOINT);
     std::multimap<std::string, std::string> metadata;
 
     // Use server reflection
@@ -133,7 +134,11 @@ TEST_F(AuxlGrpcTest, TestUnary)
     
     ASSERT_TRUE(method_descr != nullptr);
     
-    Session sess(connection.get());
+    CliCall::OutgoingMetadataContainer metdata;
+    metadata.insert(std::pair<std::string, std::string>("meta_key_a", "meta_value_a"));
+    metadata.insert(std::pair<std::string, std::string>("meta_key_b", "meta_value_b"));
+    
+    Session sess(connection.get(), metadata);
     
     TestSessionDelegate delegate(&descriptor, method_descr->output_type()->full_name());
     sess.delegate = &delegate;
@@ -160,8 +165,8 @@ TEST_F(AuxlGrpcTest, TestUnary)
  */
 TEST_F(AuxlGrpcTest, TestBidiStream)
 {
-    GTEST_SKIP();
-    auto connection = get_connection("localhost:5001");
+    // GTEST_SKIP();
+    auto connection = get_connection(TEST_ENDPOINT);
     std::multimap<std::string, std::string> metadata;
 
     auto descriptor = std::unique_ptr<Descriptor>(new Descriptor({}, connection.get()));
@@ -194,32 +199,6 @@ TEST_F(AuxlGrpcTest, TestBidiStream)
     session.send_message(*messages[2]);
     session.send_message(*messages[4]);
     
-    
-    // Uncomment to make interactive
-    
-//    std::string available_messages_prompt = "Select the message to send: 1-10, or q to end.\n";
-//    std::cout << available_messages_prompt;
-//
-//    for (std::string line; std::getline(std::cin, line);) {
-//        std::cout << line << std::endl;
-//
-//        if (line == "q") {
-//            break;
-//        }
-//
-//        int selection = atoi(line.c_str());
-//
-//        if (selection < 1 || selection > 10) {
-//            std::cout << available_messages_prompt;
-//        } else {
-//            std::shared_ptr<google::protobuf::Message> msg_to_send = messages[selection];
-//            session.send_message(*msg_to_send);
-//
-//            std::cout << available_messages_prompt;
-//        }
-//
-//    }
-
     session.close();
     
     ASSERT_EQ(delegate.received_messages, 3);

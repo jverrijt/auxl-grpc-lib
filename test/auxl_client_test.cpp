@@ -18,6 +18,7 @@
 #include "cli_session_delegate.hpp"
 
 #include "tool.h"
+#include "test_defines.h"
 
 
 namespace auxl {
@@ -51,7 +52,7 @@ std::shared_ptr<google::protobuf::Message> create_input_message(Descriptor& desc
 TEST_F(AuxlClientTest, TestExample)
 {
     GRPCConnectionOptions options = init_connection_options();
-    auto connection = Connection::create_connection("localhost:5000", options);
+    auto connection = Connection::create_connection(TEST_ENDPOINT, options);
     
     // Create descriptors from server reflection
     Descriptor descriptor({}, connection.get());
@@ -84,7 +85,7 @@ TEST_F(AuxlClientTest, TestDescriptorClient)
     std::cout << "descriptor test" << std::endl;
     
     GRPCConnectionOptions options = init_connection_options();
-    auto connection = Connection::create_connection("localhost:5000", options);
+    auto connection = Connection::create_connection(TEST_ENDPOINT, options);
     
     Descriptor descriptor({}, connection.get());
     const auto method_descr = descriptor.get_method_descriptor("greet.Greeter.SayHello");
@@ -157,7 +158,6 @@ TEST_F(AuxlClientTest, TestParseJsonDescriptor)
     
     ASSERT_FALSE(d.to_json().empty());
 }
-
 
 }
 } // ns grpc

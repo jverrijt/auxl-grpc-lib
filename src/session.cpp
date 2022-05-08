@@ -49,14 +49,13 @@ void Session::read_response()
 
 /**
  */
-bool Session::start(const google::protobuf::MethodDescriptor& method_descriptor,
-                    const std::multimap<std::string, std::string>& metadata)
+bool Session::start(const google::protobuf::MethodDescriptor& method_descriptor)
 {
     ::grpc::CliArgs args;
     args.timeout = connection_->timeout;
     
     auto m = "/" + method_descriptor.service()->full_name() + "/" + method_descriptor.name();
-    current_call_ = std::unique_ptr<CliCall>(new CliCall(connection_->channel, m, metadata, args));
+    current_call_ = std::unique_ptr<CliCall>(new CliCall(connection_->channel, m, metadata_, args));
     
     // CliCall failed to initialize.
     if (!current_call_->finish_status) {

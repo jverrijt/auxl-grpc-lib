@@ -116,8 +116,16 @@ extern "C"
     // MARK: session
     /**
      */
-    MSessionHandle create_session(MConnectionHandle connection, MDescriptorHandle descriptor, MSessionDelegate* delegate) {
-        auto session = new Session((Connection *) connection);
+    MSessionHandle create_session(MConnectionHandle connection, MDescriptorHandle descriptor, MSessionDelegate *delegate, MMetadata *metadata) {
+        CliCall::OutgoingMetadataContainer session_metadata;
+        
+        if (metadata != NULL) {
+            for (int i = 0; i < metadata->count; i++) {
+                session_metadata.insert(std::pair<std::string, std::string>(metadata->keys[i], metadata->vals[i]));
+            }
+        }
+        
+        auto session = new Session((Connection *) connection, session_metadata);
         
         if (delegate != NULL) {
             auto d = new ExternSessionDelegate((Descriptor*) descriptor, delegate);

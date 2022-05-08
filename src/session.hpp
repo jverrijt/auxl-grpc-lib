@@ -30,6 +30,8 @@
 #include "types.h"
 
 
+using namespace ::grpc::testing;
+
 namespace auxl {
 namespace grpc {
 
@@ -49,18 +51,19 @@ public:
                                    std::multimap<::grpc::string_ref, ::grpc::string_ref> metadata) = 0;
 };
 
-
 class Session
 {
 public:
-    Session(const Connection* connection): connection_(connection) {
+    Session(const Connection* connection, CliCall::OutgoingMetadataContainer metadata = {}):
+        connection_(connection),
+        metadata_(metadata)
+    {
         delegate = nullptr;
     };
     
     /**
      */
-    bool start(const google::protobuf::MethodDescriptor& method_descriptor,
-               const std::multimap<std::string, std::string>& metadata = {});
+    bool start(const google::protobuf::MethodDescriptor& method_descriptor);
     
     /**
      */
@@ -76,6 +79,8 @@ private:
     std::thread read_thread_;
     
     const Connection* connection_;
+    
+    CliCall::OutgoingMetadataContainer metadata_;
     
     std::unique_ptr<::grpc::testing::CliCall> current_call_;
 };
