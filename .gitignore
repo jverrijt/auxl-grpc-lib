@@ -164,3 +164,6 @@ Makefile
 ### Autotools Patch ###
 
 # End of https://www.toptal.com/developers/gitignore/api/autotools
+
+modules/grpc
+auxl_grpc_cli

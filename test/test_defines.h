@@ -6,3 +6,4 @@
 //
 
 #define TEST_ENDPOINT "localhost:5001"
+#define TEST_SSL_ENDPOINT "192.168.0.190:443"

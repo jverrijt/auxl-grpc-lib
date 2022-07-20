@@ -262,6 +262,13 @@ bool ProtoReflectionDescriptorDatabase::GetServices(
     request.set_list_services("");
     ServerReflectionResponse response;
     
+//    std::chrono::system_clock::time_point deadline = std::chrono::system_clock::now() +
+//        std::chrono::milliseconds(10);
+//
+//    ctx_.set_deadline(deadline);
+//    ctx_.set_fail_fast(true);
+    
+    
     if (!DoOneRequest(request, response)) {
         return false;
     }

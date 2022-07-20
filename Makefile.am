@@ -1,5 +1,5 @@
 AUTOMAKE_OPTIONS = subdir-objects
-AM_CXXFLAGS = -std=c++11 -I$(srcdir)/src -I$(srcdir)/include -I$(srcdir)/src/vendor -I$(srcdir)/gen -I$(srcdir)/src/extern
+AM_CXXFLAGS = -std=c++11 -I$(srcdir)/src -I$(srcdir)/include -I$(srcdir)/src/vendor -I$(srcdir)/gen -I$(srcdir)/src/extern -I$(srcdir)/src/grpc
 
 noinst_LIBRARIES = libauxl_grpc.a
 libauxl_grpc_a_SOURCES = src/parser.cpp \
@@ -13,7 +13,8 @@ libauxl_grpc_a_SOURCES = src/parser.cpp \
 		src/vendor/proto_reflection_descriptor_database.cc \
 		gen/gen/reflection.grpc.pb.cc \
 		gen/gen/reflection.pb.cc \
-		src/vendor/cli_call.cc
+		src/vendor/cli_call.cc \
+		src/grpc/insecure_certificate_provider.h
 
 lib_auxl_grpc_a_CFLAGS = 
 

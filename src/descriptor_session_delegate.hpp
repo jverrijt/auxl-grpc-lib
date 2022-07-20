@@ -19,6 +19,7 @@
 #ifndef descriptor_session_delegate_hpp
 #define descriptor_session_delegate_hpp
 
+#include "auxl_grpc.h"
 #include <stdio.h>
 
 #include "session.hpp"
@@ -26,8 +27,7 @@
 #include <google/protobuf/dynamic_message.h>
 
 
-namespace auxl {
-namespace grpc {
+AUXLGRPC_NS_BEGIN
 
 class DescriptorSessionDelegate : public SessionDelegate
 {
@@ -70,8 +70,7 @@ private:
 
 
 
-} // ns grpc
-} // ns auxl
+AUXLGRPC_NS_END
 
 
 #endif /* descriptor_session_delegate_hpp */

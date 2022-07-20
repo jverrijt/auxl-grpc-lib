@@ -241,12 +241,12 @@ int cmd_call(int argc, char** argv)
     
     std::cout << "Starting a " << call_info.name << " call to " << service_and_method << std::endl;
     
-    Session session(connection.get());
+    Session session(connection.get(), metadata);
     
     CliSessionDelegate session_delegate(&descriptors, method_descr->output_type()->full_name(), call_info.type);
     session.delegate = &session_delegate;
     
-    if(!session.start(*method_descr, metadata)) {
+    if(!session.start(*method_descr)) {
         std::cerr << "[ERR] Service unreachable" << std::endl;
         return 0;
     }

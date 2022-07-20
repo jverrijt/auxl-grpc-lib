@@ -30,11 +30,9 @@ extern "C" {
  */
 typedef struct GRPCConnectionOptions {
     double timeout;
-    bool use_ssl;
-    
-    char* ssl_client_cert;
-    char* ssl_client_key;
-    char* ssl_root_certs_path;
+    bool enable_tls;
+    bool validate_tls;
+    char* pem_root_certs_path;
     
 } GRPCConnectionOptions;
 
@@ -47,10 +45,9 @@ GRPCConnectionOptions init_connection_options(void);
  Returns a pointer to connection options allocated on the heap.
  */
 GRPCConnectionOptions* connection_options_create(double timeout,
-                                                 bool use_ssl,
-                                                 char* ssl_client_cert,
-                                                 char* ssl_client_key,
-                                                 char* ssl_root_certs_path);
+                                                 bool enable_tls,
+                                                 bool validate_tls,
+                                                 char* pem_root_certs_path);
 
 /**
  Default connection options, heap allocated.

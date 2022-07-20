@@ -19,6 +19,8 @@
 #ifndef AUXL_GRPC_CONNECTION__
 #define AUXL_GRPC_CONNECTION__
 
+#include "auxl_grpc.h"
+
 #include <grpc/grpc.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/create_channel.h>
@@ -29,8 +31,7 @@
 #include "types.h"
 #include "util.hpp"
 
-namespace auxl {
-namespace grpc {
+AUXLGRPC_NS_BEGIN
 
 class Connection {
     
@@ -51,8 +52,6 @@ public:
     double timeout = -1;
 };
 
-} // ns grpc
-} // ns auxl
-
+AUXLGRPC_NS_END
 
 #endif

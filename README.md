@@ -61,10 +61,9 @@ Pass along connection options to the describe and call commands by setting the `
 ```json
 {
     "timeout": 100,
-    "use_ssl": true,
-    "ssl_client_cert": "",
-    "ssl_client_key": "",
-    "ssl_root_certs_path": "path to file that contains the certificate authorities"
+    "enable_tls": true,
+    "validate_tls": true,
+    "pem_root_certs_path": "path to file that contains the certificate authorities"
 }
 ```
 Omit or leave blank any value that’s not pertinent. To use SSL, at a minimum, `use_ssl` needs to be set to true and the `ssl_root_certs_path` needs to be set to a valid cacert bundle ([e.g. Mozilla's root certificates](https://github.com/gisle/mozilla-ca/blob/master/lib/Mozilla/CA/cacert.pem))

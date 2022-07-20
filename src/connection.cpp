@@ -23,47 +23,41 @@
 #include <grpc/support/log.h>
 #include <grpcpp/impl/codegen/slice.h>
 
+#include "insecure_certificate_provider.h"
+
 using namespace ::grpc;
 
-namespace auxl {
-namespace grpc {
+AUXLGRPC_NS_BEGIN
 
 /**
 */ 
 std::shared_ptr<ChannelCredentials> Connection::get_channel_credentials(GRPCConnectionOptions options)
 {
-    if (!options.use_ssl) {
+    if (options.enable_tls) {
+        ::grpc::experimental::TlsChannelCredentialsOptions opts;
+
+        std::string in_str;
+        util::load_file(options.pem_root_certs_path, &in_str);
+        
+        auto certificate_provider = std::make_shared<::grpc::experimental::StaticDataCertificateProvider>(in_str);
+        opts.set_certificate_provider(certificate_provider);
+
+        if (options.validate_tls == false) {
+            opts.set_check_call_host(false);
+            opts.set_verify_server_certs(false);
+            
+            auto verifier = experimental::ExternalCertificateVerifier::Create<InsecureCertificateVerifier>();
+            opts.set_certificate_verifier(verifier);
+        }
+
+        return TlsCredentials(opts);
+    } else {
         return InsecureChannelCredentials();
-    }
-    else if (options.use_ssl) {
-        SslCredentialsOptions ssl_creds_options;
-        
-        if (options.ssl_root_certs_path != NULL) {
-            std::string ssl_roots_certs;
-            if (util::load_file(options.ssl_root_certs_path, &ssl_roots_certs)) {
-                ssl_creds_options.pem_root_certs = ssl_roots_certs;
-            }
-        }
-
-        if (options.ssl_client_cert != NULL) {
-            std::string ssl_client_cert;
-            if (util::load_file(options.ssl_client_cert, &ssl_client_cert)) {
-                ssl_creds_options.pem_cert_chain = ssl_client_cert;
-            }
-        }
-        
-        if (options.ssl_client_key != NULL) {
-            std::string ssl_client_key;
-            if (util::load_file(options.ssl_client_key, &ssl_client_key)) {
-                ssl_creds_options.pem_private_key = ssl_client_key;
-            }
-        }
-
-        return SslCredentials(ssl_creds_options);
     }
 
     return std::shared_ptr<ChannelCredentials>();
 }
+
 
 /**
  */
@@ -85,5 +79,4 @@ std::unique_ptr<Connection> Connection::create_connection(const std::string& end
     return connection;
 }
 
-} // ns grpc
-} // ns auxl
+AUXLGRPC_NS_END

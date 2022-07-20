@@ -54,18 +54,16 @@ GRPCConnectionOptions* options_from_json(const std::string& json)
     try {
         auto o = nlohmann::json::parse(json);
         
-        bool use_ssl = o.contains("use_ssl") ? o["use_ssl"].get<bool>() : false;
+        bool enable_tls = o.contains("enable_tls") ? o["enable_tls"].get<bool>() : false;
+        bool validate_tls = o.contains("validate_tls") ? o["validate_tls"].get<bool>() : true;
         
         double timeout = o.contains("timeout") ? o["timeout"].get<double>() : -1;
-        std::string ssl_client_cert = o.contains("ssl_client_cert") ? o["ssl_client_cert"].get<std::string>() : "";
-        std::string ssl_client_key = o.contains("ssl_client_key") ? o["ssl_client_key"].get<std::string>() : "";
-        std::string ssl_root_certs_path = o.contains("ssl_root_certs_path") ? o["ssl_root_certs_path"].get<std::string>() : "";
+        std::string pem_root_certs_path = o.contains("pem_root_certs_path") ? o["pem_root_certs_path"].get<std::string>() : "";
         
         GRPCConnectionOptions *opts = connection_options_create(timeout,
-                                                                use_ssl,
-                                                                (char*) ssl_client_cert.c_str(),
-                                                                (char*) ssl_client_key.c_str(),
-                                                                (char*) ssl_root_certs_path.c_str());
+                                                                enable_tls,
+                                                                validate_tls,
+                                                                (char*) pem_root_certs_path.c_str());
         return opts;
     } catch(...) {
         std::cerr << "Cold not parse connection options, returning defaults.";

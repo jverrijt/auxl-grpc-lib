@@ -7,7 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D65C550E27936FA400A7AAC0 /* auxl_extern_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D65C550B27936E7C00A7AAC0 /* auxl_extern_test.cpp */; };
+		D6229610288810B5001D6B0E /* auxl_ssl_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66BF3DF2885640500F3192D /* auxl_ssl_test.cpp */; };
+		D622969128881188001D6B0E /* libgrpc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D622957128880D73001D6B0E /* libgrpc.a */; };
+		D62296922888118F001D6B0E /* libgrpc++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D622957328880D73001D6B0E /* libgrpc++.a */; };
+		D66BF6222886B73F00F3192D /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA4277B136700D9DDCE /* gtest-all.cc */; };
+		D66BF6232886B73F00F3192D /* options.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FD427844B8400D9DDCE /* options.c */; };
+		D66BF6242886B73F00F3192D /* descriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FAD277EEBE800D9DDCE /* descriptor.cpp */; };
+		D66BF6252886B73F00F3192D /* gtest_main.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F90277B104700D9DDCE /* gtest_main.cc */; };
+		D66BF6262886B73F00F3192D /* cli_call.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FB92781AD6A00D9DDCE /* cli_call.cc */; };
+		D66BF6272886B73F00F3192D /* tool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.cpp */; };
+		D66BF6282886B73F00F3192D /* connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6C27788ADC00D9DDCE /* connection.cpp */; };
+		D66BF6292886B73F00F3192D /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA6277B59F400D9DDCE /* session.cpp */; };
+		D66BF62A2886B73F00F3192D /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6527788ADC00D9DDCE /* util.cpp */; };
+		D66BF62C2886B73F00F3192D /* proto_reflection_descriptor_database.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FD92784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc */; };
+		D66BF62D2886B73F00F3192D /* cli_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FF62786F33600D9DDCE /* cli_util.cpp */; };
+		D66BF62E2886B73F00F3192D /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6D27788ADC00D9DDCE /* parser.cpp */; };
+		D66BF62F2886B73F00F3192D /* error_collector.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FC12781BB5D00D9DDCE /* error_collector.c */; };
+		D66BF6342886B73F00F3192D /* connection_opts_test.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D68536172788818400408F38 /* connection_opts_test.json */; };
+		D66BF6352886B73F00F3192D /* hello_request_message_1.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FE92785F47B00D9DDCE /* hello_request_message_1.json */; };
+		D66BF6362886B73F00F3192D /* hello_request_message_2.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FE82785F47B00D9DDCE /* hello_request_message_2.json */; };
+		D66BF6372886B73F00F3192D /* descriptor_local.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FD727848C3800D9DDCE /* descriptor_local.json */; };
+		D66BF6382886B73F00F3192D /* connection_config.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FD127843E2700D9DDCE /* connection_config.json */; };
+		D66BF6392886B73F00F3192D /* greet.proto in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FB72780FB9D00D9DDCE /* greet.proto */; };
+		D66BF63E2886C31200F3192D /* auxl_ssl_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66BF3DF2885640500F3192D /* auxl_ssl_test.cpp */; };
 		D68536182788818F00408F38 /* connection_opts_test.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D68536172788818400408F38 /* connection_opts_test.json */; };
 		D6853619278882F100408F38 /* connection_opts_test.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D68536172788818400408F38 /* connection_opts_test.json */; };
 		D6F88F7027788ADC00D9DDCE /* tool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.cpp */; };
@@ -16,7 +38,6 @@
 		D6F88F7327788ADC00D9DDCE /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6D27788ADC00D9DDCE /* parser.cpp */; };
 		D6F88F83277B0FA700D9DDCE /* tool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6627788ADC00D9DDCE /* tool.cpp */; };
 		D6F88F84277B0FA700D9DDCE /* connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6C27788ADC00D9DDCE /* connection.cpp */; };
-		D6F88F87277B0FA700D9DDCE /* auxl_main_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F7D277B0F7300D9DDCE /* auxl_main_test.cpp */; };
 		D6F88F88277B0FA700D9DDCE /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6D27788ADC00D9DDCE /* parser.cpp */; };
 		D6F88F91277B104700D9DDCE /* gtest_main.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F90277B104700D9DDCE /* gtest_main.cc */; };
 		D6F88FA5277B136700D9DDCE /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FA4277B136700D9DDCE /* gtest-all.cc */; };
@@ -29,7 +50,6 @@
 		D6F88FBB2781AD6A00D9DDCE /* cli_call.cc in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FB92781AD6A00D9DDCE /* cli_call.cc */; };
 		D6F88FC22781BB5D00D9DDCE /* error_collector.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FC12781BB5D00D9DDCE /* error_collector.c */; };
 		D6F88FC32781BB5D00D9DDCE /* error_collector.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FC12781BB5D00D9DDCE /* error_collector.c */; };
-		D6F88FCA2783062C00D9DDCE /* auxl_client_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FC82783062C00D9DDCE /* auxl_client_test.cpp */; };
 		D6F88FCF27832AB300D9DDCE /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6527788ADC00D9DDCE /* util.cpp */; };
 		D6F88FD027832AB400D9DDCE /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88F6527788ADC00D9DDCE /* util.cpp */; };
 		D6F88FD22784402E00D9DDCE /* connection_config.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6F88FD127843E2700D9DDCE /* connection_config.json */; };
@@ -49,7 +69,900 @@
 		D6F88FF92786F33600D9DDCE /* cli_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F88FF62786F33600D9DDCE /* cli_util.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D622951228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AD4ACD5FAF124613AC2E8BBC;
+			remoteInfo = acountry;
+		};
+		D622951428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2D29CAEE60E54BA8B8369D11;
+			remoteInfo = address_sorting;
+		};
+		D622951628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C0F809BCC9A242358048BBC7;
+			remoteInfo = adig;
+		};
+		D622951828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E3E3C054325B43F2A4881C41;
+			remoteInfo = ahost;
+		};
+		D622951A28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0B52D467B675440D9ABAC477;
+			remoteInfo = bad_any_cast_impl;
+		};
+		D622951C28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 33D2B72ED14F47B790263116;
+			remoteInfo = bad_optional_access;
+		};
+		D622951E28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A67EC4804164447BB1FA67A6;
+			remoteInfo = bad_variant_access;
+		};
+		D622952028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 80B0AA35CCC34939B08CACA6;
+			remoteInfo = base;
+		};
+		D622952228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8CBA4920B67840A7B5EFFFA5;
+			remoteInfo = "c-ares";
+		};
+		D622952428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0B2E2935C7DF4E3E97EC2556;
+			remoteInfo = charclass_test;
+		};
+		D622952628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 463599482C8D42619A480A28;
+			remoteInfo = check_epollexclusive;
+		};
+		D622952828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 47A521357DB542539664130F;
+			remoteInfo = city;
+		};
+		D622952A28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2F530C6807474BD9A40C1FFF;
+			remoteInfo = civil_time;
+		};
+		D622952C28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3A86C5727A6945E78763EEBA;
+			remoteInfo = compile_test;
+		};
+		D622952E28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7DBB6A3B98524A4D8C7E0FB9;
+			remoteInfo = cord;
+		};
+		D622953028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F3984490B8094A9F8CFFF597;
+			remoteInfo = cord_internal;
+		};
+		D622953228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E914D0E877054AEBAF1AD3C7;
+			remoteInfo = cordz_functions;
+		};
+		D622953428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E07DE54188B940F4B45CC2C6;
+			remoteInfo = cordz_handle;
+		};
+		D622953628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1223C0AD3912486EBFB6B0D4;
+			remoteInfo = cordz_info;
+		};
+		D622953828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 320807149E4D4A0D9E6DD6AA;
+			remoteInfo = cordz_sample_token;
+		};
+		D622953A28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07A89E3848304B67984554B3;
+			remoteInfo = debugging_internal;
+		};
+		D622953C28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0348B10207744F5B004F9FF;
+			remoteInfo = demangle_internal;
+		};
+		D622953E28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E39C5843419645C2810137BE;
+			remoteInfo = dfa_test;
+		};
+		D622954028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8E60C6B14937402888FF501D;
+			remoteInfo = examine_stack;
+		};
+		D622954228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 86275E45905040609FACFED7;
+			remoteInfo = example;
+		};
+		D622954428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E43C55FB228A4ADAA0CBDD87;
+			remoteInfo = exhaustive1_test;
+		};
+		D622954628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DC9F731F74094D9DBD0D03A7;
+			remoteInfo = exhaustive2_test;
+		};
+		D622954828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A54F91D326654C94846779D9;
+			remoteInfo = exhaustive3_test;
+		};
+		D622954A28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 73B72454F51A480BA41D7DE1;
+			remoteInfo = exhaustive_test;
+		};
+		D622954C28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E514674BA4E14342B99784F0;
+			remoteInfo = exponential_biased;
+		};
+		D622954E28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 229C4E7863CE40C1AF9123E7;
+			remoteInfo = failure_signal_handler;
+		};
+		D622955028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9C1F61E720644DF69E464E6B;
+			remoteInfo = filtered_re2_test;
+		};
+		D622955228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0DED7DC3622B4A2DB51B2C45;
+			remoteInfo = flags;
+		};
+		D622955428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4DB4E587B19647CAA8B1DAF9;
+			remoteInfo = flags_commandlineflag;
+		};
+		D622955628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7F12F1CEC93A41F9A36749C1;
+			remoteInfo = flags_commandlineflag_internal;
+		};
+		D622955828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 007B886B4B234AE4B3680A2A;
+			remoteInfo = flags_config;
+		};
+		D622955A28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9E79BA06CCF44020B7004B2A;
+			remoteInfo = flags_internal;
+		};
+		D622955C28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4FEA7D205EFD44238D22C448;
+			remoteInfo = flags_marshalling;
+		};
+		D622955E28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4C71E0CEE11747FF9441F6D1;
+			remoteInfo = flags_parse;
+		};
+		D622956028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 011F344CC9C54BDB851BEDA9;
+			remoteInfo = flags_private_handle_accessor;
+		};
+		D622956228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 987CF4B025C7482A86FC6E1E;
+			remoteInfo = flags_program_name;
+		};
+		D622956428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D69BBEA7D45B45628F6070F2;
+			remoteInfo = flags_reflection;
+		};
+		D622956628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C1716F2D9DAC45199198EE7A;
+			remoteInfo = flags_usage;
+		};
+		D622956828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 94EFDC1CEAFD406F916A3484;
+			remoteInfo = flags_usage_internal;
+		};
+		D622956A28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2386856D3AB4B95A6658B19;
+			remoteInfo = gen_hpack_tables;
+		};
+		D622956C28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DF84D7F5DDED4D7693B69DE9;
+			remoteInfo = gpr;
+		};
+		D622956E28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E385803025554C248745D059;
+			remoteInfo = graphcycles_internal;
+		};
+		D622957028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BB72054036EE442DAB5D3AA6;
+			remoteInfo = grpc;
+		};
+		D622957228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9BCD3E18488A4EDA9793A936;
+			remoteInfo = "grpc++";
+		};
+		D622957428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 01E24BA4F593477B961742A7;
+			remoteInfo = "grpc++_alts";
+		};
+		D622957628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81EF6BCB16C6489A83E1F9E7;
+			remoteInfo = "grpc++_error_details";
+		};
+		D622957828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DB7F1D80DA91400D9B693989;
+			remoteInfo = "grpc++_reflection";
+		};
+		D622957A28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CC685DDBB1B641F3A8ED2CEF;
+			remoteInfo = "grpc++_unsecure";
+		};
+		D622957C28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 712A02CA9FA14D25B1AAD5F6;
+			remoteInfo = grpc_cpp_plugin;
+		};
+		D622957E28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 82BCE279F88D449C91930718;
+			remoteInfo = grpc_csharp_ext;
+		};
+		D622958028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 866947EC92E94D41BF9AF9B4;
+			remoteInfo = grpc_csharp_plugin;
+		};
+		D622958228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 82A82D8802684BFEA455EF92;
+			remoteInfo = grpc_node_plugin;
+		};
+		D622958428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4679986C774E426497342177;
+			remoteInfo = grpc_objective_c_plugin;
+		};
+		D622958628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 31CA058725254402B9670F93;
+			remoteInfo = grpc_php_plugin;
+		};
+		D622958828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 56877371FE42414AA85C6F4C;
+			remoteInfo = grpc_plugin_support;
+		};
+		D622958A28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 37AD769CD9F74485BF66A035;
+			remoteInfo = grpc_python_plugin;
+		};
+		D622958C28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B18C8AA26B5C4598AB779239;
+			remoteInfo = grpc_ruby_plugin;
+		};
+		D622958E28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7379FC7306AA4B799B18FA46;
+			remoteInfo = grpc_unsecure;
+		};
+		D622959028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F5EA0458940444279EEFFBB9;
+			remoteInfo = grpcpp_channelz;
+		};
+		D622959228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 17E8E895B05D44DDBFCA8AD1;
+			remoteInfo = hash;
+		};
+		D622959428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E14DB61E5F9343FFAC6372C9;
+			remoteInfo = hashtablez_sampler;
+		};
+		D622959628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D58B4C7E33454D638113FB2D;
+			remoteInfo = int128;
+		};
+		D622959828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DF5D16ADE49D43BD87442544;
+			remoteInfo = leak_check;
+		};
+		D622959A28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 56E68B8177874A6498C85B40;
+			remoteInfo = leak_check_disable;
+		};
+		D622959C28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 869FA481B6C94E6B854DF140;
+			remoteInfo = libprotobuf;
+		};
+		D622959E28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 825B4D9567BA4F7A98BE23D7;
+			remoteInfo = "libprotobuf-lite";
+		};
+		D62295A028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E422862937724CEF8DA8068C;
+			remoteInfo = libprotoc;
+		};
+		D62295A228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ED1B0A7B1CA04F7A87D4F5A0;
+			remoteInfo = log_severity;
+		};
+		D62295A428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06A50DBB5FFC4ABAADD6F1A0;
+			remoteInfo = low_level_hash;
+		};
+		D62295A628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D130801426FB49A0944605C3;
+			remoteInfo = malloc_internal;
+		};
+		D62295A828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CFC73809A09D4185BA6D1C20;
+			remoteInfo = mimics_pcre_test;
+		};
+		D62295AA28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B1087BA5ED804280876E24C6;
+			remoteInfo = minigzip;
+		};
+		D62295AC28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75F15E7217304119804F509C;
+			remoteInfo = parse_test;
+		};
+		D62295AE28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9E63C0A2D1D248459D1C854C;
+			remoteInfo = periodic_sampler;
+		};
+		D62295B028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F509734878954E14B44CD3CE;
+			remoteInfo = possible_match_test;
+		};
+		D62295B228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2C89A5966FB74F989B8F8044;
+			remoteInfo = protoc;
+		};
+		D62295B428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9725D3B399B54B53A460E24A;
+			remoteInfo = random_distributions;
+		};
+		D62295B628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A1091142DCB24BB7A7724E79;
+			remoteInfo = random_internal_distribution_test_util;
+		};
+		D62295B828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 214ED0234A7E4CE98861FBEE;
+			remoteInfo = random_internal_platform;
+		};
+		D62295BA28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AC731A27B3D645AF8848A9EB;
+			remoteInfo = random_internal_pool_urbg;
+		};
+		D62295BC28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 99E446EBCE9C466C8B633107;
+			remoteInfo = random_internal_randen;
+		};
+		D62295BE28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B1DB9D5DEB143ED966CC1DE;
+			remoteInfo = random_internal_randen_hwaes;
+		};
+		D62295C028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7E06102B4B0149F4A397734A;
+			remoteInfo = random_internal_randen_hwaes_impl;
+		};
+		D62295C228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D5B289E03F1F4D22A35E8CD0;
+			remoteInfo = random_internal_randen_slow;
+		};
+		D62295C428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4333AA8E7F3542609995B8B0;
+			remoteInfo = random_internal_seed_material;
+		};
+		D62295C628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9BB8370E85F8423F82C95E1D;
+			remoteInfo = random_seed_gen_exception;
+		};
+		D62295C828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 36D23A6752EF4EC1A630053C;
+			remoteInfo = random_seed_sequences;
+		};
+		D62295CA28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FACD2D00D0B24A0E8F61BD1F;
+			remoteInfo = random_test;
+		};
+		D62295CC28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 242DD042E3C648A889B902A9;
+			remoteInfo = raw_hash_set;
+		};
+		D62295CE28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4AE06F1527C8497597F3AED5;
+			remoteInfo = raw_logging_internal;
+		};
+		D62295D028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 354A6ADC03C446B8ABB653DC;
+			remoteInfo = re2;
+		};
+		D62295D228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4BB9C74BB2594612878BF7CC;
+			remoteInfo = re2_arg_test;
+		};
+		D62295D428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AF627E76AFB142F293BA8CCE;
+			remoteInfo = re2_test;
+		};
+		D62295D628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DF5C4EAB3FE4473090D630ED;
+			remoteInfo = regexp_benchmark;
+		};
+		D62295D828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C90ADE52F8A74399A4AA6641;
+			remoteInfo = regexp_test;
+		};
+		D62295DA28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 17E5FDE833B14D0999D384B9;
+			remoteInfo = required_prefix_test;
+		};
+		D62295DC28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2EB912311CA04B8AA2A90A8C;
+			remoteInfo = scoped_set_env;
+		};
+		D62295DE28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 322491F061D64A3EA2C5917E;
+			remoteInfo = search_test;
+		};
+		D62295E028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FD484D5205994D1585C814D0;
+			remoteInfo = set_test;
+		};
+		D62295E228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5C5A719E276E4F5993E82658;
+			remoteInfo = simplify_test;
+		};
+		D62295E428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 761EC08AA2744129BFAC2199;
+			remoteInfo = spinlock_wait;
+		};
+		D62295E628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 40B506D4223944C687ABDB73;
+			remoteInfo = stacktrace;
+		};
+		D62295E828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 95E158666E86491CA13415B8;
+			remoteInfo = status;
+		};
+		D62295EA28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E1002B5BA944391AF7823EF;
+			remoteInfo = statusor;
+		};
+		D62295EC28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 69B50E5BEB154471AFDA0C81;
+			remoteInfo = str_format_internal;
+		};
+		D62295EE28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DB598B5B849B4D9C8AE9003D;
+			remoteInfo = strerror;
+		};
+		D62295F028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A6C8492A06F647F4A5D7AF2A;
+			remoteInfo = string_generator_test;
+		};
+		D62295F228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AB2B25D1094E4ADFAFEB28CF;
+			remoteInfo = strings;
+		};
+		D62295F428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 893D6E34F7D0497EB4A92287;
+			remoteInfo = strings_internal;
+		};
+		D62295F628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C21D5B38DC78442DADA0A2BC;
+			remoteInfo = symbolize;
+		};
+		D62295F828880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1CF32615DDE440AE8ED6F846;
+			remoteInfo = synchronization;
+		};
+		D62295FA28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E3A4FA898D264E0FB81130E1;
+			remoteInfo = testing;
+		};
+		D62295FC28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D6D1665AA7FF4BC08C9BB23C;
+			remoteInfo = throw_delegate;
+		};
+		D62295FE28880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6BC98759CF174A9EBA673C14;
+			remoteInfo = time;
+		};
+		D622960028880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 00DF2F5771D14CAAA8BD48A5;
+			remoteInfo = time_zone;
+		};
+		D622960228880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DAFD574F2134B7FA4151B75;
+			remoteInfo = upb;
+		};
+		D622960428880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 863E9A0C08D94485A72A1F22;
+			remoteInfo = zlib;
+		};
+		D622960628880D73001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E97BB0C2AB954EACAD58524A;
+			remoteInfo = zlibstatic;
+		};
+		D622960828880D9D001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CBE239BE74B4203B1E88148;
+			remoteInfo = grpc;
+		};
+		D622960A28880DA2001D6B0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 15C68F3C631A40CBA4E0E6B6;
+			remoteInfo = "grpc++";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		D66BF6332886B73F00F3192D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = test_resources;
+			dstSubfolderSpec = 16;
+			files = (
+				D66BF6342886B73F00F3192D /* connection_opts_test.json in CopyFiles */,
+				D66BF6352886B73F00F3192D /* hello_request_message_1.json in CopyFiles */,
+				D66BF6362886B73F00F3192D /* hello_request_message_2.json in CopyFiles */,
+				D66BF6372886B73F00F3192D /* descriptor_local.json in CopyFiles */,
+				D66BF6382886B73F00F3192D /* connection_config.json in CopyFiles */,
+				D66BF6392886B73F00F3192D /* greet.proto in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6F88F5627788A4300D9DDCE /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
@@ -83,9 +996,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D622948D28880D72001D6B0E /* grpc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = grpc.xcodeproj; path = modules/grpc/buildres/grpc.xcodeproj; sourceTree = "<group>"; };
+		D622969428881CA5001D6B0E /* insecure_certificate_provider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = insecure_certificate_provider.h; sourceTree = "<group>"; };
+		D622969528882C22001D6B0E /* auxl_grpc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = auxl_grpc.h; sourceTree = "<group>"; };
 		D65C5502279309DD00A7AAC0 /* tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tool.h; sourceTree = "<group>"; };
 		D65C55052793471700A7AAC0 /* extern_session_delegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = extern_session_delegate.hpp; sourceTree = "<group>"; };
 		D65C550B27936E7C00A7AAC0 /* auxl_extern_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = auxl_extern_test.cpp; sourceTree = "<group>"; };
+		D66BF3DF2885640500F3192D /* auxl_ssl_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = auxl_ssl_test.cpp; sourceTree = "<group>"; };
+		D66BF63D2886B73F00F3192D /* auxl_grpc_test_with_grpc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = auxl_grpc_test_with_grpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68536172788818400408F38 /* connection_opts_test.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = connection_opts_test.json; sourceTree = "<group>"; };
 		D685361B2789BEC800408F38 /* test_session_delegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = test_session_delegate.hpp; sourceTree = "<group>"; };
 		D6D20F1D28281FE3002E15E2 /* test_defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test_defines.h; sourceTree = "<group>"; };
@@ -130,6 +1048,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D66BF6302886B73F00F3192D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D62296922888118F001D6B0E /* libgrpc++.a in Frameworks */,
+				D622969128881188001D6B0E /* libgrpc.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6F88F5527788A4300D9DDCE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -147,6 +1074,144 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D622948E28880D72001D6B0E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D622951328880D73001D6B0E /* acountry */,
+				D622951528880D73001D6B0E /* libaddress_sorting.a */,
+				D622951728880D73001D6B0E /* adig */,
+				D622951928880D73001D6B0E /* ahost */,
+				D622951B28880D73001D6B0E /* libabsl_bad_any_cast_impl.a */,
+				D622951D28880D73001D6B0E /* libabsl_bad_optional_access.a */,
+				D622951F28880D73001D6B0E /* libabsl_bad_variant_access.a */,
+				D622952128880D73001D6B0E /* libabsl_base.a */,
+				D622952328880D73001D6B0E /* libcares.a */,
+				D622952528880D73001D6B0E /* charclass_test */,
+				D622952728880D73001D6B0E /* check_epollexclusive */,
+				D622952928880D73001D6B0E /* libabsl_city.a */,
+				D622952B28880D73001D6B0E /* libabsl_civil_time.a */,
+				D622952D28880D73001D6B0E /* compile_test */,
+				D622952F28880D73001D6B0E /* libabsl_cord.a */,
+				D622953128880D73001D6B0E /* libabsl_cord_internal.a */,
+				D622953328880D73001D6B0E /* libabsl_cordz_functions.a */,
+				D622953528880D73001D6B0E /* libabsl_cordz_handle.a */,
+				D622953728880D73001D6B0E /* libabsl_cordz_info.a */,
+				D622953928880D73001D6B0E /* libabsl_cordz_sample_token.a */,
+				D622953B28880D73001D6B0E /* libabsl_debugging_internal.a */,
+				D622953D28880D73001D6B0E /* libabsl_demangle_internal.a */,
+				D622953F28880D73001D6B0E /* dfa_test */,
+				D622954128880D73001D6B0E /* libabsl_examine_stack.a */,
+				D622954328880D73001D6B0E /* example */,
+				D622954528880D73001D6B0E /* exhaustive1_test */,
+				D622954728880D73001D6B0E /* exhaustive2_test */,
+				D622954928880D73001D6B0E /* exhaustive3_test */,
+				D622954B28880D73001D6B0E /* exhaustive_test */,
+				D622954D28880D73001D6B0E /* libabsl_exponential_biased.a */,
+				D622954F28880D73001D6B0E /* libabsl_failure_signal_handler.a */,
+				D622955128880D73001D6B0E /* filtered_re2_test */,
+				D622955328880D73001D6B0E /* libabsl_flags.a */,
+				D622955528880D73001D6B0E /* libabsl_flags_commandlineflag.a */,
+				D622955728880D73001D6B0E /* libabsl_flags_commandlineflag_internal.a */,
+				D622955928880D73001D6B0E /* libabsl_flags_config.a */,
+				D622955B28880D73001D6B0E /* libabsl_flags_internal.a */,
+				D622955D28880D73001D6B0E /* libabsl_flags_marshalling.a */,
+				D622955F28880D73001D6B0E /* libabsl_flags_parse.a */,
+				D622956128880D73001D6B0E /* libabsl_flags_private_handle_accessor.a */,
+				D622956328880D73001D6B0E /* libabsl_flags_program_name.a */,
+				D622956528880D73001D6B0E /* libabsl_flags_reflection.a */,
+				D622956728880D73001D6B0E /* libabsl_flags_usage.a */,
+				D622956928880D73001D6B0E /* libabsl_flags_usage_internal.a */,
+				D622956B28880D73001D6B0E /* gen_hpack_tables */,
+				D622956D28880D73001D6B0E /* libgpr.a */,
+				D622956F28880D73001D6B0E /* libabsl_graphcycles_internal.a */,
+				D622957128880D73001D6B0E /* libgrpc.a */,
+				D622957328880D73001D6B0E /* libgrpc++.a */,
+				D622957528880D73001D6B0E /* libgrpc++_alts.a */,
+				D622957728880D73001D6B0E /* libgrpc++_error_details.a */,
+				D622957928880D73001D6B0E /* libgrpc++_reflection.a */,
+				D622957B28880D73001D6B0E /* libgrpc++_unsecure.a */,
+				D622957D28880D73001D6B0E /* grpc_cpp_plugin */,
+				D622957F28880D73001D6B0E /* libgrpc_csharp_ext.dylib */,
+				D622958128880D73001D6B0E /* grpc_csharp_plugin */,
+				D622958328880D73001D6B0E /* grpc_node_plugin */,
+				D622958528880D73001D6B0E /* grpc_objective_c_plugin */,
+				D622958728880D73001D6B0E /* grpc_php_plugin */,
+				D622958928880D73001D6B0E /* libgrpc_plugin_support.a */,
+				D622958B28880D73001D6B0E /* grpc_python_plugin */,
+				D622958D28880D73001D6B0E /* grpc_ruby_plugin */,
+				D622958F28880D73001D6B0E /* libgrpc_unsecure.a */,
+				D622959128880D73001D6B0E /* libgrpcpp_channelz.a */,
+				D622959328880D73001D6B0E /* libabsl_hash.a */,
+				D622959528880D73001D6B0E /* libabsl_hashtablez_sampler.a */,
+				D622959728880D73001D6B0E /* libabsl_int128.a */,
+				D622959928880D73001D6B0E /* libabsl_leak_check.a */,
+				D622959B28880D73001D6B0E /* libabsl_leak_check_disable.a */,
+				D622959D28880D73001D6B0E /* libprotobufd.a */,
+				D622959F28880D73001D6B0E /* libprotobuf-lited.a */,
+				D62295A128880D73001D6B0E /* libprotocd.a */,
+				D62295A328880D73001D6B0E /* libabsl_log_severity.a */,
+				D62295A528880D73001D6B0E /* libabsl_low_level_hash.a */,
+				D62295A728880D73001D6B0E /* libabsl_malloc_internal.a */,
+				D62295A928880D73001D6B0E /* mimics_pcre_test */,
+				D62295AB28880D73001D6B0E /* minigzip */,
+				D62295AD28880D73001D6B0E /* parse_test */,
+				D62295AF28880D73001D6B0E /* libabsl_periodic_sampler.a */,
+				D62295B128880D73001D6B0E /* possible_match_test */,
+				D62295B328880D73001D6B0E /* protoc */,
+				D62295B528880D73001D6B0E /* libabsl_random_distributions.a */,
+				D62295B728880D73001D6B0E /* libabsl_random_internal_distribution_test_util.a */,
+				D62295B928880D73001D6B0E /* libabsl_random_internal_platform.a */,
+				D62295BB28880D73001D6B0E /* libabsl_random_internal_pool_urbg.a */,
+				D62295BD28880D73001D6B0E /* libabsl_random_internal_randen.a */,
+				D62295BF28880D73001D6B0E /* libabsl_random_internal_randen_hwaes.a */,
+				D62295C128880D73001D6B0E /* libabsl_random_internal_randen_hwaes_impl.a */,
+				D62295C328880D73001D6B0E /* libabsl_random_internal_randen_slow.a */,
+				D62295C528880D73001D6B0E /* libabsl_random_internal_seed_material.a */,
+				D62295C728880D73001D6B0E /* libabsl_random_seed_gen_exception.a */,
+				D62295C928880D73001D6B0E /* libabsl_random_seed_sequences.a */,
+				D62295CB28880D73001D6B0E /* random_test */,
+				D62295CD28880D73001D6B0E /* libabsl_raw_hash_set.a */,
+				D62295CF28880D73001D6B0E /* libabsl_raw_logging_internal.a */,
+				D62295D128880D73001D6B0E /* libre2.a */,
+				D62295D328880D73001D6B0E /* re2_arg_test */,
+				D62295D528880D73001D6B0E /* re2_test */,
+				D62295D728880D73001D6B0E /* regexp_benchmark */,
+				D62295D928880D73001D6B0E /* regexp_test */,
+				D62295DB28880D73001D6B0E /* required_prefix_test */,
+				D62295DD28880D73001D6B0E /* libabsl_scoped_set_env.a */,
+				D62295DF28880D73001D6B0E /* search_test */,
+				D62295E128880D73001D6B0E /* set_test */,
+				D62295E328880D73001D6B0E /* simplify_test */,
+				D62295E528880D73001D6B0E /* libabsl_spinlock_wait.a */,
+				D62295E728880D73001D6B0E /* libabsl_stacktrace.a */,
+				D62295E928880D73001D6B0E /* libabsl_status.a */,
+				D62295EB28880D73001D6B0E /* libabsl_statusor.a */,
+				D62295ED28880D73001D6B0E /* libabsl_str_format_internal.a */,
+				D62295EF28880D73001D6B0E /* libabsl_strerror.a */,
+				D62295F128880D73001D6B0E /* string_generator_test */,
+				D62295F328880D73001D6B0E /* libabsl_strings.a */,
+				D62295F528880D73001D6B0E /* libabsl_strings_internal.a */,
+				D62295F728880D73001D6B0E /* libabsl_symbolize.a */,
+				D62295F928880D73001D6B0E /* libabsl_synchronization.a */,
+				D62295FB28880D73001D6B0E /* libtesting.a */,
+				D62295FD28880D73001D6B0E /* libabsl_throw_delegate.a */,
+				D62295FF28880D73001D6B0E /* libabsl_time.a */,
+				D622960128880D73001D6B0E /* libabsl_time_zone.a */,
+				D622960328880D73001D6B0E /* libupb.a */,
+				D622960528880D73001D6B0E /* libz.dylib */,
+				D622960728880D73001D6B0E /* libz.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D622969328881C8B001D6B0E /* grpc */ = {
+			isa = PBXGroup;
+			children = (
+				D622969428881CA5001D6B0E /* insecure_certificate_provider.h */,
+			);
+			path = grpc;
+			sourceTree = "<group>";
+		};
 		D65C550327932DEA00A7AAC0 /* extern */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,9 +1226,17 @@
 			path = extern;
 			sourceTree = "<group>";
 		};
+		D66BF5EF2885706300F3192D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D6F88F4D277889BE00D9DDCE = {
 			isa = PBXGroup;
 			children = (
+				D622948D28880D72001D6B0E /* grpc.xcodeproj */,
 				D6F88FFA2788346400D9DDCE /* README.md */,
 				D6F88FA4277B136700D9DDCE /* gtest-all.cc */,
 				D6F88F90277B104700D9DDCE /* gtest_main.cc */,
@@ -171,6 +1244,7 @@
 				D6F88F6227788ADC00D9DDCE /* src */,
 				D6F88F7C277B02B200D9DDCE /* test */,
 				D6F88F5927788A4300D9DDCE /* Products */,
+				D66BF5EF2885706300F3192D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,6 +1253,7 @@
 			children = (
 				D6F88F5827788A4300D9DDCE /* auxl_grpc_cli */,
 				D6F88F8F277B0FA700D9DDCE /* auxl_grpc_test */,
+				D66BF63D2886B73F00F3192D /* auxl_grpc_test_with_grpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +1261,7 @@
 		D6F88F6227788ADC00D9DDCE /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D622969328881C8B001D6B0E /* grpc */,
 				D65C550327932DEA00A7AAC0 /* extern */,
 				D6F88FEA2786003500D9DDCE /* cli */,
 				D6F88FD82784DC4A00D9DDCE /* vendor */,
@@ -201,6 +1277,7 @@
 				D6F88FAD277EEBE800D9DDCE /* descriptor.cpp */,
 				D6F88FAE277EEBE800D9DDCE /* descriptor.hpp */,
 				D6F88FCC278306C800D9DDCE /* descriptor_session_delegate.hpp */,
+				D622969528882C22001D6B0E /* auxl_grpc.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -214,6 +1291,7 @@
 				D685361B2789BEC800408F38 /* test_session_delegate.hpp */,
 				D65C550B27936E7C00A7AAC0 /* auxl_extern_test.cpp */,
 				D6D20F1D28281FE3002E15E2 /* test_defines.h */,
+				D66BF3DF2885640500F3192D /* auxl_ssl_test.cpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -256,6 +1334,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D66BF61C2886B73F00F3192D /* auxl_grpc_test_with_grpc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D66BF63A2886B73F00F3192D /* Build configuration list for PBXNativeTarget "auxl_grpc_test_with_grpc" */;
+			buildPhases = (
+				D66BF6212886B73F00F3192D /* Sources */,
+				D66BF6302886B73F00F3192D /* Frameworks */,
+				D66BF6332886B73F00F3192D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D622960B28880DA2001D6B0E /* PBXTargetDependency */,
+				D622960928880D9D001D6B0E /* PBXTargetDependency */,
+			);
+			name = auxl_grpc_test_with_grpc;
+			productName = auxl_grpc_cli;
+			productReference = D66BF63D2886B73F00F3192D /* auxl_grpc_test_with_grpc */;
+			productType = "com.apple.product-type.tool";
+		};
 		D6F88F5727788A4300D9DDCE /* auxl_grpc_cli */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D6F88F5F27788A4300D9DDCE /* Build configuration list for PBXNativeTarget "auxl_grpc_cli" */;
@@ -314,15 +1411,909 @@
 			mainGroup = D6F88F4D277889BE00D9DDCE;
 			productRefGroup = D6F88F5927788A4300D9DDCE /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D622948E28880D72001D6B0E /* Products */;
+					ProjectRef = D622948D28880D72001D6B0E /* grpc.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D6F88F5727788A4300D9DDCE /* auxl_grpc_cli */,
 				D6F88F7F277B0FA700D9DDCE /* auxl_grpc_test */,
+				D66BF61C2886B73F00F3192D /* auxl_grpc_test_with_grpc */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		D622951328880D73001D6B0E /* acountry */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = acountry;
+			remoteRef = D622951228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622951528880D73001D6B0E /* libaddress_sorting.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libaddress_sorting.a;
+			remoteRef = D622951428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622951728880D73001D6B0E /* adig */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = adig;
+			remoteRef = D622951628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622951928880D73001D6B0E /* ahost */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = ahost;
+			remoteRef = D622951828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622951B28880D73001D6B0E /* libabsl_bad_any_cast_impl.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_bad_any_cast_impl.a;
+			remoteRef = D622951A28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622951D28880D73001D6B0E /* libabsl_bad_optional_access.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_bad_optional_access.a;
+			remoteRef = D622951C28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622951F28880D73001D6B0E /* libabsl_bad_variant_access.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_bad_variant_access.a;
+			remoteRef = D622951E28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622952128880D73001D6B0E /* libabsl_base.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_base.a;
+			remoteRef = D622952028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622952328880D73001D6B0E /* libcares.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcares.a;
+			remoteRef = D622952228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622952528880D73001D6B0E /* charclass_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = charclass_test;
+			remoteRef = D622952428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622952728880D73001D6B0E /* check_epollexclusive */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = check_epollexclusive;
+			remoteRef = D622952628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622952928880D73001D6B0E /* libabsl_city.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_city.a;
+			remoteRef = D622952828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622952B28880D73001D6B0E /* libabsl_civil_time.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_civil_time.a;
+			remoteRef = D622952A28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622952D28880D73001D6B0E /* compile_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = compile_test;
+			remoteRef = D622952C28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622952F28880D73001D6B0E /* libabsl_cord.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_cord.a;
+			remoteRef = D622952E28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622953128880D73001D6B0E /* libabsl_cord_internal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_cord_internal.a;
+			remoteRef = D622953028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622953328880D73001D6B0E /* libabsl_cordz_functions.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_cordz_functions.a;
+			remoteRef = D622953228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622953528880D73001D6B0E /* libabsl_cordz_handle.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_cordz_handle.a;
+			remoteRef = D622953428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622953728880D73001D6B0E /* libabsl_cordz_info.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_cordz_info.a;
+			remoteRef = D622953628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622953928880D73001D6B0E /* libabsl_cordz_sample_token.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_cordz_sample_token.a;
+			remoteRef = D622953828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622953B28880D73001D6B0E /* libabsl_debugging_internal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_debugging_internal.a;
+			remoteRef = D622953A28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622953D28880D73001D6B0E /* libabsl_demangle_internal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_demangle_internal.a;
+			remoteRef = D622953C28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622953F28880D73001D6B0E /* dfa_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = dfa_test;
+			remoteRef = D622953E28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622954128880D73001D6B0E /* libabsl_examine_stack.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_examine_stack.a;
+			remoteRef = D622954028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622954328880D73001D6B0E /* example */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = example;
+			remoteRef = D622954228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622954528880D73001D6B0E /* exhaustive1_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = exhaustive1_test;
+			remoteRef = D622954428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622954728880D73001D6B0E /* exhaustive2_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = exhaustive2_test;
+			remoteRef = D622954628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622954928880D73001D6B0E /* exhaustive3_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = exhaustive3_test;
+			remoteRef = D622954828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622954B28880D73001D6B0E /* exhaustive_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = exhaustive_test;
+			remoteRef = D622954A28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622954D28880D73001D6B0E /* libabsl_exponential_biased.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_exponential_biased.a;
+			remoteRef = D622954C28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622954F28880D73001D6B0E /* libabsl_failure_signal_handler.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_failure_signal_handler.a;
+			remoteRef = D622954E28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622955128880D73001D6B0E /* filtered_re2_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = filtered_re2_test;
+			remoteRef = D622955028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622955328880D73001D6B0E /* libabsl_flags.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_flags.a;
+			remoteRef = D622955228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622955528880D73001D6B0E /* libabsl_flags_commandlineflag.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_flags_commandlineflag.a;
+			remoteRef = D622955428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622955728880D73001D6B0E /* libabsl_flags_commandlineflag_internal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_flags_commandlineflag_internal.a;
+			remoteRef = D622955628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622955928880D73001D6B0E /* libabsl_flags_config.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_flags_config.a;
+			remoteRef = D622955828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622955B28880D73001D6B0E /* libabsl_flags_internal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_flags_internal.a;
+			remoteRef = D622955A28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622955D28880D73001D6B0E /* libabsl_flags_marshalling.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_flags_marshalling.a;
+			remoteRef = D622955C28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622955F28880D73001D6B0E /* libabsl_flags_parse.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_flags_parse.a;
+			remoteRef = D622955E28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622956128880D73001D6B0E /* libabsl_flags_private_handle_accessor.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_flags_private_handle_accessor.a;
+			remoteRef = D622956028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622956328880D73001D6B0E /* libabsl_flags_program_name.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_flags_program_name.a;
+			remoteRef = D622956228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622956528880D73001D6B0E /* libabsl_flags_reflection.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_flags_reflection.a;
+			remoteRef = D622956428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622956728880D73001D6B0E /* libabsl_flags_usage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_flags_usage.a;
+			remoteRef = D622956628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622956928880D73001D6B0E /* libabsl_flags_usage_internal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_flags_usage_internal.a;
+			remoteRef = D622956828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622956B28880D73001D6B0E /* gen_hpack_tables */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = gen_hpack_tables;
+			remoteRef = D622956A28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622956D28880D73001D6B0E /* libgpr.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libgpr.a;
+			remoteRef = D622956C28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622956F28880D73001D6B0E /* libabsl_graphcycles_internal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_graphcycles_internal.a;
+			remoteRef = D622956E28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622957128880D73001D6B0E /* libgrpc.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libgrpc.a;
+			remoteRef = D622957028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622957328880D73001D6B0E /* libgrpc++.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libgrpc++.a";
+			remoteRef = D622957228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622957528880D73001D6B0E /* libgrpc++_alts.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libgrpc++_alts.a";
+			remoteRef = D622957428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622957728880D73001D6B0E /* libgrpc++_error_details.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libgrpc++_error_details.a";
+			remoteRef = D622957628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622957928880D73001D6B0E /* libgrpc++_reflection.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libgrpc++_reflection.a";
+			remoteRef = D622957828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622957B28880D73001D6B0E /* libgrpc++_unsecure.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libgrpc++_unsecure.a";
+			remoteRef = D622957A28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622957D28880D73001D6B0E /* grpc_cpp_plugin */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = grpc_cpp_plugin;
+			remoteRef = D622957C28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622957F28880D73001D6B0E /* libgrpc_csharp_ext.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = libgrpc_csharp_ext.dylib;
+			path = libgrpc_csharp_ext.21.0.0.dylib;
+			remoteRef = D622957E28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622958128880D73001D6B0E /* grpc_csharp_plugin */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = grpc_csharp_plugin;
+			remoteRef = D622958028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622958328880D73001D6B0E /* grpc_node_plugin */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = grpc_node_plugin;
+			remoteRef = D622958228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622958528880D73001D6B0E /* grpc_objective_c_plugin */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = grpc_objective_c_plugin;
+			remoteRef = D622958428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622958728880D73001D6B0E /* grpc_php_plugin */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = grpc_php_plugin;
+			remoteRef = D622958628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622958928880D73001D6B0E /* libgrpc_plugin_support.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libgrpc_plugin_support.a;
+			remoteRef = D622958828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622958B28880D73001D6B0E /* grpc_python_plugin */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = grpc_python_plugin;
+			remoteRef = D622958A28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622958D28880D73001D6B0E /* grpc_ruby_plugin */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = grpc_ruby_plugin;
+			remoteRef = D622958C28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622958F28880D73001D6B0E /* libgrpc_unsecure.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libgrpc_unsecure.a;
+			remoteRef = D622958E28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622959128880D73001D6B0E /* libgrpcpp_channelz.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libgrpcpp_channelz.a;
+			remoteRef = D622959028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622959328880D73001D6B0E /* libabsl_hash.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_hash.a;
+			remoteRef = D622959228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622959528880D73001D6B0E /* libabsl_hashtablez_sampler.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_hashtablez_sampler.a;
+			remoteRef = D622959428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622959728880D73001D6B0E /* libabsl_int128.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_int128.a;
+			remoteRef = D622959628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622959928880D73001D6B0E /* libabsl_leak_check.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_leak_check.a;
+			remoteRef = D622959828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622959B28880D73001D6B0E /* libabsl_leak_check_disable.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_leak_check_disable.a;
+			remoteRef = D622959A28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622959D28880D73001D6B0E /* libprotobufd.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libprotobufd.a;
+			remoteRef = D622959C28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622959F28880D73001D6B0E /* libprotobuf-lited.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libprotobuf-lited.a";
+			remoteRef = D622959E28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295A128880D73001D6B0E /* libprotocd.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libprotocd.a;
+			remoteRef = D62295A028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295A328880D73001D6B0E /* libabsl_log_severity.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_log_severity.a;
+			remoteRef = D62295A228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295A528880D73001D6B0E /* libabsl_low_level_hash.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_low_level_hash.a;
+			remoteRef = D62295A428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295A728880D73001D6B0E /* libabsl_malloc_internal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_malloc_internal.a;
+			remoteRef = D62295A628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295A928880D73001D6B0E /* mimics_pcre_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = mimics_pcre_test;
+			remoteRef = D62295A828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295AB28880D73001D6B0E /* minigzip */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = minigzip;
+			remoteRef = D62295AA28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295AD28880D73001D6B0E /* parse_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = parse_test;
+			remoteRef = D62295AC28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295AF28880D73001D6B0E /* libabsl_periodic_sampler.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_periodic_sampler.a;
+			remoteRef = D62295AE28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295B128880D73001D6B0E /* possible_match_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = possible_match_test;
+			remoteRef = D62295B028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295B328880D73001D6B0E /* protoc */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = protoc;
+			remoteRef = D62295B228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295B528880D73001D6B0E /* libabsl_random_distributions.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_random_distributions.a;
+			remoteRef = D62295B428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295B728880D73001D6B0E /* libabsl_random_internal_distribution_test_util.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_random_internal_distribution_test_util.a;
+			remoteRef = D62295B628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295B928880D73001D6B0E /* libabsl_random_internal_platform.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_random_internal_platform.a;
+			remoteRef = D62295B828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295BB28880D73001D6B0E /* libabsl_random_internal_pool_urbg.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_random_internal_pool_urbg.a;
+			remoteRef = D62295BA28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295BD28880D73001D6B0E /* libabsl_random_internal_randen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_random_internal_randen.a;
+			remoteRef = D62295BC28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295BF28880D73001D6B0E /* libabsl_random_internal_randen_hwaes.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_random_internal_randen_hwaes.a;
+			remoteRef = D62295BE28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295C128880D73001D6B0E /* libabsl_random_internal_randen_hwaes_impl.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_random_internal_randen_hwaes_impl.a;
+			remoteRef = D62295C028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295C328880D73001D6B0E /* libabsl_random_internal_randen_slow.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_random_internal_randen_slow.a;
+			remoteRef = D62295C228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295C528880D73001D6B0E /* libabsl_random_internal_seed_material.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_random_internal_seed_material.a;
+			remoteRef = D62295C428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295C728880D73001D6B0E /* libabsl_random_seed_gen_exception.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_random_seed_gen_exception.a;
+			remoteRef = D62295C628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295C928880D73001D6B0E /* libabsl_random_seed_sequences.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_random_seed_sequences.a;
+			remoteRef = D62295C828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295CB28880D73001D6B0E /* random_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = random_test;
+			remoteRef = D62295CA28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295CD28880D73001D6B0E /* libabsl_raw_hash_set.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_raw_hash_set.a;
+			remoteRef = D62295CC28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295CF28880D73001D6B0E /* libabsl_raw_logging_internal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_raw_logging_internal.a;
+			remoteRef = D62295CE28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295D128880D73001D6B0E /* libre2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libre2.a;
+			remoteRef = D62295D028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295D328880D73001D6B0E /* re2_arg_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = re2_arg_test;
+			remoteRef = D62295D228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295D528880D73001D6B0E /* re2_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = re2_test;
+			remoteRef = D62295D428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295D728880D73001D6B0E /* regexp_benchmark */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = regexp_benchmark;
+			remoteRef = D62295D628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295D928880D73001D6B0E /* regexp_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = regexp_test;
+			remoteRef = D62295D828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295DB28880D73001D6B0E /* required_prefix_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = required_prefix_test;
+			remoteRef = D62295DA28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295DD28880D73001D6B0E /* libabsl_scoped_set_env.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_scoped_set_env.a;
+			remoteRef = D62295DC28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295DF28880D73001D6B0E /* search_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = search_test;
+			remoteRef = D62295DE28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295E128880D73001D6B0E /* set_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = set_test;
+			remoteRef = D62295E028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295E328880D73001D6B0E /* simplify_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = simplify_test;
+			remoteRef = D62295E228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295E528880D73001D6B0E /* libabsl_spinlock_wait.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_spinlock_wait.a;
+			remoteRef = D62295E428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295E728880D73001D6B0E /* libabsl_stacktrace.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_stacktrace.a;
+			remoteRef = D62295E628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295E928880D73001D6B0E /* libabsl_status.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_status.a;
+			remoteRef = D62295E828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295EB28880D73001D6B0E /* libabsl_statusor.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_statusor.a;
+			remoteRef = D62295EA28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295ED28880D73001D6B0E /* libabsl_str_format_internal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_str_format_internal.a;
+			remoteRef = D62295EC28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295EF28880D73001D6B0E /* libabsl_strerror.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_strerror.a;
+			remoteRef = D62295EE28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295F128880D73001D6B0E /* string_generator_test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = string_generator_test;
+			remoteRef = D62295F028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295F328880D73001D6B0E /* libabsl_strings.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_strings.a;
+			remoteRef = D62295F228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295F528880D73001D6B0E /* libabsl_strings_internal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_strings_internal.a;
+			remoteRef = D62295F428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295F728880D73001D6B0E /* libabsl_symbolize.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_symbolize.a;
+			remoteRef = D62295F628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295F928880D73001D6B0E /* libabsl_synchronization.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_synchronization.a;
+			remoteRef = D62295F828880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295FB28880D73001D6B0E /* libtesting.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libtesting.a;
+			remoteRef = D62295FA28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295FD28880D73001D6B0E /* libabsl_throw_delegate.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_throw_delegate.a;
+			remoteRef = D62295FC28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D62295FF28880D73001D6B0E /* libabsl_time.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_time.a;
+			remoteRef = D62295FE28880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622960128880D73001D6B0E /* libabsl_time_zone.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libabsl_time_zone.a;
+			remoteRef = D622960028880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622960328880D73001D6B0E /* libupb.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libupb.a;
+			remoteRef = D622960228880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622960528880D73001D6B0E /* libz.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = libz.dylib;
+			path = libz.1.2.11.dylib;
+			remoteRef = D622960428880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D622960728880D73001D6B0E /* libz.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libz.a;
+			remoteRef = D622960628880D73001D6B0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXSourcesBuildPhase section */
+		D66BF6212886B73F00F3192D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D66BF6222886B73F00F3192D /* gtest-all.cc in Sources */,
+				D66BF6232886B73F00F3192D /* options.c in Sources */,
+				D66BF6242886B73F00F3192D /* descriptor.cpp in Sources */,
+				D66BF6252886B73F00F3192D /* gtest_main.cc in Sources */,
+				D6229610288810B5001D6B0E /* auxl_ssl_test.cpp in Sources */,
+				D66BF6262886B73F00F3192D /* cli_call.cc in Sources */,
+				D66BF6272886B73F00F3192D /* tool.cpp in Sources */,
+				D66BF6282886B73F00F3192D /* connection.cpp in Sources */,
+				D66BF6292886B73F00F3192D /* session.cpp in Sources */,
+				D66BF62A2886B73F00F3192D /* util.cpp in Sources */,
+				D66BF62C2886B73F00F3192D /* proto_reflection_descriptor_database.cc in Sources */,
+				D66BF62D2886B73F00F3192D /* cli_util.cpp in Sources */,
+				D66BF62E2886B73F00F3192D /* parser.cpp in Sources */,
+				D66BF62F2886B73F00F3192D /* error_collector.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6F88F5427788A4300D9DDCE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -349,16 +2340,14 @@
 				D6F88FA5277B136700D9DDCE /* gtest-all.cc in Sources */,
 				D6F88FD627844B8400D9DDCE /* options.c in Sources */,
 				D6F88FB0277F13C900D9DDCE /* descriptor.cpp in Sources */,
-				D65C550E27936FA400A7AAC0 /* auxl_extern_test.cpp in Sources */,
 				D6F88F91277B104700D9DDCE /* gtest_main.cc in Sources */,
 				D6F88FBB2781AD6A00D9DDCE /* cli_call.cc in Sources */,
 				D6F88F83277B0FA700D9DDCE /* tool.cpp in Sources */,
 				D6F88F84277B0FA700D9DDCE /* connection.cpp in Sources */,
+				D66BF63E2886C31200F3192D /* auxl_ssl_test.cpp in Sources */,
 				D6F88FAC277BA5EA00D9DDCE /* session.cpp in Sources */,
 				D6F88FD027832AB400D9DDCE /* util.cpp in Sources */,
 				D6F88FDC2784DC4A00D9DDCE /* proto_reflection_descriptor_database.cc in Sources */,
-				D6F88FCA2783062C00D9DDCE /* auxl_client_test.cpp in Sources */,
-				D6F88F87277B0FA700D9DDCE /* auxl_main_test.cpp in Sources */,
 				D6F88FF92786F33600D9DDCE /* cli_util.cpp in Sources */,
 				D6F88F88277B0FA700D9DDCE /* parser.cpp in Sources */,
 				D6F88FC32781BB5D00D9DDCE /* error_collector.c in Sources */,
@@ -367,7 +2356,329 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D622960928880D9D001D6B0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = grpc;
+			targetProxy = D622960828880D9D001D6B0E /* PBXContainerItemProxy */;
+		};
+		D622960B28880DA2001D6B0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "grpc++";
+			targetProxy = D622960A28880DA2001D6B0E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		D66BF63B2886B73F00F3192D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = auxl_grpc_cli.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = HUHE7NCX8Y;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/modules/grpc/cmake/build/gens/",
+					"${PROJECT_DIR}/modules/grpc/include",
+					"${PROJECT_DIR}/include/",
+					/usr/local/include,
+					"${PROJECT_DIR}/modules/grpc/",
+					"${PROJECT_DIR}/gen",
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lgrpc++_reflection",
+					"-lgrpcpp_channelz",
+					"-lprotobuf",
+					"-lupb",
+					"-lgpr",
+					"-lz",
+					"-lre2",
+					"-lcares",
+					"-laddress_sorting",
+					"-lpthread",
+					/usr/local/lib/libssl.a,
+					/usr/local/lib/libcrypto.a,
+					"-labsl_bad_any_cast_impl",
+					"-labsl_bad_optional_access",
+					"-labsl_bad_variant_access",
+					"-labsl_base",
+					"-labsl_city",
+					"-labsl_civil_time",
+					"-labsl_cord",
+					"-labsl_cord_internal",
+					"-labsl_cordz_functions",
+					"-labsl_cordz_handle",
+					"-labsl_cordz_info",
+					"-labsl_cordz_sample_token",
+					"-labsl_debugging_internal",
+					"-labsl_demangle_internal",
+					"-labsl_examine_stack",
+					"-labsl_exponential_biased",
+					"-labsl_failure_signal_handler",
+					"-labsl_flags",
+					"-labsl_flags_commandlineflag",
+					"-labsl_flags_commandlineflag_internal",
+					"-labsl_flags_config",
+					"-labsl_flags_internal",
+					"-labsl_flags_marshalling",
+					"-labsl_flags_parse",
+					"-labsl_flags_private_handle_accessor",
+					"-labsl_flags_program_name",
+					"-labsl_flags_reflection",
+					"-labsl_flags_usage",
+					"-labsl_flags_usage_internal",
+					"-labsl_graphcycles_internal",
+					"-labsl_hash",
+					"-labsl_hashtablez_sampler",
+					"-labsl_int128",
+					"-labsl_leak_check",
+					"-labsl_leak_check_disable",
+					"-labsl_log_severity",
+					"-labsl_low_level_hash",
+					"-labsl_malloc_internal",
+					"-labsl_periodic_sampler",
+					"-labsl_random_distributions",
+					"-labsl_random_internal_distribution_test_util",
+					"-labsl_random_internal_platform",
+					"-labsl_random_internal_pool_urbg",
+					"-labsl_random_internal_randen",
+					"-labsl_random_internal_randen_hwaes",
+					"-labsl_random_internal_randen_hwaes_impl",
+					"-labsl_random_internal_randen_slow",
+					"-labsl_random_internal_seed_material",
+					"-labsl_random_seed_gen_exception",
+					"-labsl_random_seed_sequences",
+					"-labsl_raw_hash_set",
+					"-labsl_raw_logging_internal",
+					"-labsl_scoped_set_env",
+					"-labsl_spinlock_wait",
+					"-labsl_stacktrace",
+					"-labsl_status",
+					"-labsl_statusor",
+					"-labsl_str_format_internal",
+					"-labsl_strerror",
+					"-labsl_strings",
+					"-labsl_strings_internal",
+					"-labsl_symbolize",
+					"-labsl_synchronization",
+					"-labsl_throw_delegate",
+					"-labsl_time",
+					"-labsl_time_zone",
+					"-L/usr/local/lib",
+					"-framework",
+					CoreFoundation,
+					"-lgtest",
+					"-lc++",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D66BF63C2886B73F00F3192D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = auxl_grpc_cli.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = HUHE7NCX8Y;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/modules/grpc/cmake/build/gens/",
+					"${PROJECT_DIR}/modules/grpc/include",
+					"${PROJECT_DIR}/include/",
+					/usr/local/include,
+					"${PROJECT_DIR}/modules/grpc/",
+					"${PROJECT_DIR}/gen",
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"-lgrpc++_reflection",
+					"-lgrpcpp_channelz",
+					"-lprotobuf",
+					"-lupb",
+					"-lgpr",
+					"-lz",
+					"-lre2",
+					"-lcares",
+					"-laddress_sorting",
+					"-lpthread",
+					/usr/local/lib/libssl.a,
+					/usr/local/lib/libcrypto.a,
+					"-labsl_bad_any_cast_impl",
+					"-labsl_bad_optional_access",
+					"-labsl_bad_variant_access",
+					"-labsl_base",
+					"-labsl_city",
+					"-labsl_civil_time",
+					"-labsl_cord",
+					"-labsl_cord_internal",
+					"-labsl_cordz_functions",
+					"-labsl_cordz_handle",
+					"-labsl_cordz_info",
+					"-labsl_cordz_sample_token",
+					"-labsl_debugging_internal",
+					"-labsl_demangle_internal",
+					"-labsl_examine_stack",
+					"-labsl_exponential_biased",
+					"-labsl_failure_signal_handler",
+					"-labsl_flags",
+					"-labsl_flags_commandlineflag",
+					"-labsl_flags_commandlineflag_internal",
+					"-labsl_flags_config",
+					"-labsl_flags_internal",
+					"-labsl_flags_marshalling",
+					"-labsl_flags_parse",
+					"-labsl_flags_private_handle_accessor",
+					"-labsl_flags_program_name",
+					"-labsl_flags_reflection",
+					"-labsl_flags_usage",
+					"-labsl_flags_usage_internal",
+					"-labsl_graphcycles_internal",
+					"-labsl_hash",
+					"-labsl_hashtablez_sampler",
+					"-labsl_int128",
+					"-labsl_leak_check",
+					"-labsl_leak_check_disable",
+					"-labsl_log_severity",
+					"-labsl_low_level_hash",
+					"-labsl_malloc_internal",
+					"-labsl_periodic_sampler",
+					"-labsl_random_distributions",
+					"-labsl_random_internal_distribution_test_util",
+					"-labsl_random_internal_platform",
+					"-labsl_random_internal_pool_urbg",
+					"-labsl_random_internal_randen",
+					"-labsl_random_internal_randen_hwaes",
+					"-labsl_random_internal_randen_hwaes_impl",
+					"-labsl_random_internal_randen_slow",
+					"-labsl_random_internal_seed_material",
+					"-labsl_random_seed_gen_exception",
+					"-labsl_random_seed_sequences",
+					"-labsl_raw_hash_set",
+					"-labsl_raw_logging_internal",
+					"-labsl_scoped_set_env",
+					"-labsl_spinlock_wait",
+					"-labsl_stacktrace",
+					"-labsl_status",
+					"-labsl_statusor",
+					"-labsl_str_format_internal",
+					"-labsl_strerror",
+					"-labsl_strings",
+					"-labsl_strings_internal",
+					"-labsl_symbolize",
+					"-labsl_synchronization",
+					"-labsl_throw_delegate",
+					"-labsl_time",
+					"-labsl_time_zone",
+					"-L/usr/local/lib",
+					"-framework",
+					CoreFoundation,
+					"-lgtest",
+					"-lc++",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		D6F88F52277889BE00D9DDCE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -745,6 +3056,7 @@
 					/usr/local/include,
 					"${PROJECT_DIR}/modules/grpc/",
 					"${PROJECT_DIR}/gen",
+					"/usr/local/opt/openssl@1.1/include",
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
@@ -752,8 +3064,6 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
-					"-lgrpc",
-					"-lgrpc++",
 					"-lgrpc++_reflection",
 					"-lgrpcpp_channelz",
 					"-lprotobuf",
@@ -837,6 +3147,8 @@
 					CoreFoundation,
 					"-lgtest",
 					"-lc++",
+					"-lgrpc++",
+					"-lgrpc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -899,14 +3211,13 @@
 					/usr/local/include,
 					"${PROJECT_DIR}/modules/grpc/",
 					"${PROJECT_DIR}/gen",
+					"/usr/local/opt/openssl@1.1/include",
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = (
-					"-lgrpc",
-					"-lgrpc++",
 					"-lgrpc++_reflection",
 					"-lgrpcpp_channelz",
 					"-lprotobuf",
@@ -990,6 +3301,8 @@
 					CoreFoundation,
 					"-lgtest",
 					"-lc++",
+					"-lgrpc++",
+					"-lgrpc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -999,6 +3312,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D66BF63A2886B73F00F3192D /* Build configuration list for PBXNativeTarget "auxl_grpc_test_with_grpc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D66BF63B2886B73F00F3192D /* Debug */,
+				D66BF63C2886B73F00F3192D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D6F88F51277889BE00D9DDCE /* Build configuration list for PBXProject "auxl-grpc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
