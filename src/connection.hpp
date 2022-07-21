@@ -47,7 +47,7 @@ public:
     
     /**
      */
-    static std::unique_ptr<Connection> create_connection(const std::string& endpoint, GRPCConnectionOptions options);
+    static std::unique_ptr<Connection> create_connection(const std::string& endpoint, GRPCConnectionOptions options, std::string user_agent = "Auxl");
     
     double timeout = -1;
 };

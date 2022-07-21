@@ -1,7 +1,6 @@
 {
-    "timeout": 10000,
-    "use_ssl": true,
-    "ssl_client_cert": "",
-    "ssl_client_key": "",
-    "ssl_root_certs_path": "/Users/joostverrijt/Projects/Metamotifs/libvlui/vlui/Resources/cert/cacert.pem"
+    "timeout": -1,
+    "enable_tls": true,
+    "validate_tls": true,
+    "pem_root_certs_path": "path_to_root_certs"
 }

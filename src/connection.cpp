@@ -35,20 +35,17 @@ std::shared_ptr<ChannelCredentials> Connection::get_channel_credentials(GRPCConn
 {
     if (options.enable_tls) {
         ::grpc::experimental::TlsChannelCredentialsOptions opts;
-
-        std::string in_str;
-        util::load_file(options.pem_root_certs_path, &in_str);
         
-        auto certificate_provider = std::make_shared<::grpc::experimental::StaticDataCertificateProvider>(in_str);
+        auto certificate_provider = std::make_shared<::grpc::experimental::FileWatcherCertificateProvider>(options.pem_root_certs_path, 1);
+        
         opts.set_certificate_provider(certificate_provider);
-
-        if (options.validate_tls == false) {
-            opts.set_check_call_host(false);
-            opts.set_verify_server_certs(false);
-            
-            auto verifier = experimental::ExternalCertificateVerifier::Create<InsecureCertificateVerifier>();
-            opts.set_certificate_verifier(verifier);
-        }
+        opts.watch_root_certs();
+        
+        auto verifier = experimental::ExternalCertificateVerifier::Create<InsecureCertificateVerifier>();
+        opts.set_certificate_verifier(verifier);
+        
+        opts.set_check_call_host(options.validate_tls);
+        opts.set_verify_server_certs(options.validate_tls);
 
         return TlsCredentials(opts);
     } else {
@@ -61,7 +58,7 @@ std::shared_ptr<ChannelCredentials> Connection::get_channel_credentials(GRPCConn
 
 /**
  */
-std::unique_ptr<Connection> Connection::create_connection(const std::string& endpoint, GRPCConnectionOptions options)
+std::unique_ptr<Connection> Connection::create_connection(const std::string& endpoint, GRPCConnectionOptions options, std::string user_agent)
 {
     if (options.timeout == 0) {
         std::cerr << "Warning, timeout is set to 0. This may result undefined behavior." << std::endl;
@@ -70,6 +67,7 @@ std::unique_ptr<Connection> Connection::create_connection(const std::string& end
     ChannelArguments args;
 
     args.SetInt(GRPC_ARG_MAX_METADATA_SIZE, 10 * 1024 * 1024);
+    args.SetString(GRPC_ARG_PRIMARY_USER_AGENT_STRING, user_agent);
     auto channel = CreateCustomChannel(endpoint, get_channel_credentials(options), args);
 
     std::unique_ptr<Connection> connection(new Connection(endpoint, channel));

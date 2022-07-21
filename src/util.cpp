@@ -66,7 +66,7 @@ GRPCConnectionOptions* options_from_json(const std::string& json)
                                                                 (char*) pem_root_certs_path.c_str());
         return opts;
     } catch(...) {
-        std::cerr << "Cold not parse connection options, returning defaults.";
+        std::cerr << "Could not parse connection options, returning defaults.";
         
         return connection_options_default();
     }
