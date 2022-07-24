@@ -40,7 +40,7 @@ extern "C"
      */
     void free_connection(MConnectionHandle connection) {
         Connection* c = (Connection*) connection;
-        free(c);
+        delete c;
     }
     
     /**
